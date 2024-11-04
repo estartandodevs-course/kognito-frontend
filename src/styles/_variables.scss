@@ -1,29 +1,29 @@
-:root {
-  /* Variáveis para Botões Filled */
-  --filled-bg-default: #0e6ba8;
-  --filled-bg-hover: #0b507e;
-  --filled-bg-pressed: #05253b;
-  --filled-bg-disabled: rgba(224, 224, 224, 1);
-  --filled-btn-txt: #f1f4f5;
-  --filled-btn-txt-disabled: #1d1d1d;
+// styles/_variables.scss
 
-  /* Variáveis para botões Outlined*/
-  --outlined-bg-default: inherit;
-  --outlined-bg-hover: #e7f0f6;
-  --outlined-bg-pressed: #b4d1e4;
-  --outlined-bg-disabled: inherit;
-  --outlined-btn-txt: #0e6ba8;
-  --outlined-btn-txt-pressed: #05253b;
-  --outlined-border: #828282;
-  --outlined-btn-txt-disabled: var(--filled-btn-txt-disabled);
-  --outlined-borders: var(--filled-bg-disabled);
+/* Variáveis para Botões Filled */
+$filled-bg-default: #0e6ba8;
+$filled-bg-hover: #0b507e;
+$filled-bg-pressed: #05253b;
+$filled-bg-disabled: rgba(224, 224, 224, 1);
+$filled-btn-txt: #f1f4f5;
+$filled-btn-txt-disabled: #1d1d1d;
 
-  /* Variáveis para Text Buttons*/
-  --txt-btn-bg-dedfault: inherit;
-  --txt-btn-bg-hover: #e7f0f6;
-  --txt-btn-bg-pressed: #b4d1e4;
-  --txt-btn-bg-disabled: inherit;
-  --txt-btn-txt: var(--outlined-btn-txt);
-  --txt-btn-txt-pressed: var(--outlined-btn-txt-pressed);
-  --txt-btn-txt-disabled: var(--outlined-btn-txt-disabled);
-}
+/* Variáveis para Botões Outlined */
+$outlined-bg-default: inherit;
+$outlined-bg-hover: #e7f0f6;
+$outlined-bg-pressed: #b4d1e4;
+$outlined-bg-disabled: inherit;
+$outlined-btn-txt: #0e6ba8;
+$outlined-btn-txt-pressed: #05253b;
+$outlined-border: #828282;
+$outlined-btn-txt-disabled: $filled-btn-txt-disabled; // Usando variável definida anteriormente
+$outlined-borders: $filled-bg-disabled; // Usando variável definida anteriormente
+
+/* Variáveis para Text Buttons */
+$txt-btn-bg-default: inherit;
+$txt-btn-bg-hover: #e7f0f6;
+$txt-btn-bg-pressed: #b4d1e4;
+$txt-btn-bg-disabled: inherit;
+$txt-btn-txt: $outlined-btn-txt;
+$txt-btn-txt-pressed: $outlined-btn-txt-pressed;
+$txt-btn-txt-disabled: $outlined-btn-txt-disabled;
