@@ -1,0 +1,100 @@
+@import './variables';
+
+@mixin filled-button() {
+  background-color: var(--filled-bg-default);
+  color: var(--filled-btn-txt);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  width: 86px;
+  height: 48px;
+  position: relative;
+  gap: 8px;
+
+  opacity: 1;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background-color: var(--filled-bg-hover);
+  }
+
+  &:active {
+    background-color: var(--filled-bg-pressed);
+  }
+
+  &:disabled {
+    background-color: var(--filled-bg-disabled);
+    color: var(--filled-btn-txt-disabled);
+    cursor: not-allowed;
+  }
+}
+
+@mixin outlined-button() {
+  background-color: var(--outlined-bg-default);
+  color: var(--outlined-btn-txt);
+  border: 1px solid var(--outlined-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  width: 86px;
+  height: 48px;
+  position: relative;
+
+  opacity: 1;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background-color: var(--outlined-bg-hover);
+  }
+
+  &:active {
+    background-color: var(--outlined-bg-pressed);
+    color: var(--outlined-btn-txt-pressed);
+  }
+
+  &:disabled {
+    background-color: var(--outlined-bg-disabled);
+    color: var(--outlined-btn-txt-disabled);
+    border-color: var(--outlined-borders);
+    cursor: not-allowed;
+  }
+}
+
+@mixin text-button() {
+  background-color: var(--txt-btn-bg-default);
+  color: var(--txt-btn-txt);
+  border: none;
+  border-radius: 10px 0px 0px 0px;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  width: 62px;
+  height: 48px;
+  gap: 8px;
+
+  opacity: 1;
+
+  &:hover {
+    background-color: var(--txt-btn-bg-hover);
+  }
+
+  &:active {
+    background-color: var(--txt-btn-bg-pressed);
+    color: var(--txt-btn-txt-pressed);
+  }
+
+  &:disabled {
+    background-color: var(--txt-btn-bg-disabled);
+    color: var(--txt-btn-txt-disabled);
+    cursor: not-allowed;
+  }
+}
