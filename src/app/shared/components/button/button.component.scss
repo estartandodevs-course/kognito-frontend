@@ -1,12 +1,18 @@
-@import 'variables'; // Importe o arquivo de variáveis
+@import '../../../../styles/variables';
 
 .button-container {
   display: flex;
-  gap: 8px;
-
+  gap: 16px;
   .btn {
+    width: 86px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
     border: none;
+    font-family: var(--font-family, Arial, sans-serif);
+    font-size: 16px;
 
     &.filled {
       background-color: $filled-bg-default;
