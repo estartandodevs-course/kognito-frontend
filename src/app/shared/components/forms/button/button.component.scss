@@ -1,0 +1,69 @@
+// .button-container {
+//   display: flex;
+//   gap: 8px;
+
+//   .btn {
+//     border-radius: 10px;
+//     border: none;
+
+//     &.filled {
+//       background-color: $filled-bg-default;
+//       color: $filled-btn-txt;
+
+//       &:hover {
+//         background-color: $filled-bg-hover;
+//       }
+
+//       &:active {
+//         background-color: $filled-bg-pressed;
+//       }
+
+//       &:disabled {
+//         background-color: $filled-bg-disabled;
+//         color: $filled-btn-txt-disabled;
+//         cursor: not-allowed;
+//       }
+//     }
+
+//     &.outlined {
+//       background-color: $outlined-bg-default;
+//       color: $outlined-btn-txt;
+//       border: 1px solid $outlined-border;
+
+//       &:hover {
+//         background-color: $outlined-bg-hover;
+//       }
+
+//       &:active {
+//         background-color: $outlined-bg-pressed;
+//         color: $outlined-btn-txt-pressed;
+//       }
+
+//       &:disabled {
+//         background-color: $outlined-bg-disabled;
+//         color: $outlined-btn-txt-disabled;
+//         cursor: not-allowed;
+//       }
+//     }
+
+//     &.text {
+//       background-color: $txt-btn-bg-default;
+//       color: $txt-btn-txt;
+
+//       &:hover {
+//         background-color: $txt-btn-bg-hover;
+//       }
+
+//       &:active {
+//         background-color: $txt-btn-bg-pressed;
+//         color: $txt-btn-txt-pressed;
+//       }
+
+//       &:disabled {
+//         background-color: $txt-btn-bg-disabled;
+//         color: $txt-btn-txt-disabled;
+//         cursor: not-allowed;
+//       }
+//     }
+//   }
+// }
