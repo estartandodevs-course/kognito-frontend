@@ -1,12 +1,10 @@
-@import '../../../../styles/variables';
-
 .task {
   display: flex;
   align-items: center;
   width: 342px;
   height: 52px;
   padding: 0 16px;
-  background-color: $light;
+  background-color: var(--light);
   border-radius: 10px;
   gap: 0;
   position: relative;
@@ -17,7 +15,7 @@
   content: '';
   width: 8px;
   height: 100%;
-  background-color: $normal;
+  background-color: var(--normal);
   border-radius: 10px 0 0 10px;
   position: absolute;
   left: 0;
@@ -31,7 +29,7 @@ input[type='checkbox'] {
   height: 18px;
   appearance: none;
   border-radius: 2px;
-  border: 2px solid $gray-1;
+  border: 2px solid var(--gray-1);
   cursor: pointer;
   position: relative;
   transition:
@@ -40,13 +38,13 @@ input[type='checkbox'] {
 }
 
 input[type='checkbox']:checked {
-  background-color: $gray-3;
-  border-color: $gray-3;
+  background-color: var(--gray-3);
+  border-color: var(--gray-3);
 }
 
 input[type='checkbox']:checked::after {
   content: '✔';
-  color: white;
+  color: var(--white);
   font-size: 12px;
   position: absolute;
   top: 50%;
@@ -56,21 +54,21 @@ input[type='checkbox']:checked::after {
 
 label {
   font-size: 16px;
-  color: #333;
+  color: var(--black);
   transition:
     color 0.3s,
     text-decoration 0.3s;
 }
 
 .task-checked::before {
-  background-color: $gray-3;
+  background-color: var(--gray-3);
 }
 
 .task-checked input[type='checkbox'] {
-  background-color: $gray-3;
+  background-color: var(--gray-3);
 }
 
 .task-checked label {
-  color: $gray-3;
+  color: var(--black);
   text-decoration: line-through;
 }

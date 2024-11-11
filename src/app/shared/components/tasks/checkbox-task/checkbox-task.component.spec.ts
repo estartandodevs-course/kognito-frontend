@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckBoxTaskComponent } from './check-box-task.component';
+import { CheckBoxTaskComponent } from './checkbox-task.component';
 
 describe('CheckBoxTaskComponent', () => {
   let component: CheckBoxTaskComponent;
