@@ -1,55 +1,56 @@
 .invite-card {
-  width: 339px;
-  height: 135px;
+  width: 312px;
+  height: 217px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-color: var(--light);
   border-radius: 12px;
-  padding: 16px;
-  box-shadow:
-    0px 1px 3px 1px var(--black),
-    0px 1px 2px 0px var(--black);
 
-  .invite-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-family);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.4;
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 22px;
+    margin-bottom: 8px;
     color: var(--black);
-    min-width: 200px;
-    margin: 15px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  }
+
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22.4px;
+    color: var(--black);
+    margin-bottom: 16px;
   }
 
   .invite-actions {
     display: flex;
+    justify-content: center;
     gap: 30px;
-    margin-top: 12px;
+    width: 90%;
 
     .action-button {
-      width: 170px;
+      width: 130px;
       height: 48px;
       font-family: var(--font-family);
       font-size: 14px;
       font-weight: 600;
       line-height: 1.4;
       color: var(--normal);
-      background: none;
-      border: none;
+      background-color: var(--button-background);
+      border: 1px solid var(--border);
+      border-radius: 8px;
       cursor: pointer;
       text-align: center;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
 
-      &:hover {
-        color: var(--normal-hover);
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--focus-outline);
       }
     }
   }
