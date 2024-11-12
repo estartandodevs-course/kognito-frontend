@@ -1,69 +1,79 @@
-.button-container {
+.btn {
+  border-radius: 10px;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
   display: flex;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 
-  .btn {
-    border-radius: 10px;
-    border: none;
+  &.filled {
+    background-color: var(--normal);
+    color: var(--white);
 
-    &.filled {
-      background-color: var(--normal);
-      color: var(--white);
-
-      &:hover {
-        background-color: var(--dark);
-      }
-
-      &:active {
-        background-color: var(--darker);
-      }
-
-      &:disabled {
-        background-color: var(--white);
-        color: var(--black);
-        cursor: not-allowed;
-      }
+    &:hover {
+      background-color: var(--dark);
     }
 
-    &.outlined {
+    &:active {
+      background-color: var(--darker);
+    }
+
+    &:disabled {
+      background-color: var(--white);
+      color: var(--black);
+      cursor: not-allowed;
+    }
+  }
+
+  &.outlined {
+    background-color: transparent;
+    color: var(--normal);
+    border: 1px solid var(--gray-2);
+
+    &:hover {
+      background-color: var(--light);
+    }
+
+    &:active {
+      background-color: var(--light-active);
+      color: var(--darker);
+    }
+
+    &:disabled {
       background-color: transparent;
-      color: var(--normal);
-      border: 1px solid var(--gray-2);
+      color: var(--black);
+      border-color: transparent;
+      cursor: not-allowed;
+    }
+  }
 
-      &:hover {
-        background-color: var(--light);
-      }
+  &.text {
+    background-color: transparent;
+    color: var(--normal);
 
-      &:active {
-        background-color: var(--light-active);
-        color: var(--darker);
-      }
-
-      &:disabled {
-        background-color: transparent;
-        color: var(--black);
-        cursor: not-allowed;
-      }
+    &:hover {
+      background-color: var(--light);
     }
 
-    &.text {
+    &:active {
+      background-color: var(--light-active);
+      color: var(--darker);
+    }
+
+    &:disabled {
       background-color: transparent;
-      color: var(--normal);
-
-      &:hover {
-        background-color: var(--light);
-      }
-
-      &:active {
-        background-color: var(--light-active);
-        color: var(--darker);
-      }
-
-      &:disabled {
-        background-color: transparent;
-        cursor: not-allowed;
-        color: var(--black);
-      }
+      color: var(--black);
+      cursor: not-allowed;
     }
+  }
+
+  .icon {
+    font-size: 24px;
   }
 }
