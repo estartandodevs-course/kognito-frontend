@@ -16,7 +16,7 @@ export class ButtonComponent {
   @Input() label: string = '';
   @Input() disabled: boolean = false;
 
-  @Output() Click = new EventEmitter<void>();
+  @Output() buttonClick = new EventEmitter<void>();
 
   /**
    * Retorna as classes CSS do botão baseadas no tipo e no estado de desabilitação.
@@ -38,7 +38,7 @@ export class ButtonComponent {
    */
   onClick() {
     if (!this.disabled) {
-      this.Click.emit(); // Emite o evento de clique
+      this.buttonClick.emit(); // Emite o evento de clique
     }
   }
 }
