@@ -1,5 +1,4 @@
-<div class="button-container">
-  <button class="btn filled">Label</button>
-  <button class="btn outlined">Label</button>
-  <button class="btn text">Label</button>
-</div>
+<button [ngClass]="getButtonClass()" [disabled]="disabled" (click)="onClick()">
+  <span *ngIf="showIcon" class="icon">+</span>
+  <span *ngIf="label">{{ label }}</span>
+</button>
