@@ -44,31 +44,30 @@ export class ThemeService {
    * `false` para ativar o tema light, ou `null` para aplicar o tema padrão
    * baseado nas configurações do navegador.
    *
-   * - Se `value` for `true`, o tema escuro será ativado e salvo no `localStorage`.
-   * - Se `value` for `false`, o tema claro será ativado e salvo no `localStorage`.
+   * - Se `value` for `true`, o tema escuro será ativado e salvo no `localStorage` como `'dark'`.
+   * - Se `value` for `false`, o tema claro será ativado e salvo no `localStorage` como `'light'`.
    * - Se `value` for `null`, a configuração do tema será removida do `localStorage`
-   * e o tema será ajustado conforme a preferência do navegador.
+   * e o tema será ajustado automaticamente conforme a preferência do navegador.
    *
    * Além disso, a classe `theme-dark` será adicionada ou removida do `<body>`
    * para refletir o tema selecionado.
    */
   set themeIsDark(value: boolean | null) {
-    if (value === null) {
-      // Remove o save do tema e aplica o padrão do navegador.
-      localStorage.removeItem('themeUser');
-      this._themeDark.next(this._detectUserPrefersDarkTheme());
-    } else {
-      this._themeDark.next(value);
-      localStorage.setItem('themeUser', value ? 'dark' : 'light');
+    // Detecta o tema padrão do navegador ou usa o valor fornecido.
+    const isDark = value ?? this._detectUserPrefersDarkTheme();
 
-      const body = document.body;
-      body.classList.toggle('theme-dark', value);
+    this._themeDark.next(isDark);
+    document.body.classList.toggle('theme-dark', isDark);
+
+    if (value === null) {
+      localStorage.removeItem('themeUser');
+    } else {
+      localStorage.setItem('themeUser', isDark ? 'dark' : 'light');
     }
   }
 
   constructor() {
-    // Verifica se o usuário possui algum tema salvo, caso contrário, usa sua preferência do navegador.
-    const isThemeDark = this._detectThemeInLocalStorage() ?? this._detectUserPrefersDarkTheme();
-    this.themeIsDark = isThemeDark;
+    // Verifica se o usuário possui algum tema salvo.
+    this.themeIsDark = this._detectThemeInLocalStorage();
   }
 }
