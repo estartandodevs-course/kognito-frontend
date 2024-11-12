@@ -1,8 +1,17 @@
 @import './mixins';
 @import './reset';
 @import './variables';
+@import './themes';
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  @include theme-light-root();
+}
+
+.theme-dark {
+  @include theme-dark();
+}
 
 body {
   font-family: 'Poppins', sans-serif;
