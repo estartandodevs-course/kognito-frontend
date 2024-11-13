@@ -1,0 +1,8 @@
+<div class="invite-card">
+  <h2 *ngIf="title">{{ title }}</h2>
+  <p *ngIf="paragraph">{{ paragraph }}</p>
+
+  <div class="invite-actions">
+    <a href="#" (click)="copyLinkToClipboard()">Copiar link</a>
+  </div>
+</div>

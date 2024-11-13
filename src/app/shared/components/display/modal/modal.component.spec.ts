@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InviteCardComponent } from './invite-card.component';
+import { ModalComponent } from './modal.component';
 
-describe('InviteCardComponent', () => {
-  let component: InviteCardComponent;
-  let fixture: ComponentFixture<InviteCardComponent>;
+describe('ModalComponent', () => {
+  let component: ModalComponent;
+  let fixture: ComponentFixture<ModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InviteCardComponent],
+      declarations: [ModalComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(InviteCardComponent);
+    fixture = TestBed.createComponent(ModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

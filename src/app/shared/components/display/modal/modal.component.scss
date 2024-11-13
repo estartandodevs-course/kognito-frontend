@@ -1,7 +1,7 @@
 .invite-card {
   width: 312px;
   height: 217px;
-  padding: 16px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +19,6 @@
 
   p {
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
     line-height: 22.4px;
     color: var(--black);
@@ -28,30 +27,44 @@
 
   .invite-actions {
     display: flex;
-    justify-content: center;
+    width: 100%;
     gap: 30px;
-    width: 90%;
 
-    .action-button {
-      width: 130px;
-      height: 48px;
-      font-family: var(--font-family);
+    &::after {
+      content: '';
+      flex-grow: 1;
+    }
+
+    a {
+      display: inline-block;
+      width: 260px;
+      height: 50px;
       font-size: 14px;
       font-weight: 600;
-      line-height: 1.4;
       color: var(--normal);
       background-color: var(--button-background);
       border: 1px solid var(--border);
-      border-radius: 8px;
       cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      transition: all 0.3s ease;
+      text-align: right;
+      text-decoration: none; // Remove o sublinhado
+      line-height: 48px; // Centraliza verticalmente o texto
+
+      &:hover {
+        background-color: var(--button-hover);
+      }
 
       &:focus {
         outline: none;
         box-shadow: 0 0 0 2px var(--focus-outline);
       }
+    }
+
+    &:only-child a {
+      justify-content: flex-end;
+    }
+
+    & > a:nth-child(1) {
+      justify-content: space-between;
     }
   }
 }
