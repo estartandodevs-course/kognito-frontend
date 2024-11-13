@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CheckBoxTaskComponent],
+  exports: [CheckBoxTaskComponent],
   imports: [CommonModule, FormsModule],
 })
 export class TasksModule {}
