@@ -1,0 +1,15 @@
+@mixin applyGridColumns($columns, $minSize, $maxSize, $gap: 0, $alignItems: stretch, $justifyItems: stretch) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax($minSize, $maxSize));
+  gap: $gap;
+  align-items: $alignItems;
+  justify-items: $justifyItems;
+}
+
+@mixin applyGridRows($rows, $minSize, $maxSize, $gap: 0, $alignItems: stretch, $justifyItems: stretch) {
+  display: grid;
+  grid-template-rows: repeat($rows, minmax($minSize, $maxSize));
+  gap: $gap;
+  align-items: $alignItems;
+  justify-items: $justifyItems;
+}
