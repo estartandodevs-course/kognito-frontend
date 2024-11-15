@@ -1,0 +1,12 @@
+<div class="neurodivergence-options">
+  <span
+    *ngFor="let tag of tags"
+    [ngClass]="{ selected: false }"
+    (click)="selectTag(tag)"
+    (keydown.enter)="selectTag(tag)"
+    (keydown.space)="selectTag(tag)"
+    tabindex="0"
+    class="badge">
+    {{ tag }}
+  </span>
+</div>
