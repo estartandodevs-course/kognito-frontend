@@ -44,4 +44,20 @@ export class ButtonComponent {
   get isOnlyIcon(): boolean {
     return this.showIcon && !this.label;
   }
+
+  // Método para retornar a cor do ícone
+  getIconColor(): string {
+    if (this.type === 'outlined' || this.type === 'text') {
+      return 'var(--normal)';
+    }
+    return ''; // Caso contrário, usa o valor padrão da classe
+  }
+
+  // Método para retornar a cor da label
+  getLabelColor(): string {
+    if (this.type === 'outlined' || this.type === 'text') {
+      return 'var(--normal)';
+    }
+    return ''; // Caso contrário, usa o valor padrão da classe
+  }
 }
