@@ -1,6 +1,8 @@
+@import '../../../../../styles/mixins';
+
 button {
   min-width: 48px;
-  max-width: 104px;
+  max-width: 1fr;
   height: 48px;
   margin: 10px;
   border-radius: 10px;
@@ -15,6 +17,16 @@ button {
   transition:
     background-color 0.2s,
     color 0.2s;
+
+  &.only-icon {
+    padding: 0;
+
+    .icon {
+      font-size: 48px;
+      width: 48px;
+      height: 28px;
+    }
+  }
 
   &.filled {
     background-color: var(--normal);
@@ -78,6 +90,6 @@ button {
   }
 
   .icon {
-    font-size: 24px;
+    font-size: clamp(16px, 3vw, 24px);
   }
 }
