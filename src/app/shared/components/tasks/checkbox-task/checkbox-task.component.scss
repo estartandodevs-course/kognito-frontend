@@ -1,8 +1,11 @@
+@import '../../../../../styles/mixins'; // Certifique-se de que o caminho está correto
+
 .task {
-  display: flex;
+  @include applyGridColumns(none, 1fr, 1fr); /* Definindo grid com 2 colunas, sendo que cada coluna tem tamanho mínimo de 48px */
+  display: grid;
   align-items: center;
-  width: 342px;
-  height: 52px;
+  width: 90%; /* A largura será 100% do contêiner pai, ajustando-se ao tamanho da tela */
+  height: 52px; /* Mantendo a altura exata conforme especificado */
   padding: 0 16px;
   background-color: var(--light);
   border-radius: 10px;
@@ -53,6 +56,8 @@ input[type='checkbox']:checked::after {
 }
 
 label {
+  position: absolute;
+  left: 45px;
   font-size: 16px;
   color: var(--black);
   transition:
