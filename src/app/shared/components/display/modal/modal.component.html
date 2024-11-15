@@ -3,6 +3,7 @@
   <p *ngIf="paragraph">{{ paragraph }}</p>
 
   <div class="invite-actions">
-    <a href="#" (click)="copyLinkToClipboard()">Copiar link</a>
+    <app-button [type]="'text'" [label]="copyButtonText"></app-button>
+    <app-button [type]="'text'" [label]="closeButtonText"></app-button>
   </div>
 </div>
