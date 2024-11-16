@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InviteCardComponent } from './invite-card.component';
+import { NeuroTagsComponent } from './neuro-tags.component';
 
-describe('InviteCardComponent', () => {
-  let component: InviteCardComponent;
-  let fixture: ComponentFixture<InviteCardComponent>;
+describe('NeuroTagsComponent', () => {
+  let component: NeuroTagsComponent;
+  let fixture: ComponentFixture<NeuroTagsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InviteCardComponent],
+      declarations: [NeuroTagsComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(InviteCardComponent);
+    fixture = TestBed.createComponent(NeuroTagsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

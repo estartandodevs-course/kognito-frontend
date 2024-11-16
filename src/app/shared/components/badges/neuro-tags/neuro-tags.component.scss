@@ -1,0 +1,28 @@
+@import '../../../../../styles/mixins';
+
+.neurodivergence-options {
+  @include applyGridColumns(auto-fit, min-content, 0);
+  gap: 5px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+
+  .badge {
+    background-color: var(--darker);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 19.6px;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 100px;
+    border: none;
+    opacity: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.selected {
+      background-color: var(--darker);
+      color: var(--white);
+    }
+  }
+}
