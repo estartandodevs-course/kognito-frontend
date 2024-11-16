@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ButtonComponent {
   @Input() type: 'filled' | 'outlined' | 'text' = 'filled';
   @Input() showIcon: boolean = false;
+  @Input() typeIcon: 'addIcon' | 'backIcon' | 'linkUpIcon' = 'addIcon';
   @Input() label: string = '';
   @Input() disabled: boolean = false;
 
