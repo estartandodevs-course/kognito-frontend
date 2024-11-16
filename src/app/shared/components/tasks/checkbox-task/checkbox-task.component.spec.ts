@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputTextComponent } from './input-text.component';
+import { CheckBoxTaskComponent } from './checkbox-task.component';
 
-describe('InputTextComponent', () => {
-  let component: InputTextComponent;
-  let fixture: ComponentFixture<InputTextComponent>;
+describe('CheckBoxTaskComponent', () => {
+  let component: CheckBoxTaskComponent;
+  let fixture: ComponentFixture<CheckBoxTaskComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InputTextComponent],
+      declarations: [CheckBoxTaskComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(InputTextComponent);
+    fixture = TestBed.createComponent(CheckBoxTaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

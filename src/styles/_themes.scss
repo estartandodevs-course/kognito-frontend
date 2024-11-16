@@ -1,0 +1,48 @@
+@mixin theme-light-root {
+  --light: #e7f0f6;
+  --light-hover: #dbe9f2;
+  --light-active: #99d0f5;
+  --normal: #0e6ba8;
+  --normal-hover: #0d6097;
+  --normal-active: #0b5686;
+  --dark: #0b507e;
+  --dark-hover: #084065;
+  --dark-active: #06304c;
+  --darker: #05253b;
+
+  /* Cores de status */
+  --info: #2f80ed;
+  --success: #27ae60;
+  --warning: #e2b93b;
+  --error: #eb5757;
+
+  /* Cores neutras */
+  --black: #1d1d1d;
+  --white: #f1f4f5;
+  --gray-1: #4f4f4f;
+  --gray-2: #828282;
+  --gray-3: #bdbdbd;
+  --gray-4: #e0e0e0;
+
+  /* Cores das Matérias */
+  --portugues: #0e6ba8;
+  --matematica: #ed4c5c;
+  --fisica: #6db0dc;
+  --quimica: #76129d;
+  --biologia: #18924a;
+  --historia: #e3b128;
+  --geografia: #d4812d;
+
+  /* Emblemas */
+  --emblema-1: #387197;
+  --emblema-1-stroke: #7ea7c2;
+  --emblema-2: #8c58ac;
+  --emblema-2-stroke: #ba94d1;
+  --emblema-3: #d4aa3d;
+  --emblema-3-stroke: #ecc704;
+  --emblema-4: #358e5d;
+  --emblema-4-stroke: #66b986;
+}
+
+@mixin theme-dark {
+}
