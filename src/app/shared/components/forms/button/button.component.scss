@@ -66,6 +66,15 @@ button {
       border-color: transparent;
       cursor: not-allowed;
     }
+
+    /* Garantir que o ícone e label tenham a cor 'normal' */
+    .icon {
+      color: var(--normal);
+    }
+
+    .label {
+      color: var(--normal);
+    }
   }
 
   &.text {
@@ -85,6 +94,15 @@ button {
       background-color: transparent;
       color: var(--black);
       cursor: not-allowed;
+    }
+
+    /* Garantir que o ícone e label tenham a cor 'normal' */
+    .icon {
+      color: var(--normal);
+    }
+
+    .label {
+      color: var(--normal);
     }
   }
 

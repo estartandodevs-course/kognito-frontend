@@ -10,7 +10,15 @@
 
   .steps {
     display: grid;
-    @include applyGridColumns(3, clamp(80px, 15vw, 150px), 1fr);
+    @include applyGrid(
+      column,
+      3,
+      clamp(80px, 15vw, 150px),
+      1fr,
+      clamp(8px, 2vw, 10px),
+      center,
+      center
+    ); // Ajuste aqui para usar o mixin
     width: 100%;
     position: relative;
     align-items: center;
