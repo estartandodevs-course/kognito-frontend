@@ -1,13 +1,17 @@
+@import '../../../../../styles/mixins';
+
 .invite-card {
   width: 312px;
   height: 217px;
   padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   background-color: var(--light);
   border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
 
   h2 {
     font-size: 20px;
@@ -26,31 +30,15 @@
   }
 
   .invite-actions {
-    display: flex;
-    width: 100%;
-    gap: 10px;
-    justify-content: space-between; /* Espaço entre os botões quando há mais de um */
+    @include applyGrid(row, 2, auto, 1fr, 10px, flex-start, space-between);
 
-    /* Alinhamento do único botão à direita */
-    & > app-button {
-      flex-grow: 0;
-    }
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    top: 60%;
 
     & > app-button:only-child {
-      margin-left: auto; /* Mover o único botão para a direita */
-    }
-
-    /* Manter os botões responsivos de acordo com a quantidade de botões */
-    @media (max-width: 768px) {
-      /* Para telas menores, dois botões podem continuar com space-between ou coluna se um único botão */
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    @media (max-width: 480px) {
-      /* Para telas bem pequenas, o alinhamento continua como flex-direction row */
-      gap: 10px;
+      justify-self: flex-end;
     }
 
     &:hover {

@@ -3,7 +3,8 @@
   <p *ngIf="paragraph">{{ paragraph }}</p>
 
   <div class="invite-actions">
-    <app-button [type]="'text'" [label]="copyButtonText"></app-button>
-    <app-button [type]="'text'" [label]="closeButtonText"></app-button>
+    <app-button [type]="'text'" [label]="buttonPrincipal.text" (click)="onPrincipalClick()"> </app-button>
+
+    <app-button *ngIf="buttonSecondary" [type]="'text'" [label]="buttonSecondary.text" (click)="onSecondaryClick()"> </app-button>
   </div>
 </div>
