@@ -1,0 +1,48 @@
+@import '../../../../../styles/mixins';
+
+.header {
+  @include applyGrid(column, 1, 50px, 100px, 3px, left, left);
+  width: calc(100% - 48px); /* A largura será 100% da tela, menos as margens de 24px de cada lado */
+  height: 52px; /* Altura fixa */
+  gap: 0px;
+  justify-content: space-between;
+  opacity: 0px;
+  position: absolute;
+  top: 48px; /* Distância fixa do topo */
+  left: 24px; /* Margem fixa da esquerda */
+  right: 24px; /* Margem fixa da direita */
+
+  opacity: 1;
+  position: relative;
+
+  .saudacao {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+
+  .usuario {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 26.4px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    white-space: nowrap;
+  }
+
+  .icon-container {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 24px; /* 24px de distância da borda direita */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
