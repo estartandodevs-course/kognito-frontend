@@ -23,12 +23,6 @@ export class HeaderComponent {
    */
   @Input() title: string = 'Título do Header';
 
-  /**
-   * Construtor do componente Header.
-   * Injeta o serviço `Location` para permitir navegação de volta.
-   *
-   * @param {Location} location - Serviço usado para navegar na história do navegador.
-   */
   constructor(private location: Location) {}
 
   /**

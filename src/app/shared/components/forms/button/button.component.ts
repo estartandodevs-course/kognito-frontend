@@ -7,15 +7,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() type: 'filled' | 'outlined' | 'text' = 'filled';
-  @Input() showIcon: boolean = false;
-  @Input() typeIcon: 'addIcon' | 'backIcon' | 'linkUpIcon' = 'addIcon';
+  @Input() codeIcon: string | null = null;
   @Input() label: string = '';
   @Input() disabled: boolean = false;
 
   @Output() buttonClick = new EventEmitter<void>();
 
   /**
-   * Retorna as classes CSS do botão baseadas no tipo e no estado de desabilitação.
+   * Retorna as classes CSS do botão com base no tipo e estado.
    *
    * @returns {string} As classes CSS do botão.
    */
@@ -24,8 +23,8 @@ export class ButtonComponent {
     if (this.disabled) {
       baseClass += ' disabled';
     }
-    if (this.showIcon && !this.label) {
-      baseClass += ' only-icon'; // Adiciona a classe only-icon quando só há ícone
+    if (this.isIconOnly) {
+      baseClass += ' only-icon';
     }
     return baseClass;
   }
@@ -35,30 +34,42 @@ export class ButtonComponent {
    *
    * @returns {void}
    */
-  onClick() {
+  onClick(): void {
     if (!this.disabled) {
-      this.buttonClick.emit(); // Emite o evento de clique
+      this.buttonClick.emit();
     }
   }
 
-  // Lógica para verificar se o botão tem apenas o ícone
-  get isOnlyIcon(): boolean {
-    return this.showIcon && !this.label;
+  /**
+   * Verifica se o botão deve ser renderizado como apenas um ícone.
+   *
+   * @returns {boolean} Verdadeiro se o botão possui apenas o ícone e nenhuma label.
+   */
+  get isIconOnly(): boolean {
+    return this.codeIcon !== null && !this.label;
   }
 
-  // Método para retornar a cor do ícone
+  /**
+   * Retorna a cor apropriada para o ícone baseado no tipo do botão.
+   *
+   * @returns {string} A cor do ícone.
+   */
   getIconColor(): string {
     if (this.type === 'outlined' || this.type === 'text') {
       return 'var(--normal)';
     }
-    return ''; // Caso contrário, usa o valor padrão da classe
+    return '';
   }
 
-  // Método para retornar a cor da label
+  /**
+   * Retorna a cor apropriada para o texto da label baseado no tipo do botão.
+   *
+   * @returns {string} A cor da label.
+   */
   getLabelColor(): string {
     if (this.type === 'outlined' || this.type === 'text') {
       return 'var(--normal)';
     }
-    return ''; // Caso contrário, usa o valor padrão da classe
+    return '';
   }
 }
