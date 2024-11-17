@@ -1,12 +1,18 @@
+@import '../../../../styles/mixins';
+
 header {
   margin-left: -15px;
-  padding: 40px;
+  padding: 45px;
   border-bottom: 1px solid var(--Primria---Variaes-Light, #e7f0f6);
   background: var(--Generic-White, #fff);
+
+  // Aplicando grid para a estrutura sem alterar as posições absolutas
+  @include applyGrid(row, auto-fit, 150px, 1fr, 16px, center, space-between);
+  position: relative; // Para respeitar as posições absolutas dos filhos
 }
 
 img {
-  position: absolute;
+  position: absolute; // Mantém a posição exata
   left: 80px;
   top: 30px;
   fill: var(--black);
@@ -16,7 +22,7 @@ img {
 }
 
 app-button {
-  position: absolute;
+  position: absolute; // Mantém a posição exata
   top: 24px;
   left: 10px;
   display: inline-flex;
@@ -29,7 +35,7 @@ app-button {
 }
 
 svg {
-  position: absolute;
+  position: absolute; // Mantém a posição exata
   top: 30px;
   left: 95%;
 }
