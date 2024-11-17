@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-neuro-tags',
@@ -6,15 +6,13 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
   styleUrls: ['./neuro-tags.component.scss'],
 })
 export class NeuroTagsComponent {
-  // Recebe as tags diretamente do pai
   @Input() tags: string[] = [];
-  @Output() tagSelected = new EventEmitter<string>();
+  @Input() tagType: 'filled' | 'outlined' = 'filled';
+
+  selectedTag: string | null = null;
 
   /**
    * Emite a tag selecionada para o componente pai.
-   * @param tag A tag selecionada pelo usuário.
+   * @param tag A tag selecionada.
    */
-  selectTag(tag: string): void {
-    this.tagSelected.emit(tag);
-  }
 }

@@ -1,10 +1,11 @@
 <div class="neurodivergence-options">
   <span
     *ngFor="let tag of tags"
-    [ngClass]="{ selected: false }"
-    (click)="selectTag(tag)"
-    (keydown.enter)="selectTag(tag)"
-    (keydown.space)="selectTag(tag)"
+    [ngClass]="{
+      selected: selectedTag === tag,
+      outlined: tagType === 'outlined',
+      filled: tagType === 'filled',
+    }"
     tabindex="0"
     class="badge">
     {{ tag }}
