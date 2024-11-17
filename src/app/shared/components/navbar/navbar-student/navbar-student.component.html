@@ -1,0 +1,22 @@
+<section class="nav-bar">
+  <div class="container-icons">
+    <app-navbar-item
+      [routerLink]="'/tarefas'"
+      [selected]="path === '/tarefas'"
+      [dataIconActive]="'majesticons:book-open'"
+      [dataIconInactive]="'majesticons:book-open-line'"
+      [label]="'Tarefas'"></app-navbar-item>
+    <app-navbar-item
+      [routerLink]="'/metas'"
+      [selected]="path === '/metas'"
+      [dataIconActive]="'majesticons:list-box'"
+      [dataIconInactive]="'majesticons:list-box-line'"
+      [label]="'Metas'"></app-navbar-item>
+    <app-navbar-item
+      [routerLink]="'/ajustes'"
+      [selected]="path === '/ajustes'"
+      [dataIconActive]="'majesticons:settings-cog'"
+      [dataIconInactive]="'majesticons:settings-cog-line'"
+      [label]="'Ajustes'"></app-navbar-item>
+  </div>
+</section>
