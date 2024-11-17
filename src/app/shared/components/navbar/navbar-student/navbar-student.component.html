@@ -1,42 +1,22 @@
 <section class="nav-bar">
   <div class="container-icons">
-    <!--ícone de Tarefas-->
-    <a routerLink="/tarefas">
-      <ng-container *ngIf="path === '/tarefas'; else tasksActive">
-        <!----SVG do ícone "Tarefas" preenchido/selecionado-->
-        <span class="iconify icon-selected" data-icon="majesticons:book-open"></span>
-        <p class="label-selected">Tarefas</p>
-      </ng-container>
-      <ng-template #tasksActive>
-        <!--SVG do ícone "Tarefas"-->
-        <span class="iconify icon-unselected" data-icon="majesticons:book-open-line"></span>
-        <p class="label-unselected">Tarefas</p>
-      </ng-template>
-    </a>
-    <!--ícone de Metas, que ao ser selecionado leva para página "/metas"-->
-    <a routerLink="/metas">
-      <ng-container *ngIf="path === '/metas'; else goalsActive">
-        <!----SVG do ícone "Metas" preenchido/selecionado-->
-        <span class="iconify icon-selected" data-icon="majesticons:list-box"></span>
-        <p class="label-selected">Metas</p>
-      </ng-container>
-      <ng-template #goalsActive>
-        <!--SVG do ícone "Metas"-->
-        <span class="iconify icon-unselected" data-icon="majesticons:list-box-line"></span>
-        <p class="label-unselected">Metas</p>
-      </ng-template>
-    </a>
-    <!---SVG do ícone de "Ajustes" preenchido/selecionado-->
-    <a routerLink="/ajustes">
-      <ng-container *ngIf="path === '/ajustes'; else settingsActive">
-        <span class="iconify icon-selected" data-icon="majesticons:settings-cog"></span>
-        <p class="label-selected">Ajustes</p>
-      </ng-container>
-      <!--SVG do ícone de "Ajustes"-->
-      <ng-template #settingsActive>
-        <span class="iconify icon-unselected" data-icon="majesticons:settings-cog-line"></span>
-        <p class="label-unselected">Ajustes</p>
-      </ng-template>
-    </a>
+    <app-navbar-item
+      [routerLink]="'/tarefas'"
+      [selected]="path === '/tarefas'"
+      [dataIconActive]="'majesticons:book-open'"
+      [dataIconInactive]="'majesticons:book-open-line'"
+      [label]="'Tarefas'"></app-navbar-item>
+    <app-navbar-item
+      [routerLink]="'/metas'"
+      [selected]="path === '/metas'"
+      [dataIconActive]="'majesticons:list-box'"
+      [dataIconInactive]="'majesticons:list-box-line'"
+      [label]="'Metas'"></app-navbar-item>
+    <app-navbar-item
+      [routerLink]="'/ajustes'"
+      [selected]="path === '/ajustes'"
+      [dataIconActive]="'majesticons:settings-cog'"
+      [dataIconInactive]="'majesticons:settings-cog-line'"
+      [label]="'Ajustes'"></app-navbar-item>
   </div>
 </section>

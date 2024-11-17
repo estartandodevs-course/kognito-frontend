@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   @Input()
-  role: 'student' | 'teacher' | undefined;
+  role!: 'student' | 'teacher';
   path: string = '';
 
   constructor(location: Location, router: Router) {
