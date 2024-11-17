@@ -1,0 +1,7 @@
+@import '../../../../styles/mixins';
+
+.container-icons {
+  padding: 12px 16px;
+  width: 100%;
+  @include applyGrid(column, 3, 33%, 33%, 0, center, center);
+}
