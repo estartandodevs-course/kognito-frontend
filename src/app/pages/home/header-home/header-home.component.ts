@@ -7,27 +7,27 @@ import { TimeCaptureService } from 'app/core/services/time-capture.service';
   styleUrl: './header-home.component.scss',
 })
 export class HeaderHomeComponent implements OnInit {
-  saudacao: string = '';
-  nomeUsuario: string = ''; // Inicializa com um valor vazio
+  saudation: string = '';
+  userName: string = '';
 
   constructor(private timeCaptureService: TimeCaptureService) {}
 
   ngOnInit(): void {
-    this.setSaudacao();
-    this.setNomeUsuario(); // Aqui você pode definir o nome do usuário
+    this.setsaudation();
+    this.setuserName(); // Aqui você pode definir o nome do usuário
   }
 
   /**
    * Define a saudação com base na hora do dia.
    */
-  setSaudacao(): void {
+  setsaudation(): void {
     const hour = this.timeCaptureService.getCurrentHour();
     if (hour < 12) {
-      this.saudacao = 'Bom dia';
+      this.saudation = 'Bom dia';
     } else if (hour < 18) {
-      this.saudacao = 'Boa tarde';
+      this.saudation = 'Boa tarde';
     } else {
-      this.saudacao = 'Boa noite';
+      this.saudation = 'Boa noite';
     }
   }
 
@@ -35,8 +35,8 @@ export class HeaderHomeComponent implements OnInit {
    * Define o nome do usuário (simulando que ele escolheu)
    * Aqui, você pode usar qualquer lógica para capturar o nome do usuário.
    */
-  setNomeUsuario(): void {
+  setuserName(): void {
     // Exemplo estático: você pode substituir isso com dados reais do usuário
-    this.nomeUsuario = 'Nome Usuário';
+    this.userName = 'Nome Usuário';
   }
 }
