@@ -2,12 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-button',
-  template: `
-    <button [ngClass]="getButtonClass()" [disabled]="disabled" (click)="onClick()">
-      <span *ngIf="showIcon" class="icon">+</span>
-      <span *ngIf="label">{{ label }}</span>
-    </button>
-  `,
+  templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
@@ -28,6 +23,9 @@ export class ButtonComponent {
     if (this.disabled) {
       baseClass += ' disabled';
     }
+    if (this.showIcon && !this.label) {
+      baseClass += ' only-icon'; // Adiciona a classe only-icon quando só há ícone
+    }
     return baseClass;
   }
 
@@ -40,5 +38,26 @@ export class ButtonComponent {
     if (!this.disabled) {
       this.buttonClick.emit(); // Emite o evento de clique
     }
+  }
+
+  // Lógica para verificar se o botão tem apenas o ícone
+  get isOnlyIcon(): boolean {
+    return this.showIcon && !this.label;
+  }
+
+  // Método para retornar a cor do ícone
+  getIconColor(): string {
+    if (this.type === 'outlined' || this.type === 'text') {
+      return 'var(--normal)';
+    }
+    return ''; // Caso contrário, usa o valor padrão da classe
+  }
+
+  // Método para retornar a cor da label
+  getLabelColor(): string {
+    if (this.type === 'outlined' || this.type === 'text') {
+      return 'var(--normal)';
+    }
+    return ''; // Caso contrário, usa o valor padrão da classe
   }
 }

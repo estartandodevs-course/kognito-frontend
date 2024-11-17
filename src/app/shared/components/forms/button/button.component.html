@@ -1,4 +1,18 @@
 <button [ngClass]="getButtonClass()" [disabled]="disabled" (click)="onClick()">
-  <span *ngIf="showIcon" class="icon">+</span>
-  <span *ngIf="label">{{ label }}</span>
+  <svg
+    *ngIf="showIcon"
+    xmlns="http://www.w3.org/2000/svg"
+    [attr.width]="isOnlyIcon ? '24' : '18'"
+    [attr.height]="isOnlyIcon ? '24' : '18'"
+    viewBox="0 0 24 24"
+    fill="none"
+    [ngStyle]="{ color: getIconColor(), stroke: getIconColor() }">
+    <path
+      d="M12 4.5V19.5M19.5 12L4.5 12"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round" />
+  </svg>
+  <span *ngIf="label" [ngStyle]="{ color: getLabelColor() }">{{ label }}</span>
 </button>
