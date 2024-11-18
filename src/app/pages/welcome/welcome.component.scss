@@ -70,6 +70,7 @@ img {
 }
 
 button {
+  position: relative;
   padding: 32px;
   width: 325px;
   border-radius: 10px;
@@ -81,10 +82,24 @@ button {
   align-items: center;
 
   img {
+    display: flex;
     width: 109px;
     height: 81px;
     padding: 7.47px 6.21px 7.335px 6.226px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
+
+  p {
+    position: absolute;
+    color: var(--normal);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19.6px;
+    margin-top: 80px;
   }
 }
