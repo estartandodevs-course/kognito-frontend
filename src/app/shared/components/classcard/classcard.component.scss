@@ -1,0 +1,51 @@
+.card {
+  width: 360px;
+  height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+}
+
+h1 {
+  margin: 10px;
+}
+
+.pentagonal {
+  width: 70px;
+  height: 70px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+
+  position: relative;
+  top: -30px;
+  left: 15px;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+}
+
+$colors: (
+  'Português': #0e6ba8,
+  'Matematica': #ed4c5c,
+  'Fisica': #6db0dc,
+  'Química': #76129d,
+  'Biologia': #18924a,
+  'História': #e3b128,
+  'Geografia': #d4812d,
+);
+
+[class] {
+  @each $class, $color in $colors {
+    &.#{'bg-' + $class} {
+      background-color: $color;
+    }
+  }
+}
