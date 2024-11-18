@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-
-// Definindo o tipo de configuração para a formatação de datas
-export type DateFormat = 'short' | 'medium' | 'long' | 'full';
+import { DateFormat } from './date-capture.types';
+import { MONTHS_FULL, MONTHS_ABBREVIATED } from './date-capture.variables';
 
 @Injectable({
   providedIn: 'root',
@@ -72,31 +71,21 @@ export class DateService {
     return !isNaN(dateInstance.getTime());
   }
 
-  // Métodos auxiliares para zero-padding e nomes de meses
-  private padZero(value: number): string {
-    return value.toString().padStart(2, '0');
-  }
-
+  /**
+   * Obtém a abreviação do mês a partir de uma data.
+   * @param date A data de referência
+   * @returns Abreviação do mês (ex: 'jan')
+   */
   private getMonthAbbreviation(date: Date): string {
-    const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
-    return months[date.getMonth()];
+    return MONTHS_ABBREVIATED[date.getMonth()];
   }
 
+  /**
+   * Obtém o nome completo do mês a partir de uma data.
+   * @param date A data de referência
+   * @returns Nome completo do mês (ex: 'janeiro')
+   */
   private getMonthFullName(date: Date): string {
-    const months = [
-      'janeiro',
-      'fevereiro',
-      'março',
-      'abril',
-      'maio',
-      'junho',
-      'julho',
-      'agosto',
-      'setembro',
-      'outubro',
-      'novembro',
-      'dezembro',
-    ];
-    return months[date.getMonth()];
+    return MONTHS_FULL[date.getMonth()];
   }
 }
