@@ -7,10 +7,15 @@
   border-radius: 10px;
   overflow: hidden;
   color: #fff;
+
+  box-shadow: 0px 2px 4px -1px #0000000f;
+
+  box-shadow: 0px 4px 6px -1px #0000001a;
 }
 
 h1 {
   margin: 10px;
+  text-shadow: 1px 1px 1px #00000057;
 }
 
 .pentagonal {
@@ -21,6 +26,8 @@ h1 {
   align-items: center;
   justify-content: center;
   border-radius: 100%;
+
+  box-shadow: -2px 6px 0px 0px #0000001a;
 
   position: relative;
   top: -30px;
