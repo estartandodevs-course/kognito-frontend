@@ -6,9 +6,10 @@ import { HomeComponent } from './home.component';
 import { HomeStudentComponent } from './home-student/home-student.component';
 import { HomeTeacherComponent } from './home-teacher/home-teacher.component';
 import { HeaderHomeComponent } from './header-home/header-home.component';
+import { FormsModule } from '../../shared/components/forms/forms.module';
 
 @NgModule({
   declarations: [HomeComponent, HomeStudentComponent, HomeTeacherComponent, HeaderHomeComponent],
-  imports: [CommonModule, HomeRoutingModule],
+  imports: [CommonModule, HomeRoutingModule, FormsModule],
 })
 export class HomeModule {}

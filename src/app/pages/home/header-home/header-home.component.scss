@@ -1,4 +1,4 @@
-@import '../../../../../styles/mixins';
+@import '../../../../styles/mixins';
 
 .header {
   @include applyGrid(column, 1, 50px, 100px, 3px, left, left);

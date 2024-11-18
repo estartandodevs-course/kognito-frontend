@@ -1,0 +1,23 @@
+.content-container {
+  position: absolute;
+  left: 50%; /* Centraliza o container horizontalmente */
+  top: 50%; /* Centraliza o container verticalmente */
+  transform: translate(-50%, -50%); /* Ajusta a posição para garantir que o centro do container esteja no centro da tela */
+  display: flex;
+  flex-direction: column; /* Organiza os elementos verticalmente */
+  align-items: center; /* Centraliza os itens horizontalmente */
+}
+
+img {
+  width: 232.152px;
+  height: 172.616px;
+  flex-shrink: 0; /* Impede que a imagem seja reduzida */
+  margin-bottom: 146px; /* Espaço entre a imagem e o botão */
+}
+
+app-button {
+  position: relative; /* Mantém o botão dentro do fluxo de layout */
+  bottom: 19px; /* Distância do botão a partir do bottom da tela */
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo dentro do botão */
+}
