@@ -12,13 +12,14 @@ interface Icon {
 })
 export class SubheaderComponent {
   @Input() subtitle: string = '';
-  @Input() codeIcons: Icon[] = []; // Valor padrão é uma array vazia
+  @Input() codeIcon: Icon[] = []; // Valor padrão é uma array vazia
   @Input() disabled: boolean = false;
+  @Input() iconColor: string = 'currentColor'; // Cor padrão
 
   @Output() iconClick = new EventEmitter<number>(); // Emite o índice do ícone clicado
 
   get hasIcons(): boolean {
-    return this.codeIcons.length > 0;
+    return this.codeIcon.length > 0;
   }
 
   onClick(index: number): void {

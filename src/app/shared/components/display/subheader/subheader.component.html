@@ -4,16 +4,15 @@
   </div>
 
   <div>
-    <ng-container *ngIf="hasIcons">
-      <img
-        *ngFor="let icon of codeIcons; let i = index"
-        [src]="icon.src"
-        [attr.width]="icon.isIconOnly ? '24' : '18'"
-        [attr.height]="icon.isIconOnly ? '24' : '18'"
-        alt=""
-        tabindex="0"
-        (click)="onClick(i)"
-        (keydown.enter)="onClick(i)" />
+    <ng-container *ngFor="let icon of codeIcon; let i = index">
+      <span class="iconify" [attr.data-icon]="icon.src" tabindex="0" (click)="onClick(i)" (keydown.enter)="onClick(i)">
+        <img
+          [src]="icon.src"
+          [attr.width]="icon.isIconOnly ? '30' : '30'"
+          [attr.height]="icon.isIconOnly ? '30' : '30'"
+          alt="Ícone {{ i + 1 }}"
+          [ngStyle]="{ color: iconColor, stroke: iconColor }" />
+      </span>
     </ng-container>
   </div>
 </section>
