@@ -1,11 +1,10 @@
 <button [ngClass]="getButtonClass()" [disabled]="disabled" (click)="onClick()">
-  <ng-container *ngIf="codeIcon">
+  <span class="iconify" [attr.data-icon]="codeIcon" *ngIf="codeIcon">
     <img
-      [src]="codeIcon"
       [alt]="label || 'button icon'"
       [attr.width]="isIconOnly ? '24' : '18'"
       [attr.height]="isIconOnly ? '24' : '18'"
       [ngStyle]="{ color: getIconColor(), stroke: getIconColor() }" />
-  </ng-container>
+  </span>
   <span *ngIf="label" [ngStyle]="{ color: getLabelColor() }">{{ label }}</span>
 </button>

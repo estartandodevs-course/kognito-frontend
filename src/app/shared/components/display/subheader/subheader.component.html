@@ -1,0 +1,18 @@
+<section>
+  <div>
+    <h2>{{ subtitle }}</h2>
+  </div>
+
+  <div>
+    <ng-container *ngFor="let icon of codeIcon; let i = index">
+      <span class="iconify" [attr.data-icon]="icon.src" tabindex="0" (click)="onClick(i)" (keydown.enter)="onClick(i)">
+        <img
+          [src]="icon.src"
+          [attr.width]="icon.isIconOnly ? '30' : '30'"
+          [attr.height]="icon.isIconOnly ? '30' : '30'"
+          alt="Ícone {{ i + 1 }}"
+          [ngStyle]="{ color: iconColor, stroke: iconColor }" />
+      </span>
+    </ng-container>
+  </div>
+</section>
