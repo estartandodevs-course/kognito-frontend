@@ -1,0 +1,19 @@
+<section>
+  <div>
+    <h2>{{ subtitle }}</h2>
+  </div>
+
+  <div>
+    <ng-container *ngIf="hasIcons">
+      <img
+        *ngFor="let icon of codeIcons; let i = index"
+        [src]="icon.src"
+        [attr.width]="icon.isIconOnly ? '24' : '18'"
+        [attr.height]="icon.isIconOnly ? '24' : '18'"
+        alt=""
+        tabindex="0"
+        (click)="onClick(i)"
+        (keydown.enter)="onClick(i)" />
+    </ng-container>
+  </div>
+</section>
