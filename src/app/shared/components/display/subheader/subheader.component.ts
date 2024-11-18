@@ -22,9 +22,9 @@ export class SubheaderComponent {
     return this.codeIcon.length > 0;
   }
 
-  onClick(index: number): void {
+  onClick(): void {
     if (!this.disabled) {
-      this.iconClick.emit(index); // Emite o índice do ícone clicado
+      this.iconClick.emit();
     }
   }
 }
