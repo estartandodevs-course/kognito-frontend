@@ -11,6 +11,6 @@ export class WelcomeComponent {
 
   // Método para redirecionar para a página do aluno
   goToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 }
