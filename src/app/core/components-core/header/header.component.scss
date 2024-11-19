@@ -4,11 +4,25 @@ header {
   height: 48px;
   @include applyGrid(row, 1, 0, 1fr);
 
-  app-button {
+  button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
     grid-column: 1 / 2;
     align-self: center;
     margin-top: 48px;
     margin-left: 4px;
+    cursor: pointer;
+
+    &hover {
+      background-color: var(--light-hover);
+    }
+
+    .iconify {
+      font-size: 28px;
+      color: var(--black);
+    }
   }
 
   h2 {

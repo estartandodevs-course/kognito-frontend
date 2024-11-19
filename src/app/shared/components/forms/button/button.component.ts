@@ -10,6 +10,8 @@ export class ButtonComponent {
   @Input() codeIcon: string | null = null;
   @Input() label: string = '';
   @Input() disabled: boolean = false;
+  @Input() iconSize: number = 16;
+  @Input() iconColor: string = '';
 
   @Output() buttonClick = new EventEmitter<void>();
 

@@ -1,4 +1,6 @@
 <header>
-  <app-button type="text" codeIcon="majesticons:arrow-left-line" (buttonClick)="goBack()"></app-button>
+  <button (click)="goBack()">
+    <span class="iconify" [attr.data-icon]="codeIcon"></span>
+  </button>
   <h2>{{ title }}</h2>
 </header>
