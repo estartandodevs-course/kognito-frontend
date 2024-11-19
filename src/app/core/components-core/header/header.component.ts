@@ -22,6 +22,7 @@ export class HeaderComponent {
    * @default 'Título do Header'
    */
   @Input() title: string = 'Título do Header';
+  @Input() codeIcon: string = '';
 
   constructor(private location: Location) {}
 

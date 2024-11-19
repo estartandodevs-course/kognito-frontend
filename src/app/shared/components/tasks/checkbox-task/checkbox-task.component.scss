@@ -1,7 +1,6 @@
 @import '../../../../../styles/mixins'; // Certifique-se de que o caminho está correto
 
 .task {
-  @include applyGridColumns(none, 1fr, 1fr); /* Definindo grid com 2 colunas, sendo que cada coluna tem tamanho mínimo de 48px */
   display: grid;
   align-items: center;
   width: 90%; /* A largura será 100% do contêiner pai, ajustando-se ao tamanho da tela */
