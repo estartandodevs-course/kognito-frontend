@@ -5,7 +5,7 @@
 
   <div>
     <ng-container *ngFor="let icon of codeIcon; let i = index">
-      <span class="iconify" [attr.data-icon]="icon.src" tabindex="0" (click)="onClick(i)" (keydown.enter)="onClick(i)">
+      <span class="iconify" [attr.data-icon]="icon.src" tabindex="0" (Click)="onClick()">
         <img
           [src]="icon.src"
           [attr.width]="icon.isIconOnly ? '30' : '30'"
