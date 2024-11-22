@@ -1,1 +1,16 @@
-<p>not-found works!</p>
+<section class="container">
+  <img src="../../../assets/img/kognito.png" alt="kognito" />
+  <div class="message">
+    <h2 *ngIf="isTeacherRoute; else studentMessage">Ocorreu um erro de sistema 404</h2>
+    <p *ngIf="isTeacherRoute; else studentParagraph">Por favor, tente novamente mais tarde.</p>
+
+    <ng-template #studentMessage>
+      <h2>Link de convite indisponível</h2>
+    </ng-template>
+    <ng-template #studentParagraph>
+      <p>Por favor, tente novamente mais tarde, ou solicite um novo link ao professor.</p>
+    </ng-template>
+  </div>
+
+  <app-button type="filled" label="Voltar para a tela inicial" (click)="goToHome()"></app-button>
+</section>
