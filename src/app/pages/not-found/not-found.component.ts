@@ -12,8 +12,10 @@ export class NotFoundComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
+  /**
+   * Verifica os parâmetros da rota e ajusta as mensagens de erro, caso seja um link de convite inválido.
+   */
   ngOnInit(): void {
-    // Verifica se a URL contém o "convite" na rota
     const linkType = this.route.snapshot.queryParams['type'];
     if (linkType === 'invite') {
       this.errorTitle = 'Link de convite indisponível';
@@ -21,7 +23,10 @@ export class NotFoundComponent implements OnInit {
     }
   }
 
+  /**
+   * Redireciona o usuário para a página inicial da aplicação.
+   */
   goToHome(): void {
-    window.location.href = '/'; // Redireciona para a página inicial
+    window.location.href = '/';
   }
 }
