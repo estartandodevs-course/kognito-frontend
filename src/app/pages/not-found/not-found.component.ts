@@ -7,22 +7,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./not-found.component.scss'],
 })
 export class NotFoundComponent implements OnInit {
-  isTeacherRoute: boolean = false; // Flag para verificar o contexto
+  errorTitle: string = 'Ocorreu um erro de sistema 404';
+  errorMessage: string = 'Por favor, tente novamente mais tarde.';
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
 
-  /**
-   * Método do ciclo de vida do Angular chamado após a criação do componente.
-   * Verifica se a rota contém "teacher" para ajustar o contexto.
-   */
   ngOnInit(): void {
-    this.isTeacherRoute = this.activatedRoute.snapshot.url.some((segment) => segment.path.includes('teacher'));
+    // Verifica se a URL contém o "convite" na rota
+    const linkType = this.route.snapshot.queryParams['type'];
+    if (linkType === 'invite') {
+      this.errorTitle = 'Link de convite indisponível';
+      this.errorMessage = 'Por favor, tente novamente mais tarde, ou solicite um novo link ao professor.';
+    }
   }
 
-  /**
-   * Redireciona o usuário para a página inicial (rota "/").
-   */
   goToHome(): void {
-    window.location.href = '/';
+    window.location.href = '/'; // Redireciona para a página inicial
   }
 }
