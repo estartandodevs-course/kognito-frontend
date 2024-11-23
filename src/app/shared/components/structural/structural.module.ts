@@ -5,7 +5,7 @@ import { SectionComponent } from './section/section.component';
 
 @NgModule({
   declarations: [HeaderComponent, SectionComponent],
-  exports: [SectionComponent],
+  exports: [HeaderComponent, SectionComponent],
   imports: [CommonModule],
 })
 export class StructuralModule {}
