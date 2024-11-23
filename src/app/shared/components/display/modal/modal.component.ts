@@ -5,7 +5,7 @@ import { Component, Input, OnDestroy, Output, EventEmitter } from '@angular/core
  */
 interface ButtonProps {
   text: string;
-  onClick?: () => void; // Torna o onClick opcional
+  onClick?: () => void;
 }
 
 /**
@@ -58,7 +58,7 @@ export class ModalComponent implements OnDestroy {
    */
   onPrincipalClick(): void {
     if (this.buttonPrincipal.onClick) {
-      this.buttonPrincipal.onClick(); // Chama a função passada, se existir
+      this.buttonPrincipal.onClick();
     }
     this.principalButtonClicked.emit();
   }
@@ -68,7 +68,7 @@ export class ModalComponent implements OnDestroy {
    */
   onSecondaryClick(): void {
     if (this.buttonSecondary?.onClick) {
-      this.buttonSecondary.onClick(); // Chama a função do botão secundário se existir
+      this.buttonSecondary.onClick();
     }
     this.secondaryButtonClicked.emit();
   }

@@ -1,4 +1,3 @@
-// Nomes completos dos meses
 export const MONTHS_FULL = [
   'janeiro',
   'fevereiro',
