@@ -1,32 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
+/**
+ * Componente responsável por exibir a página de "Não Encontrado" (404)
+ * e redirecionar o usuário para a página inicial, se necessário.
+ */
 @Component({
   selector: 'app-not-found',
   templateUrl: './not-found.component.html',
   styleUrls: ['./not-found.component.scss'],
 })
 export class NotFoundComponent implements OnInit {
-  errorTitle: string = 'Ocorreu um erro de sistema 404';
-  errorMessage: string = 'Por favor, tente novamente mais tarde.';
-
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
   /**
-   * Verifica os parâmetros da rota e ajusta as mensagens de erro, caso seja um link de convite inválido.
+   * Método de ciclo de vida do Angular chamado ao inicializar o componente.
+   *
+   * Atualmente, lança um erro porque o método ainda não foi implementado.
+   *
+   * @throws Error - Método não implementado.
    */
   ngOnInit(): void {
-    const linkType = this.route.snapshot.queryParams['type'];
-    if (linkType === 'invite') {
-      this.errorTitle = 'Link de convite indisponível';
-      this.errorMessage = 'Por favor, tente novamente mais tarde, ou solicite um novo link ao professor.';
-    }
+    throw new Error('Method not implemented.');
   }
 
   /**
    * Redireciona o usuário para a página inicial da aplicação.
+   *
+   * @returns void
    */
   goToHome(): void {
-    window.location.href = '/';
+    this.router.navigate(['/']);
   }
 }

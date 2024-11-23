@@ -1,38 +1,52 @@
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
+  gap: 32px;
   position: relative;
-  top: 115px;
+  top: 10vh;
+  padding: 16px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 img {
-  width: 276px;
-  height: 276px;
+  width: 100%;
+  max-width: 276px;
+  height: auto;
+  justify-self: center;
 }
 
 .message {
-  margin-top: 32px;
   text-align: center;
   color: var(--black);
-}
-
-.message h2 {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 22px;
-}
-
-.message p {
-  margin-top: 30px;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
+  display: grid;
+  gap: 16px;
+  h2 {
+    font-size: clamp(16px, 5vw, 20px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  p {
+    font-size: clamp(14px, 4vw, 16px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 
 app-button {
-  margin-top: 140px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: -10vh;
+  max-width: 100%;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+.container {
+  grid-template-columns: minmax(0, 1fr);
 }
