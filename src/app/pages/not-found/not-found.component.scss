@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   justify-content: center;
   align-items: center;
   gap: 32px;
@@ -16,6 +16,7 @@ img {
   max-width: 276px;
   height: auto;
   justify-self: center;
+  align-self: center;
 }
 
 .message {
@@ -23,12 +24,14 @@ img {
   color: var(--black);
   display: grid;
   gap: 16px;
+
   h2 {
     font-size: clamp(16px, 5vw, 20px);
     font-style: normal;
     font-weight: 600;
     line-height: 1.2;
   }
+
   p {
     font-size: clamp(14px, 4vw, 16px);
     font-style: normal;
@@ -47,6 +50,18 @@ app-button {
   box-sizing: border-box;
 }
 
-.container {
-  grid-template-columns: minmax(0, 1fr);
+.container-section {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 2rem;
+
+  div[inSection] {
+    margin: auto;
+    max-width: 85rem;
+  }
+
+  img {
+    margin: 0 auto;
+    display: block;
+  }
 }
