@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then((m) => m.WelcomeModule) },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./pages/register/register.module').then((m) => m.RegisterModule) },
+  { path: 'invite/:id', loadChildren: () => import('./pages/not-found/not-found.module').then((m) => m.NotFoundModule) },
   { path: '**', loadChildren: () => import('./pages/not-found/not-found.module').then((m) => m.NotFoundModule) },
 ];
 

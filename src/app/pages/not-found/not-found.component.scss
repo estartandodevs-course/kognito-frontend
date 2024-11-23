@@ -1,0 +1,52 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  top: 10vh;
+  padding: 16px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  max-width: 276px;
+  height: auto;
+  justify-self: center;
+}
+
+.message {
+  text-align: center;
+  color: var(--black);
+  display: grid;
+  gap: 16px;
+  h2 {
+    font-size: clamp(16px, 5vw, 20px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  p {
+    font-size: clamp(14px, 4vw, 16px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+}
+
+app-button {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: -10vh;
+  max-width: 100%;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+.container {
+  grid-template-columns: minmax(0, 1fr);
+}
