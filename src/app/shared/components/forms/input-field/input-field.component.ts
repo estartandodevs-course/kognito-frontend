@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, ValidatorFn } from '@angular/forms';
 
 import { DontWriteProps, CapitalizeWordProps, SetFormatProps } from 'app/shared/directives/writing/writing.types';
-import { passwordValidators, gradeValidators } from './input-field.variables';
 import { TimeCaptureService } from 'app/core/services/time-capture.service';
-import { createCustomValidator } from './input-field.utils';
+import { validationSchemes } from './input-field.variables';
 import { CustomValidations } from './input-field.types';
 
 @Component({
@@ -43,42 +42,24 @@ export class InputFieldComponent {
    *
    */
   private get _validations(): ValidatorFn[] {
-    const requiredValidator = createCustomValidator('required', Validators.required, 'Este campo é obrigatório.');
-    const emailValidator = createCustomValidator('email', Validators.email, 'Por favor, insira um e-mail válido.');
-    const cpfValidator = createCustomValidator('cpf', Validators.min(14), 'O CPF deve possuir 11 dígitos.');
-    const minLenghtValidator = createCustomValidator(
-      'minLenght',
-      Validators.maxLength(this.minLenght ?? 0),
-      `Este campo deve possuir no mínimo ${this.minLenght} caracteres.`,
-    );
-    const dateValidator = createCustomValidator(
-      'date',
-      Validators.min(this._time.getCurrentDate().getTime()),
-      'Por favor, insira uma data válida.',
-    );
-
     const baseValidators: ValidatorFn[] = [];
 
     if (this.required) {
-      baseValidators.push(requiredValidator);
-    } else if (this.minLenght) {
-      baseValidators.push(minLenghtValidator);
+      baseValidators.push(validationSchemes.required);
     }
 
-    switch (this.type) {
-      case 'email':
-        return baseValidators.concat(emailValidator);
-      case 'password':
-        return baseValidators.concat(passwordValidators);
-      case 'grade':
-        return baseValidators.concat(gradeValidators);
-      case 'datetime':
-        return baseValidators.concat(dateValidator);
-      case 'cpf':
-        return baseValidators.concat(cpfValidator);
-      default:
-        return baseValidators;
+    if (this.minLenght) {
+      baseValidators.push(validationSchemes.minLenght(this.minLenght));
     }
+
+    if (this.type === 'datetime') {
+      const currentDate = this._time.getCurrentDate().getTime();
+      baseValidators.push(validationSchemes.date(currentDate));
+    } else if (this.type !== 'text' && this.type !== 'text-area') {
+      baseValidators.concat(validationSchemes[this.type]);
+    }
+
+    return baseValidators;
   }
 
   /**
