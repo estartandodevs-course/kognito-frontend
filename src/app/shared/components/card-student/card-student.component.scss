@@ -1,0 +1,42 @@
+section {
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+  height: 5rem;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--light);
+  border-radius: 10px;
+}
+
+h2 {
+  color: var(--black);
+  font-size: 1rem;
+  line-height: 1.575rem;
+  align-self: stretch;
+}
+
+h3 {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.container {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.iconify {
+  height: 22px;
+  width: 22px;
+}
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--normal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light);
+}
