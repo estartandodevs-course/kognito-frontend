@@ -10,12 +10,12 @@ export class WelcomeComponent {
   constructor(private router: Router) {}
 
   /**
-   * Redireciona o usuário para a página de login.
+   * Redireciona o usuário para a página login.
    *
    * Este método utiliza o Angular Router para navegar até a rota '/login',
    * permitindo que o usuário seja redirecionado para a página de login.
    */
-  goToHome(): void {
+  goToLogin(): void {
     this.router.navigate(['/login']);
   }
 }
