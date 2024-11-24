@@ -2,8 +2,8 @@ import { Directive, HostListener, Input } from '@angular/core';
 import { ElementRef } from '@angular/core';
 
 import { DontWriteProps, CapitalizeWordProps, SetFormatProps } from './writing.types';
+import { formatCapitalize, formatCPF, formatGrade } from './writing.utils';
 import { regexRestrictMap } from './writing.variables';
-import { formatCapitalize } from './writing.utils';
 
 @Directive({
   selector: 'input[appWriting]',
@@ -34,6 +34,12 @@ export class WritingDirective {
     if (this.capitalize) {
       const typeUpper = typeof this.capitalize === 'boolean' ? 'first' : 'all';
       inputValue = formatCapitalize(inputValue, typeUpper);
+    }
+
+    if (this.setFormat === 'grade') {
+      inputValue = formatGrade(inputValue);
+    } else if (this.setFormat === 'cpf') {
+      inputValue = formatCPF(inputValue);
     }
 
     // Aplica as alterações.

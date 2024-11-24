@@ -74,7 +74,7 @@ export class InputFieldComponent {
    */
   getType(): string {
     if (this.type === 'cpf' || this.type === 'grade') {
-      return 'number';
+      return 'text';
     } else if (this.type === 'datetime') {
       return 'datetime-local';
     }
