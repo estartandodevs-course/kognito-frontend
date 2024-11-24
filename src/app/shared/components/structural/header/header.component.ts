@@ -22,5 +22,5 @@ export class HeaderComponent {
   @Input() iconsRight?: IconHeaderProps[];
 
   nameUser = 'Victor Gabriel'; // Obter valor pelo serviço de autenticação.
-  saudation = this._time.getsaudation();
+  saudation = this._time.getSaudation();
 }
