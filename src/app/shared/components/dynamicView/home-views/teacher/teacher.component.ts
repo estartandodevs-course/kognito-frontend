@@ -11,6 +11,6 @@ export class TeacherComponent {
 
   // Método que redireciona para a página "home/create-class"
   redirectToCreateClass(): void {
-    this.router.navigate(['/home/create-class']);
+    this.router.navigate(['/home/create_class']);
   }
 }
