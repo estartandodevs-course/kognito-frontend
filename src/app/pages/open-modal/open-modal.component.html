@@ -1,0 +1,9 @@
+<div *ngIf="mostRecentModal$ | async as modalId" class="modal-overlay">
+  <div class="modal-content">
+    <ng-container [ngSwitch]="modalId">
+      <app-example-modal *ngSwitchCase="'example'"></app-example-modal>
+      <app-another-modal *ngSwitchCase="'another'"></app-another-modal>
+    </ng-container>
+  </div>
+</div>
+<router-outlet></router-outlet>

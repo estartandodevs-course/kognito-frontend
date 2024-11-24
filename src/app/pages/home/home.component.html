@@ -1,11 +1,13 @@
-<app-header-home></app-header-home>
+<!-- <app-header title="Matérias"></app-header> -->
 
 <main>
-  <ng-container *ngIf="role === 'teacher'; else student">
-    <app-home-teacher />
-  </ng-container>
+  <app-section>
+    <ng-container *ngIf="role === 'teacher'; else student">
+      <app-teacher></app-teacher>
+    </ng-container>
 
-  <ng-template #student>
-    <app-home-student />
-  </ng-template>
+    <ng-template #student>
+      <app-student></app-student>
+    </ng-template>
+  </app-section>
 </main>

@@ -1,4 +1,3 @@
-// Nomes completos dos meses
 export const MONTHS_FULL = [
   'janeiro',
   'fevereiro',
@@ -12,6 +11,6 @@ export const MONTHS_FULL = [
   'outubro',
   'novembro',
   'dezembro',
-];
+] as const;
 
 export const MONTHS_ABBREVIATED = MONTHS_FULL.map((month) => month.substring(0, 3));

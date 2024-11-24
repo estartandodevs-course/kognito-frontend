@@ -1,0 +1,78 @@
+@import '../../../../../styles/mixins';
+
+.task {
+  display: grid;
+  align-items: center;
+  width: 90%;
+  height: 52px;
+  padding: 0 16px;
+  background-color: var(--light);
+  border-radius: 10px;
+  gap: 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.task::before {
+  content: '';
+  width: 8px;
+  height: 100%;
+  background-color: var(--normal);
+  border-radius: 10px 0 0 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: background-color 0.3s;
+}
+
+input[type='checkbox'] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  appearance: none;
+  border-radius: 2px;
+  border: 2px solid var(--gray-1);
+  cursor: pointer;
+  position: relative;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+}
+
+input[type='checkbox']:checked {
+  background-color: var(--gray-3);
+  border-color: var(--gray-3);
+}
+
+input[type='checkbox']:checked::after {
+  content: '✔';
+  color: var(--white);
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+label {
+  position: absolute;
+  left: 45px;
+  font-size: 16px;
+  color: var(--black);
+  transition:
+    color 0.3s,
+    text-decoration 0.3s;
+}
+
+.task-checked::before {
+  background-color: var(--gray-3);
+}
+
+.task-checked input[type='checkbox'] {
+  background-color: var(--gray-3);
+}
+
+.task-checked label {
+  color: var(--black);
+  text-decoration: line-through;
+}

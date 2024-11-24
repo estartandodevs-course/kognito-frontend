@@ -9,6 +9,8 @@ export class ThemeService {
 
   /**
    * Obtém a preferência de tema do usuário salva no `localStorage`.
+   * Se o tema não estiver salvo, retorna `null`.
+   *
    * @private
    * @returns {boolean | null} `true` se o usuário preferir o tema dark,
    * `false` se preferir o tema light, ou `null` se nenhuma preferência estiver salva.
@@ -23,6 +25,11 @@ export class ThemeService {
 
   /**
    * Verifica se o usuário prefere o tema dark com base nas configurações do navegador.
+   *
+   * O método utiliza a media query `prefers-color-scheme` para determinar a preferência
+   * do usuário. Caso o navegador não tenha uma preferência configurada, o método
+   * retornará `false` por padrão.
+   *
    * @private
    * @returns {boolean} `true` se o usuário tiver preferência pelo tema dark, `false` caso contrário.
    */
@@ -32,6 +39,10 @@ export class ThemeService {
 
   /**
    * Retorna um Observable que emite o estado atual do tema (light ou dark).
+   *
+   * Esse Observable pode ser utilizado para observar mudanças no tema da aplicação.
+   * Quando o tema for alterado, o Observable emitirá o novo estado (`true` para tema dark e `false` para tema light).
+   *
    * @returns {Observable<boolean>} Um Observable que emite `true` se o tema for dark, e `false` caso contrário.
    */
   get themeIsDark$(): Observable<boolean> {
@@ -40,20 +51,20 @@ export class ThemeService {
 
   /**
    * Define o tema da aplicação de acordo com a preferência do usuário.
-   * @param {boolean | null} value - `true` para ativar o tema dark,
-   * `false` para ativar o tema light, ou `null` para aplicar o tema padrão
-   * baseado nas configurações do navegador.
    *
-   * - Se `value` for `true`, o tema escuro será ativado e salvo no `localStorage` como `'dark'`.
-   * - Se `value` for `false`, o tema claro será ativado e salvo no `localStorage` como `'light'`.
-   * - Se `value` for `null`, a configuração do tema será removida do `localStorage`
-   * e o tema será ajustado automaticamente conforme a preferência do navegador.
+   * Este método altera o tema da aplicação com base no valor fornecido e realiza as seguintes ações:
+   * - Se `value` for `true`, ativa o tema dark e o salva no `localStorage` como `'dark'`.
+   * - Se `value` for `false`, ativa o tema light e o salva no `localStorage` como `'light'`.
+   * - Se `value` for `null`, remove a configuração de tema do `localStorage` e ajusta o tema automaticamente conforme a preferência do navegador.
    *
-   * Além disso, a classe `theme-dark` será adicionada ou removida do `<body>`
-   * para refletir o tema selecionado.
+   * Além disso, o tema será refletido na aplicação através da classe `theme-dark` no `<body>`.
+   *
+   * @param {boolean | null} value - O valor para definir o tema:
+   *  - `true` para ativar o tema dark,
+   *  - `false` para ativar o tema light,
+   *  - `null` para aplicar o tema conforme a configuração do navegador.
    */
   set themeIsDark(value: boolean | null) {
-    // Detecta o tema padrão do navegador ou usa o valor fornecido.
     const isDark = value ?? this._detectUserPrefersDarkTheme();
 
     this._themeDark.next(isDark);
@@ -67,7 +78,6 @@ export class ThemeService {
   }
 
   constructor() {
-    // Verifica se o usuário possui algum tema salvo.
     this.themeIsDark = this._detectThemeInLocalStorage();
   }
 }
