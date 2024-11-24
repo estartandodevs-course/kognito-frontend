@@ -1,0 +1,95 @@
+@import '../../../../styles/themes';
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 360px;
+  height: 214px;
+
+  overflow: hidden;
+  border-radius: 10px;
+
+  box-shadow: 0px 2px 4px -1px #0000000f;
+  box-shadow: 0px 4px 6px -1px #0000001a;
+  .card {
+    height: 85px;
+    display: flex;
+    align-items: center;
+
+    h2 {
+      color: #fff;
+      margin-left: 16px;
+
+      text-shadow: 1px 1px 1px #00000029;
+    }
+  }
+
+  .card-white {
+    height: auto;
+    background: #fff;
+  }
+
+  .icone {
+    position: relative;
+    left: 270px;
+    bottom: 35px;
+  }
+}
+
+@media (max-width: 412px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    width: 360px;
+    height: 105px;
+
+    overflow: hidden;
+    border-radius: 10px;
+
+    box-shadow: 0px 2px 4px -1px #0000000f;
+    box-shadow: 0px 4px 6px -1px #0000001a;
+    .card {
+      display: flex;
+      align-items: center;
+      height: 105px;
+
+      h2 {
+        color: #fff;
+        margin-left: 16px;
+
+        text-shadow: 1px 1px 1px #00000029;
+      }
+    }
+
+    .card-white {
+      height: 0px;
+      background: none;
+    }
+
+    .icone {
+      position: relative;
+      left: 307px;
+      bottom: 115px;
+    }
+  }
+}
+
+$colors: (
+  'Português': var(--portugues),
+  'Matematica': var(--matematica),
+  'Fisica': var(--fisica),
+  'Química': var(--quimica),
+  'Biologia': var(--biologia),
+  'História': var(--historia),
+  'Geografia': var(--geografia),
+);
+
+[class] {
+  @each $class, $color in $colors {
+    &.#{'bg-' + $class} {
+      background-color: $color;
+    }
+  }
+}

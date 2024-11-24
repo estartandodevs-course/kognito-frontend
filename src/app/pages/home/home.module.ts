@@ -9,10 +9,11 @@ import { HeaderHomeComponent } from './header-home/header-home.component';
 import { FormsModule } from '../../shared/components/forms/forms.module';
 import { DisplayModule } from '../../shared/components/display/display.module';
 import { ComponentsCoreModule } from 'app/core/components-core/components-core.module';
+import { CardModule } from 'app/shared/components/card/card.module';
 
 @NgModule({
   declarations: [HomeComponent, HomeStudentComponent, HomeTeacherComponent, HeaderHomeComponent],
   exports: [HeaderHomeComponent],
-  imports: [CommonModule, HomeRoutingModule, FormsModule, DisplayModule, ComponentsCoreModule],
+  imports: [CommonModule, HomeRoutingModule, FormsModule, DisplayModule, ComponentsCoreModule, CardModule],
 })
 export class HomeModule {}
