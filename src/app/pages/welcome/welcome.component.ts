@@ -7,10 +7,15 @@ import { Router } from '@angular/router';
   styleUrl: './welcome.component.scss',
 })
 export class WelcomeComponent {
-  constructor(private router: Router) {} // Injeta o Router no construtor
+  constructor(private router: Router) {}
 
-  // Método para redirecionar para a página do aluno
-  goToHome() {
+  /**
+   * Redireciona o usuário para a página login.
+   *
+   * Este método utiliza o Angular Router para navegar até a rota '/login',
+   * permitindo que o usuário seja redirecionado para a página de login.
+   */
+  goToLogin(): void {
     this.router.navigate(['/login']);
   }
 }
