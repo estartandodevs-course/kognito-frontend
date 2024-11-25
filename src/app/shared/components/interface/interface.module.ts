@@ -7,6 +7,7 @@ import { NeuroTagsComponent } from './neuro-tags/neuro-tags.component';
 
 @NgModule({
   declarations: [CheckBoxTaskComponent, NeuroTagsComponent],
+  exports: [CheckBoxTaskComponent, NeuroTagsComponent],
   imports: [CommonModule, FormsModule],
 })
 export class InterfaceModule {}

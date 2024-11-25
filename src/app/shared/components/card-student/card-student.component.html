@@ -15,6 +15,17 @@
   </div>
   <div class="container">
     <app-neuro-tags [tags]="tags"></app-neuro-tags>
-    <span id="dots-vertical" class="iconify" data-icon="majesticons:dots-vertical" data-inline="false"></span>
+    <ng-container *ngIf="subhead; else iconDot">{{ subhead }}</ng-container>
+    <ng-template #iconDot>
+      <div (click)="clickVerticalDot()">
+        <span class="iconify vertical-dots" [attr.data-icon]="iconDots" data-inline="false"></span>
+      </div>
+    </ng-template>
+  </div>
+  <div *ngFor="let action of actions" [ngClass]="{ options: true, open: isOptionsOpen }">
+    <div class="actionContainer" (click)="clickAction(action.id)">
+      <span class="iconify" [attr.data-icon]="action.icon" data-inline="false"></span>
+      <span>{{ action.label }}</span>
+    </div>
   </div>
 </article>
