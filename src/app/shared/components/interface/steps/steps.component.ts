@@ -7,11 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class StepsComponent {
   @Input() isGrid: boolean = false;
-
   /**
    * O passo atual na sequência de progresso.
    */
-  currentStep = 1;
+  // currentStep = 1;
+  @Input() currentStep = 1;
 
   /**
    * O número total de passos que o componente controla.

@@ -2,7 +2,8 @@
   height: 100vh;
   left: 50%;
   transform: translateX(-50%);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   position: relative;
 
   app-header {
@@ -20,22 +21,11 @@
   app-steps {
     display: grid;
     position: relative;
-    top: 122px;
   }
 
-  .inSection {
+  .button-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 20px;
-    position: absolute;
-    bottom: 120px;
-  }
-
-  app-button {
-    width: 160px;
-    height: 48px;
-    gap: 8px;
+    gap: 2rem;
+    justify-content: center;
   }
 }
