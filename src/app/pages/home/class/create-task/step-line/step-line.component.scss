@@ -21,11 +21,14 @@
   app-steps {
     display: grid;
     position: relative;
+    top: -77px;
   }
 
   .button-container {
     display: flex;
+    position: relative;
     gap: 2rem;
     justify-content: center;
+    top: 380px;
   }
 }
