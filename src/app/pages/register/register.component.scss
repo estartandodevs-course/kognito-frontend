@@ -1,10 +1,16 @@
+app-header {
+  display: grid;
+  position: relative;
+  top: 48px;
+}
+
 .container {
   height: 100vh;
 
   p {
     display: grid;
     position: absolute;
-    margin-top: 88px;
+    margin-top: 28px;
     width: 340px;
     color: var(--black);
     font-size: 16px;

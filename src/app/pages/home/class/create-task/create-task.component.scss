@@ -1,3 +1,9 @@
+app-header {
+  display: grid;
+  position: relative;
+  top: 48px;
+}
+
 .container {
   height: 100vh;
   left: 50%;
@@ -12,7 +18,7 @@
     padding: 34.13px 21.14px 24.67px 49.91px;
     gap: 0px;
     opacity: 0px;
-    left: 50%;
+    left: 47%;
     transform: translateX(-50%);
   }
 
@@ -26,7 +32,7 @@
     font-size: 16px;
     font-weight: 400;
     bottom: 183px;
-    left: 50%;
+    left: 47%;
     transform: translateX(-50%);
   }
 

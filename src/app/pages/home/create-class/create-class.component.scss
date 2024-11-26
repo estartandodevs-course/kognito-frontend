@@ -1,8 +1,14 @@
+app-header {
+  display: grid;
+  position: relative;
+  top: 48px;
+}
+
 .container {
   p {
     display: grid;
     position: absolute;
-    margin-top: 100px;
+    margin-top: 18px;
     color: var(--gray-1);
     font-size: 18px;
     font-style: normal;
@@ -15,8 +21,8 @@
     position: absolute;
     width: 142px;
     bottom: 200px;
-    left: 50%; /* Centraliza o botão horizontalmente */
-    transform: translateX(-50%); /* Ajusta a posição para o centro */
+    left: 50%;
+    transform: translateX(-50%);
     justify-content: center;
     align-items: center;
   }
