@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './classcard-title.component.scss',
 })
 export class ClasscardTitleComponent {
-  @Input() schoolClass: string = '';
-  @Input() subject: string = '';
+  @Input() schoolClass: string = 'Turma';
+  @Input() subject: string = 'Matéria';
 }

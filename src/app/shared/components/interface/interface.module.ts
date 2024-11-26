@@ -8,6 +8,7 @@ import { StepsComponent } from './steps/steps.component';
 
 @NgModule({
   declarations: [CheckBoxTaskComponent, NeuroTagsComponent, StepsComponent],
-  imports: [CommonModule, FormsModule, StepsComponent],
+  exports: [StepsComponent],
+  imports: [CommonModule, FormsModule],
 })
 export class InterfaceModule {}

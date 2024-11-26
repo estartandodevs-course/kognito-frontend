@@ -3,7 +3,7 @@
     <li
       class="circle"
       *ngFor="let step of [].constructor(totalSteps); let i = index"
-      [class.active]="currentStep >= i + 1"
+      [class.active]="currentStep == i + 1"
       [attr.aria-current]="currentStep === i + 1 ? 'step' : null">
       {{ i + 1 }}
     </li>
