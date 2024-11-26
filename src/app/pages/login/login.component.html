@@ -1,5 +1,11 @@
-<p>login works!</p>
+<app-section class="container">
+  <img src="../../../assets/img/kognito.webp" alt="kognito" />
 
-<a href="/register"> Cadastre-se </a>
-
-<app-button label="Entrar como USUÁRIO" (click)="goToHome()"></app-button>
+  <app-button label="Entrar como USUÁRIO" (click)="goToHome()"></app-button>
+  <div class="container-register" inSection>
+    <p>
+      Não possui uma conta?
+      <a href="/register"> Cadastre-se aqui </a>
+    </p>
+  </div>
+</app-section>

@@ -10,7 +10,7 @@ export class ButtonComponent {
   @Input() codeIcon: string | null = null;
   @Input() label: string = '';
   @Input() disabled: boolean = false;
-  @Input() iconSize: number = 16;
+  @Input() iconSize: number = 16; // Default icon size is 16
   @Input() iconColor: string = '';
 
   @Output() buttonClick = new EventEmitter<void>();
@@ -49,6 +49,18 @@ export class ButtonComponent {
    */
   get isIconOnly(): boolean {
     return this.codeIcon !== null && !this.label;
+  }
+
+  /**
+   * Retorna o tamanho adequado para o ícone, ajustando se for um botão de ícone somente.
+   *
+   * @returns {number} O tamanho do ícone.
+   */
+  getIconSize(): number {
+    if (this.isIconOnly) {
+      return 24; // Se for só ícone, define o tamanho como 24px
+    }
+    return this.iconSize; // Caso contrário, usa o valor passado pelo Input
   }
 
   /**
