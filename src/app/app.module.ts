@@ -8,12 +8,20 @@ import { StructuralModule } from './shared/components/structural/structural.modu
 import { StoreModule } from '@ngrx/store';
 import { modalReducer } from './core/store/modal/modal.reducer';
 import { OpenModalComponent } from './pages/open-modal/open-modal.component';
+import { AuthInterceptor } from './core/services/auth/auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { NavbarModule } from './shared/components/navbar/navbar.module';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, OpenModalComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, StructuralModule, StoreModule.forRoot({ modal: modalReducer })],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
