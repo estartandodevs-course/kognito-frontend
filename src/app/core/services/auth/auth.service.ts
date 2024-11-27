@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AuthLoginService } from './authService/auth-login.service';
-import { AuthTokenService } from './authService/auth-token.service';
-import { AuthRefreshService } from './authService/auth-refresh.service';
-import { AuthRoleService } from './authService/auth-role.service';
+import { AuthLoginService } from './authService/auth-login';
+import { AuthTokenService } from './authService/auth-token';
+import { AuthRefreshService } from './authService/auth-refresh';
+import { AuthRoleService } from './authService/auth-role';
 
 @Injectable({
   providedIn: 'root',
