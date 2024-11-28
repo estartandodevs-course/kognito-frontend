@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from './modal/modal.component';
-import { FormsModule } from '../forms/forms.module';
+import { AppFormsModule } from '../app-forms/app-forms.module';
 
 @NgModule({
   declarations: [ModalComponent],
   exports: [ModalComponent],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, AppFormsModule],
 })
 export class DisplayModule {}

@@ -10,12 +10,12 @@ export const validationSchemes = {
 
   email: createCustomValidator('email', Validators.email, 'Por favor, insira um e-mail válido.'),
 
-  cpf: createCustomValidator('cpf', Validators.min(14), 'O CPF deve possuir 11 dígitos.'),
+  cpf: createCustomValidator('cpf', Validators.minLength(14), 'O CPF deve possuir 11 dígitos.'),
 
   minLenght: (minLenght: number) =>
     createCustomValidator(
       'minLenght',
-      Validators.maxLength(minLenght),
+      Validators.minLength(minLenght),
       `Este campo deve possuir no mínimo ${minLenght} caracteres.`,
     ),
 
@@ -38,10 +38,5 @@ export const validationSchemes = {
       (control) => /[\W_]/.test(control.value),
       'A senha deve conter pelo menos um símbolo especial.',
     ),
-  ],
-
-  grade: [
-    createCustomValidator('minGrade', Validators.min(0), 'A nota deve ser no mínimo 0.'),
-    createCustomValidator('maxGrade', Validators.max(10), 'A nota deve ser no máximo 10.'),
   ],
 };

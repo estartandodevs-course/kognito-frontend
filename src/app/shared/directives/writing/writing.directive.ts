@@ -1,5 +1,6 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { NgControl } from '@angular/forms';
 
 import { DontWriteProps, CapitalizeWordProps, SetFormatProps } from './writing.types';
 import { formatCapitalize, formatCPF, formatGrade } from './writing.utils';
@@ -13,7 +14,10 @@ export class WritingDirective {
   @Input() dontWrite?: DontWriteProps;
   @Input() setFormat?: SetFormatProps;
 
-  constructor(private _element: ElementRef) {}
+  constructor(
+    private _element: ElementRef,
+    private _control: NgControl,
+  ) {}
 
   @HostListener('input', ['$event'])
   onInputChange() {
@@ -42,7 +46,8 @@ export class WritingDirective {
       inputValue = formatCPF(inputValue);
     }
 
-    // Aplica as alterações.
+    // Aplica as alterações no input e no formulário.
     inputElement.value = inputValue;
+    this._control.control?.setValue(inputValue);
   }
 }

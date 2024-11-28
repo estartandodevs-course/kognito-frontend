@@ -1,0 +1,11 @@
+<input
+  appWriting
+  [formControl]="control"
+  [dontWrite]="dontWrite"
+  [capitalize]="capitalize"
+  [maxlength]="maxLenght"
+  [setFormat]="getFormat()"
+  [type]="getType()" />
+
+<p>{{ control.errors | json }}</p>
+<p>{{ control.touched }}</p>

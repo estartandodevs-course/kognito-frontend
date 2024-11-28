@@ -1,25 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, ValidatorFn } from '@angular/forms';
 
 import { DontWriteProps, CapitalizeWordProps, SetFormatProps } from 'app/shared/directives/writing/writing.types';
 import { TimeCaptureService } from 'app/core/services/time-capture.service';
+import { createCustomValidator } from './input-field.utils';
 import { validationSchemes } from './input-field.variables';
-import { CustomValidations } from './input-field.types';
+import { CustomValidationsProps } from './input-field.types';
 
 @Component({
   selector: 'app-input-field',
   templateUrl: './input-field.component.html',
   styleUrl: './input-field.component.scss',
 })
-export class InputFieldComponent {
-  @Input() formControlName?: string;
+export class InputFieldComponent implements OnInit {
+  @Input() formControlName!: string;
   @Input() placeholder = 'Placeholder não definido';
   @Input() label = 'Label não definido';
   @Input() type: 'text' | 'text-area' | 'datetime' | 'email' | 'password' | 'grade' | 'cpf' = 'text';
 
-  @Input() extraValidations: CustomValidations[] = [];
+  @Input() extraValidations: CustomValidationsProps[] = [];
+  @Input() maxLenght: number | null = null;
   @Input() minLenght?: number;
-  @Input() maxLenght?: number;
 
   @Input() required = false;
   @Input() disabled = false;
@@ -28,7 +29,7 @@ export class InputFieldComponent {
   @Input() dontWrite?: DontWriteProps;
 
   // Obtem as validações do input.
-  control = new FormControl('', this._validations);
+  control!: FormControl;
 
   constructor(private _time: TimeCaptureService) {}
 
@@ -52,11 +53,24 @@ export class InputFieldComponent {
       baseValidators.push(validationSchemes.minLenght(this.minLenght));
     }
 
+    // Adiciona as validações extras.
+    this.extraValidations.forEach((validation) => {
+      const { validatorName, condiction, messageError } = validation;
+      baseValidators.push(createCustomValidator(validatorName, condiction, messageError));
+    });
+
     if (this.type === 'datetime') {
       const currentDate = this._time.getCurrentDate().getTime();
       baseValidators.push(validationSchemes.date(currentDate));
-    } else if (this.type !== 'text' && this.type !== 'text-area') {
-      baseValidators.concat(validationSchemes[this.type]);
+    } else if (this.type !== 'text' && this.type !== 'text-area' && this.type !== 'grade') {
+      const scheme = validationSchemes[this.type];
+
+      // Adiciona as validações.
+      if (Array.isArray(scheme)) {
+        baseValidators.push(...scheme);
+      } else {
+        baseValidators.push(scheme);
+      }
     }
 
     return baseValidators;
@@ -95,5 +109,9 @@ export class InputFieldComponent {
       return this.type;
     }
     return undefined;
+  }
+
+  ngOnInit(): void {
+    this.control = new FormControl<string>('', this._validations);
   }
 }
