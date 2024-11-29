@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './form.component.scss',
 })
 export class FormComponent implements AfterContentInit, OnDestroy {
-  @ContentChildren(InputFieldComponent) inputs!: QueryList<InputFieldComponent>;
+  @ContentChildren(InputFieldComponent, { descendants: true }) inputs!: QueryList<InputFieldComponent>;
   @Output() onsubmit = new EventEmitter<DataProps>();
   @Input() updateErrorOn: 'blur' | 'submit' = 'blur';
   @Input() omitKeys: string | string[] = [];
@@ -78,6 +78,8 @@ export class FormComponent implements AfterContentInit, OnDestroy {
    */
   submitForm(): void {
     if (this.dynamicForm.valid) {
+      console.log(this.dynamicForm.value);
+
       const dataForm = omitKeys(trimmerData(this.dynamicForm.value), this.omitKeys);
       this.onsubmit.emit(dataForm);
     }
