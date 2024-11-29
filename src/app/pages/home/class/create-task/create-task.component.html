@@ -1,16 +1,6 @@
-<!-- <app-header [title]="isStepLineEnabled ? 'Criar Tarefa' : 'Tarefas'"></app-header>
-
-<app-section class="container">
-  <img *ngIf="!isStepLineEnabled" src="../../../../../assets/img/empty-task-page.webp" alt="task empty page" />
-
-  <app-button *ngIf="!isStepLineEnabled" codeIcon="majesticons:plus" (click)="toggleStepLine()"></app-button>
-
-  <p *ngIf="!isStepLineEnabled">Lista de tarefas vazia, adicione uma nova tarefa</p>
-  <app-navbar></app-navbar>
+<app-header title="Criar tarefa"></app-header>
+<app-section>
+  <app-classcard-title schoolClass="TESTE" subject="TESTE"></app-classcard-title>
+  <app-step-line></app-step-line>
 </app-section>
-
-<app-step-line *ngIf="isStepLineEnabled" [disabled]="!isStepLineEnabled"></app-step-line> -->
-
-<app-step1></app-step1>
-<app-setp2></app-setp2>
-<app-step3></app-step3>
+<app-navbar role="teacher"></app-navbar>
