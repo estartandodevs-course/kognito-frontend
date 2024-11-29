@@ -19,7 +19,12 @@ export const validationSchemes = {
       `Este campo deve possuir no mínimo ${minLenght} caracteres.`,
     ),
 
-  date: (currentDate: number) => createCustomValidator('date', Validators.min(currentDate), 'Por favor, insira uma data válida.'),
+  date: (currentDate: number) =>
+    createCustomValidator(
+      'date',
+      (control) => new Date(control.value).getTime() >= currentDate,
+      'Por favor, insira uma data válida.',
+    ),
 
   password: [
     createCustomValidator(

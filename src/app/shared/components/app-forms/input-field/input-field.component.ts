@@ -19,6 +19,7 @@ export class InputFieldComponent implements OnInit {
   @Input() type: 'text' | 'text-area' | 'datetime' | 'email' | 'password' | 'grade' | 'cpf' = 'text';
 
   @Input() extraValidations: CustomValidationsProps[] = [];
+  @Input() equalTo: string | null = null;
   @Input() maxLenght: number | null = null;
   @Input() minLenght?: number;
 
@@ -28,7 +29,7 @@ export class InputFieldComponent implements OnInit {
   @Input() capitalize: CapitalizeWordProps = false;
   @Input() dontWrite?: DontWriteProps;
 
-  // Obtem as validações do input.
+  // Armazena as validações do input.
   control!: FormControl;
 
   constructor(private _time: TimeCaptureService) {}
@@ -51,6 +52,16 @@ export class InputFieldComponent implements OnInit {
 
     if (this.minLenght) {
       baseValidators.push(validationSchemes.minLenght(this.minLenght));
+    }
+
+    if (!this.formControlName && this.equalTo) {
+      baseValidators.push(
+        createCustomValidator(
+          'equalTo',
+          (control) => control.value === this.equalTo,
+          'O valor informado neste campo não coincide com o esperado.',
+        ),
+      );
     }
 
     // Adiciona as validações extras.
