@@ -8,7 +8,7 @@ import { AuthTokenService } from './auth-token';
   providedIn: 'root',
 })
 export class AuthRefreshService {
-  private readonly apiUrl = 'https://meu-servidor.com/api/auth'; // Atualize com a URL real da API
+  private readonly apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(
     private http: HttpClient,
@@ -16,26 +16,27 @@ export class AuthRefreshService {
   ) {}
 
   /**
-   * Solicita a renovação do token de acesso usando o refresh token armazenado.
+   * Realiza a renovação do token de autenticação utilizando o refresh token.
    *
-   * @returns Um `Observable` contendo o novo token de acesso.
-   * @throws Um erro caso o refresh token não esteja disponível ou a solicitação falhe.
+   * Esta função envia uma solicitação POST para a API de renovação de token, passando o refresh token.
+   * Se a renovação for bem-sucedida, o novo token é armazenado pelo `AuthTokenService`.
+   *
+   * @returns Um observable com a resposta contendo o novo token de autenticação.
+   *
+   * @throws {Error} Se o refresh token não for encontrado, um erro será lançado.
    */
   refreshToken(): Observable<{ token: string }> {
     const refreshToken = this.tokenService.getRefreshToken();
     if (!refreshToken) {
+      console.error('Tentativa de renovação sem refresh token.');
       throw new Error('Refresh token não encontrado');
     }
 
     return this.http.post<{ token: string }>(`${this.apiUrl}/refresh-token`, { refreshToken }).pipe(
-      tap((response) => {
-        if (response?.token) {
-          this.tokenService.storeToken(response.token); // Armazena o novo token
-        }
-      }),
+      tap((response) => this.tokenService.storeToken(response.token)),
       catchError((error) => {
-        console.error('Erro ao renovar o token', error);
-        throw error; // Propaga o erro para ser tratado externamente
+        console.error('Erro ao renovar token:', error);
+        throw error;
       }),
     );
   }
