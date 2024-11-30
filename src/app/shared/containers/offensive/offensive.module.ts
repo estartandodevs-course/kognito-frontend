@@ -4,6 +4,7 @@ import { OffensiveComponent } from './offensive.component';
 
 @NgModule({
   declarations: [OffensiveComponent],
+  exports: [OffensiveComponent],
   imports: [CommonModule],
 })
 export class OffensiveModule {}

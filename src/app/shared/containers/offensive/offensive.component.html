@@ -1,1 +1,7 @@
 <p>offensive works!</p>
+<div class="offensive-container">
+  <h2>Nível Atual: {{ currentLevel }}</h2>
+  <p>Progresso: {{ progress | number: '1.0-0' }}%</p>
+  <p>Atividades restantes para o próximo nível: {{ activitiesRemaining }}</p>
+  <button (click)="addActivity()">Adicionar Atividade</button>
+</div>
