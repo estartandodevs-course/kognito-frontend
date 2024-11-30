@@ -1,11 +1,43 @@
-<input
-  appWriting
-  [formControl]="control"
-  [dontWrite]="dontWrite"
-  [capitalize]="capitalize"
-  [maxlength]="maxLenght"
-  [setFormat]="getFormat()"
-  [type]="getType()" />
+<div class="container-main">
+  <label [ngClass]="{ label: true, error: viewError }" [for]="label">{{ label }}</label>
+  <div [ngClass]="{ 'input-local': true, error: viewError, success: !control.errors && control.touched }">
+    <input
+      appWriting
+      [id]="label"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      [dontWrite]="dontWrite"
+      [capitalize]="capitalize"
+      [maxlength]="maxLenght"
+      [setFormat]="getFormat()"
+      [type]="getType()"
+      class="input" />
 
-<p>{{ control.errors | json }}</p>
-<p>{{ control.touched }}</p>
+    <div class="icon error" *ngIf="viewError">
+      <span class="iconify" data-icon="majesticons:alert-circle"></span>
+    </div>
+
+    <div class="icon" tabindex="0" (click)="clearInput()" (keydown.enter)="clearInput()">
+      <span class="iconify" data-icon="majesticons:close-circle-line"></span>
+    </div>
+
+    <div
+      class="icon"
+      tabindex="0"
+      *ngIf="type === 'password'"
+      (click)="toggleVisiblePassword()"
+      (keydown.enter)="toggleVisiblePassword()">
+      <div [ngClass]="{ password: true, inactive: passwordVisible }">
+        <span class="iconify" data-icon="majesticons:eye-off-line"></span>
+      </div>
+
+      <div [ngClass]="{ password: true, inactive: !passwordVisible }">
+        <span class="iconify" data-icon="majesticons:eye-line"></span>
+      </div>
+    </div>
+  </div>
+
+  <span *ngIf="viewError" class="span-error">
+    <p *ngFor="let error of getErrors()">{{ error }}</p>
+  </span>
+</div>

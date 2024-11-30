@@ -77,6 +77,8 @@ export class FormComponent implements AfterContentInit, OnDestroy {
    * @returns {void} Não retorna valor.
    */
   submitForm(): void {
+    this.dynamicForm.markAllAsTouched();
+
     if (this.dynamicForm.valid) {
       console.log(this.dynamicForm.value);
 

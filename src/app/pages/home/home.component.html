@@ -1,5 +1,11 @@
 <app-header title="Matérias"></app-header>
 
+<app-form>
+  <app-input-field formControlName="Teste" label="Nome" [required]="true"></app-input-field>
+  <app-input-field formControlName="Teste2" label="Senha" type="password"></app-input-field>
+  <button>T</button>
+</app-form>
+
 <main>
   <app-section>
     <ng-container *ngIf="role === 'teacher'; else student">

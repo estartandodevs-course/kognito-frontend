@@ -29,6 +29,8 @@ export class InputFieldComponent implements OnInit {
   @Input() capitalize: CapitalizeWordProps = false;
   @Input() dontWrite?: DontWriteProps;
 
+  passwordVisible = false;
+
   // Armazena as validações do input.
   control!: FormControl;
 
@@ -88,6 +90,15 @@ export class InputFieldComponent implements OnInit {
   }
 
   /**
+   * Verifica se o controle deve exibir um erro na interface.
+   *
+   * @returns {boolean} Retorna `true` se o controle possuir erros e já tiver sido tocado pelo usuário, caso contrário, retorna `false`.
+   */
+  get viewError(): boolean {
+    return (this.control.errors ?? false) && this.control.touched;
+  }
+
+  /**
    * Método que retorna o tipo de input HTML correspondente ao tipo de campo.
    *
    * O tipo de input pode ser 'number' para os tipos 'cpf' e 'grade',
@@ -98,7 +109,7 @@ export class InputFieldComponent implements OnInit {
    *
    */
   getType(): string {
-    if (this.type === 'cpf' || this.type === 'grade') {
+    if (this.type === 'cpf' || this.type === 'grade' || (this.type === 'password' && this.passwordVisible)) {
       return 'text';
     } else if (this.type === 'datetime') {
       return 'datetime-local';
@@ -120,6 +131,29 @@ export class InputFieldComponent implements OnInit {
       return this.type;
     }
     return undefined;
+  }
+
+  /**
+   * Obtém os erros do controle em formato de array de strings.
+   *
+   * @returns {string[]} Uma lista de mensagens de erro associadas ao controle, ou um array vazio se não houver erros.
+   */
+  getErrors(): string[] {
+    return this.control.errors ? Object.values(this.control.errors) : [];
+  }
+
+  /**
+   * Alterna a visibilidade da senha no campo de entrada.
+   */
+  toggleVisiblePassword() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
+  /**
+   * Limpa o valor do controle de entrada.
+   */
+  clearInput() {
+    this.control.setValue('');
   }
 
   ngOnInit(): void {
