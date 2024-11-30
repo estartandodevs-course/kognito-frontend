@@ -27,38 +27,40 @@ export class FormComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit(): void {
     this.inputs.forEach((input) => {
-      const controlName = input.formControlName;
+      if (!input.disabled) {
+        const controlName = input.formControlName;
 
-      if (controlName) {
-        // Cria o formulário dinamicamente.
-        this.dynamicForm.addControl(controlName, input.control);
+        if (controlName) {
+          // Cria o formulário dinamicamente.
+          this.dynamicForm.addControl(controlName, input.control);
 
-        if (input.equalTo) {
-          const targetInput = this.dynamicForm.get(input.equalTo);
+          if (input.equalTo) {
+            const targetInput = this.dynamicForm.get(input.equalTo);
 
-          if (targetInput) {
-            const equalToValidator = createCustomValidator(
-              'equalTo',
-              (control) => control.value === targetInput.value,
-              'O valor informado neste campo não coincide com o esperado.',
-            );
+            if (targetInput) {
+              const equalToValidator = createCustomValidator(
+                'equalTo',
+                (control) => control.value === targetInput.value,
+                'O valor informado neste campo não coincide com o esperado.',
+              );
 
-            // Garantir que os validadores existentes sejam preservados
-            const existingValidators = input.control.validator ? [input.control.validator] : [];
-            input.control.setValidators([...existingValidators, equalToValidator]);
+              // Garantir que os validadores existentes sejam preservados
+              const existingValidators = input.control.validator ? [input.control.validator] : [];
+              input.control.setValidators([...existingValidators, equalToValidator]);
 
-            this._subcriptions.push(
-              // Atualizar a validade do controle quando o valor de 'targetInput' mudar.
-              targetInput.valueChanges.subscribe(() => {
-                input.control.updateValueAndValidity();
-              }),
-            );
-          } else {
-            throw new Error(`Nenhum input com a chave "${input.equalTo}" foi encontrado.`);
+              this._subcriptions.push(
+                // Atualiza a validade do controle quando o valor de 'targetInput' mudar.
+                targetInput.valueChanges.subscribe(() => {
+                  input.control.updateValueAndValidity();
+                }),
+              );
+            } else {
+              throw new Error(`Nenhum input com a chave "${input.equalTo}" foi encontrado.`);
+            }
           }
+        } else {
+          throw new Error('O parametro formControlName é obrigatório ao utilizar o input em um formulário.');
         }
-      } else {
-        throw new Error('O parametro formControlName é obrigatório ao utilizar o input em um formulário.');
       }
     });
   }
@@ -74,14 +76,11 @@ export class FormComponent implements AfterContentInit, OnDestroy {
    * Verifica se o formulário (`dynamicForm`) é válido. Se for, aplica funções de transformação nos dados
    * (como remoção de espaços em branco e exclusão de chaves definidas) e emite os dados processados
    * através do evento `onsubmit`.
-   * @returns {void} Não retorna valor.
    */
-  submitForm(): void {
+  submit() {
     this.dynamicForm.markAllAsTouched();
 
     if (this.dynamicForm.valid) {
-      console.log(this.dynamicForm.value);
-
       const dataForm = omitKeys(trimmerData(this.dynamicForm.value), this.omitKeys);
       this.onsubmit.emit(dataForm);
     }

@@ -16,7 +16,7 @@ export class InputFieldComponent implements OnInit {
   @Input() formControlName!: string;
   @Input() placeholder = 'Placeholder não definido';
   @Input() label = 'Label não definido';
-  @Input() type: 'text' | 'text-area' | 'datetime' | 'email' | 'password' | 'grade' | 'cpf' = 'text';
+  @Input() type: 'text' | 'textarea' | 'datetime-local' | 'email' | 'password' | 'grade' | 'cpf' = 'text';
 
   @Input() extraValidations: CustomValidationsProps[] = [];
   @Input() equalTo: string | null = null;
@@ -43,7 +43,6 @@ export class InputFieldComponent implements OnInit {
    * O retorno é um array de funções de validação (ValidatorFn) que são aplicadas ao campo conforme os requisitos configurados.
    *
    * @returns {ValidatorFn[]} Um array de funções de validação a serem aplicadas ao campo de entrada.
-   *
    */
   private get _validations(): ValidatorFn[] {
     const baseValidators: ValidatorFn[] = [];
@@ -72,10 +71,10 @@ export class InputFieldComponent implements OnInit {
       baseValidators.push(createCustomValidator(validatorName, condiction, messageError));
     });
 
-    if (this.type === 'datetime') {
+    if (this.type === 'datetime-local') {
       const currentDate = this._time.getCurrentDate().getTime();
       baseValidators.push(validationSchemes.date(currentDate));
-    } else if (this.type !== 'text' && this.type !== 'text-area' && this.type !== 'grade') {
+    } else if (this.type !== 'text' && this.type !== 'textarea' && this.type !== 'grade') {
       const scheme = validationSchemes[this.type];
 
       // Adiciona as validações.
@@ -90,29 +89,29 @@ export class InputFieldComponent implements OnInit {
   }
 
   /**
-   * Verifica se o controle deve exibir um erro na interface.
+   * Verifica se o campo de controle possui erro e está visível.
    *
-   * @returns {boolean} Retorna `true` se o controle possuir erros e já tiver sido tocado pelo usuário, caso contrário, retorna `false`.
+   * Este getter verifica se o controle possui erros, se o campo foi tocado,
+   * e se o campo não está desabilitado. Retorna `true` se todas essas condições forem atendidas,
+   * indicando que o erro deve ser exibido, caso contrário, retorna `false`.
+   *
+   * @returns {boolean} `true` se o campo tem erro, foi tocado e não está desabilitado; caso contrário, `false`.
    */
   get viewError(): boolean {
-    return (this.control.errors ?? false) && this.control.touched;
+    return (this.control.errors ?? false) && this.control.touched && !this.disabled;
   }
 
   /**
-   * Método que retorna o tipo de input HTML correspondente ao tipo de campo.
+   * Retorna o tipo de campo para ser usado, baseado na condição interna.
    *
-   * O tipo de input pode ser 'number' para os tipos 'cpf' e 'grade',
-   * 'datetime-local' para o tipo 'datetime', ou o tipo original
-   * caso contrário (como 'text', 'email', etc.).
+   * Este método verifica o valor da propriedade `type` e, se o tipo for 'cpf', 'grade', ou 'password' (e a propriedade `passwordVisible` for verdadeira),
+   * o tipo retornado será 'text'. Caso contrário, o tipo retornado será o valor atual de `this.type`.
    *
-   * @returns {string} O tipo de input HTML, como 'number', 'datetime-local', ou o tipo original.
-   *
+   * @returns {string} O tipo do campo, que pode ser 'text' ou o valor da propriedade `type`.
    */
   getType(): string {
     if (this.type === 'cpf' || this.type === 'grade' || (this.type === 'password' && this.passwordVisible)) {
       return 'text';
-    } else if (this.type === 'datetime') {
-      return 'datetime-local';
     }
     return this.type;
   }
@@ -124,13 +123,27 @@ export class InputFieldComponent implements OnInit {
    * Para outros tipos, o formato é indefinido e será retornado como `undefined`.
    *
    * @returns {SetFormatProps | undefined} O formato do campo, ou `undefined` caso não tenha um formato específico.
-   *
    */
   getFormat(): SetFormatProps | undefined {
     if (this.type === 'cpf' || this.type === 'grade') {
       return this.type;
     }
     return undefined;
+  }
+
+  /**
+   * Retorna o modo de entrada adequado com base no tipo do campo.
+   *
+   * Este método verifica o valor da propriedade `type` e, se o tipo for 'cpf' ou 'grade',
+   * o modo de entrada retornado será 'numeric'. Caso contrário, o modo de entrada retornado será o valor atual de `this.type`.
+   *
+   * @returns {string} O modo de entrada, que pode ser 'numeric' ou o valor da propriedade `type`.
+   */
+  getInputMode(): string {
+    if (this.type === 'cpf' || this.type === 'grade') {
+      return 'numeric';
+    }
+    return this.type;
   }
 
   /**

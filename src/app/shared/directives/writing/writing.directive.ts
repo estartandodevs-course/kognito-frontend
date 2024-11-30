@@ -7,7 +7,7 @@ import { formatCapitalize, formatCPF, formatGrade } from './writing.utils';
 import { regexRestrictMap } from './writing.variables';
 
 @Directive({
-  selector: 'input[appWriting]',
+  selector: 'input[appWriting], textarea[appWriting]',
 })
 export class WritingDirective {
   @Input() capitalize: CapitalizeWordProps = false;
@@ -21,7 +21,7 @@ export class WritingDirective {
 
   @HostListener('input', ['$event'])
   onInputChange() {
-    const inputElement = this._element.nativeElement as HTMLInputElement;
+    const inputElement = this._element.nativeElement as HTMLInputElement | HTMLTextAreaElement;
 
     // Obtem o valor do input e remove espaços duplos ou no começo do texto.
     let inputValue = inputElement.value.trimStart().replace('  ', ' ');

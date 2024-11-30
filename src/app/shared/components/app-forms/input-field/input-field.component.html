@@ -1,23 +1,47 @@
-<div class="container-main">
+<div [ngClass]="{ 'container-main': true, disabled }">
   <label [ngClass]="{ label: true, error: viewError }" [for]="label">{{ label }}</label>
-  <div [ngClass]="{ 'input-local': true, error: viewError, success: !control.errors && control.touched }">
-    <input
-      appWriting
-      [id]="label"
-      [placeholder]="placeholder"
-      [formControl]="control"
-      [dontWrite]="dontWrite"
-      [capitalize]="capitalize"
-      [maxlength]="maxLenght"
-      [setFormat]="getFormat()"
-      [type]="getType()"
-      class="input" />
+  <div [ngClass]="{ 'input-local': true, error: viewError, success: !control.errors && !disabled }">
+    <ng-container *ngIf="type !== 'textarea'; else textarea">
+      <input
+        appWriting
+        [id]="label"
+        [placeholder]="placeholder"
+        [formControl]="control"
+        [dontWrite]="dontWrite"
+        [capitalize]="capitalize"
+        [maxlength]="maxLenght"
+        [attr.inputmode]="getInputMode()"
+        [setFormat]="getFormat()"
+        [type]="getType()"
+        class="input" />
+    </ng-container>
+
+    <ng-template #textarea>
+      <textarea
+        appWriting
+        [id]="label"
+        [name]="label"
+        [placeholder]="placeholder"
+        [formControl]="control"
+        [dontWrite]="dontWrite"
+        [capitalize]="capitalize"
+        [maxlength]="maxLenght"
+        [setFormat]="getFormat()"
+        rows="5"
+        style="resize: none"
+        class="input"></textarea>
+    </ng-template>
 
     <div class="icon error" *ngIf="viewError">
       <span class="iconify" data-icon="majesticons:alert-circle"></span>
     </div>
 
-    <div class="icon" tabindex="0" (click)="clearInput()" (keydown.enter)="clearInput()">
+    <div
+      class="icon"
+      tabindex="0"
+      *ngIf="type !== 'grade' && type !== 'datetime-local'"
+      (click)="clearInput()"
+      (keydown.enter)="clearInput()">
       <span class="iconify" data-icon="majesticons:close-circle-line"></span>
     </div>
 
