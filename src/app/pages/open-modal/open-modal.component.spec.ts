@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Step1Component } from './step1.component';
+import { OpenModalComponent } from './open-modal.component';
 
-describe('Step1Component', () => {
-  let component: Step1Component;
-  let fixture: ComponentFixture<Step1Component>;
+describe('OpenModalComponent', () => {
+  let component: OpenModalComponent;
+  let fixture: ComponentFixture<OpenModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [Step1Component],
+      declarations: [OpenModalComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Step1Component);
+    fixture = TestBed.createComponent(OpenModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

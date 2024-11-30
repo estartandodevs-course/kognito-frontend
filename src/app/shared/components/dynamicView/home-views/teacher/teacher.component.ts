@@ -9,8 +9,13 @@ import { Router } from '@angular/router';
 export class TeacherComponent {
   constructor(private router: Router) {}
 
-  // Método que redireciona para a página "home/create-class"
+  /**
+   * Redireciona o usuário para a página de criação de turma.
+   *
+   * Esta função utiliza o Angular Router para navegar até a rota '/home/create-class',
+   * permitindo que o usuário seja redirecionado para a página de criação de turma.
+   */
   redirectToCreateClass(): void {
-    this.router.navigate(['/home/create-class']);
+    this.router.navigate(['/home/create_class']);
   }
 }

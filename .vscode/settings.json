@@ -6,5 +6,9 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "prettier.endOfLine": "auto"
+  "prettier.endOfLine": "auto",
+
+  "cSpell.language": "en",
+  "cSpell.dictionaries": ["en"],
+  "cSpell.enabled": true
 }

@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { StudentComponent } from './student/student.component';
 import { TeacherComponent } from './teacher/teacher.component';
-import { AppFormsModule } from '../../app-forms/app-forms.module';
+import { StructuralModule } from '../../structural/structural.module';
 
 @NgModule({
   declarations: [StudentComponent, TeacherComponent],
   exports: [StudentComponent, TeacherComponent],
-  imports: [CommonModule, AppFormsModule],
+  imports: [CommonModule, StructuralModule],
 })
 export class HomeViewsModule {}

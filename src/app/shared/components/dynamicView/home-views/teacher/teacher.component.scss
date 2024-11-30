@@ -1,0 +1,30 @@
+app-header {
+  display: grid;
+  position: relative;
+  top: -28px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 246px;
+  height: 184px;
+  margin-top: 150px;
+  margin-bottom: 146px;
+}
+
+app-button {
+  width: 163px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

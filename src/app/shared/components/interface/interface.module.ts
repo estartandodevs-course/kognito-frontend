@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { CheckBoxTaskComponent } from './checkbox-task/checkbox-task.component';
 import { NeuroTagsComponent } from './neuro-tags/neuro-tags.component';
+import { StepsComponent } from './steps/steps.component';
 
 @NgModule({
-  declarations: [CheckBoxTaskComponent, NeuroTagsComponent],
+  declarations: [CheckBoxTaskComponent, NeuroTagsComponent, StepsComponent],
+  exports: [StepsComponent],
   imports: [CommonModule, FormsModule],
 })
 export class InterfaceModule {}

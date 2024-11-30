@@ -1,0 +1,43 @@
+img {
+  width: 234px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.container {
+  height: 100vh;
+  position: relative;
+
+  app-button {
+    display: grid;
+    position: absolute;
+    width: 338px;
+    height: 48px;
+    padding: 10px 24px;
+    top: 550px;
+    margin-bottom: 50px;
+  }
+
+  .container-register {
+    width: 300px;
+    display: flex;
+    position: absolute;
+    top: calc(550px + 48px + 50px);
+    text-align: center;
+
+    p {
+      color: var(--black);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22.4px;
+    }
+
+    a {
+      color: var(--normal);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 25.2px;
+      text-decoration: none;
+    }
+  }
+}

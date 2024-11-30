@@ -2,8 +2,8 @@
   <span class="iconify" [attr.data-icon]="codeIcon" *ngIf="codeIcon">
     <img
       [alt]="label || 'button icon'"
-      [attr.width]="iconSize"
-      [attr.height]="iconSize"
+      [attr.width]="getIconSize()"
+      [attr.height]="getIconSize()"
       [ngStyle]="{ color: iconColor || getIconColor(), stroke: iconColor || getIconColor() }" />
   </span>
   <span *ngIf="label" [ngStyle]="{ color: getLabelColor() }">{{ label }}</span>

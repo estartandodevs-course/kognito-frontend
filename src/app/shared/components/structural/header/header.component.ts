@@ -4,6 +4,10 @@ import { Location } from '@angular/common';
 import { TimeCaptureService } from 'app/core/services/time-capture.service';
 import { IconHeaderProps } from './header.types';
 
+/**
+ * Componente de Header da aplicação.
+ * Exibe o título e ícones de navegação no topo da página, com a capacidade de alterar a saudação do usuário dependendo da hora do dia.
+ */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,8 +20,6 @@ export class HeaderComponent {
   ) {}
 
   @Input() title: string | null = null;
-
-  // Icone com seta é o padrão.
   @Input() iconsLeft: IconHeaderProps[] = [{ code: 'majesticons:arrow-left', onClick: () => this._location.back() }];
   @Input() iconsRight?: IconHeaderProps[];
 
