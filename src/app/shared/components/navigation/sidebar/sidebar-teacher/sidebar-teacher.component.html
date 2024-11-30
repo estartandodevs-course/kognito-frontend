@@ -1,0 +1,22 @@
+<section class="sidebar">
+  <div class="container-icons">
+    <app-sidebar-item
+      [routerLink]="'/home/class/students'"
+      [selected]="path === '/home/class/students'"
+      [dataIconActive]="'majesticons:user-group'"
+      [dataIconInactive]="'majesticons:user-group-line'"
+      [label]="'Turma'"></app-sidebar-item>
+    <app-sidebar-item
+      [routerLink]="'/home/class/tasks'"
+      [selected]="path === '/home/class/tasks'"
+      [dataIconActive]="'majesticons:book-open'"
+      [dataIconInactive]="'majesticons:book-open-line'"
+      [label]="'Tarefas'"></app-sidebar-item>
+    <app-sidebar-item
+      [routerLink]="'/home/class/config'"
+      [selected]="path === '/home/class/config'"
+      [dataIconActive]="'majesticons:settings-cog'"
+      [dataIconInactive]="'majesticons:settings-cog-line'"
+      [label]="'Ajustes'"></app-sidebar-item>
+  </div>
+</section>

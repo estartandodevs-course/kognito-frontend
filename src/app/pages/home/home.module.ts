@@ -6,9 +6,10 @@ import { HomeViewsModule } from 'app/shared/components/dynamicView/home-views/ho
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { CreateTaskModule } from './class/create-task/create-task.module';
+import { SidebarModule } from 'app/shared/components/navigation/sidebar/sidebar.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, HomeViewsModule, StructuralModule, CreateTaskModule],
+  imports: [CommonModule, HomeRoutingModule, HomeViewsModule, StructuralModule, CreateTaskModule, SidebarModule],
 })
 export class HomeModule {}
