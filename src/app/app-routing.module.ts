@@ -13,7 +13,11 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then((m) => m.RegisterModule),
   },
-  { path: 'invite/:id', loadChildren: () => import('./pages/not-found/not-found.module').then((m) => m.NotFoundModule) },
+  {
+    path: 'unavailable',
+    loadChildren: () => import('./pages/unavailable/unavailable.module').then((m) => m.UnavailableModule),
+  },
+  // { path: 'invite/:id', loadChildren: () => import('./pages/not-found/not-found.module').then((m) => m.NotFoundModule) },
   { path: '**', loadChildren: () => import('./pages/not-found/not-found.module').then((m) => m.NotFoundModule) },
 ];
 
