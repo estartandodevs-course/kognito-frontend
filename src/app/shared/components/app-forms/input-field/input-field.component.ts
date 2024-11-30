@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, ValidatorFn } from '@angular/forms';
+import { Subscription, debounceTime } from 'rxjs';
 
 import { DontWriteProps, CapitalizeWordProps, SetFormatProps } from 'app/shared/directives/writing/writing.types';
 import { TimeCaptureService } from 'app/core/services/time-capture.service';
@@ -12,7 +13,7 @@ import { CustomValidationsProps } from './input-field.types';
   templateUrl: './input-field.component.html',
   styleUrl: './input-field.component.scss',
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent implements OnInit, OnDestroy {
   @Input() formControlName!: string;
   @Input() placeholder = 'Placeholder não definido';
   @Input() label = 'Label não definido';
@@ -29,6 +30,9 @@ export class InputFieldComponent implements OnInit {
   @Input() capitalize: CapitalizeWordProps = false;
   @Input() dontWrite?: DontWriteProps;
 
+  @Output() onchange = new EventEmitter<string>();
+
+  private _subscription!: Subscription;
   passwordVisible = false;
 
   // Armazena as validações do input.
@@ -171,5 +175,14 @@ export class InputFieldComponent implements OnInit {
 
   ngOnInit(): void {
     this.control = new FormControl<string>('', this._validations);
+
+    // Dispara onchange passando o valor do input após 500ms.
+    this._subscription = this.control.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe((value: string) => this.onchange.emit(value.trim()));
+  }
+
+  ngOnDestroy(): void {
+    if (this._subscription) this._subscription.unsubscribe();
   }
 }
