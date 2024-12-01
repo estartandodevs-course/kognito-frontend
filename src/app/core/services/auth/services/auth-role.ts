@@ -1,58 +1,54 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { AuthTokenService } from './auth-token';
-import { jwtDecode } from 'jwt-decode';
-
-interface JwtPayload {
-  role: string;
-  exp?: number;
-  [key: string]: unknown;
-}
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
+import { loadUserRoleSuccess, loadUserRoleFailure } from '../../../store/auth/actions/auth.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthRoleService {
-  constructor(private tokenService: AuthTokenService) {}
+  private readonly apiUrl = `${environment.apiUrl}/auth`; // URL da API para obter dados de usuário
+
+  constructor(
+    private http: HttpClient,
+    private tokenService: AuthTokenService,
+    private store: Store,
+  ) {}
 
   /**
-   * Decodifica um token JWT em um objeto do tipo `T`.
+   * Obtém as informações de papel (role) do usuário na API.
    *
-   * Esta função tenta decodificar o token JWT fornecido e retorna o payload decodificado. Se houver algum erro
-   * durante a decodificação, o erro será capturado e `null` será retornado.
+   * Esta função faz uma requisição à API para obter os dados do usuário com base no token armazenado.
+   * O token é enviado no cabeçalho de autorização, e a resposta contém a role do usuário.
    *
-   * @param token O token JWT a ser decodificado.
-   * @returns O payload decodificado do tipo `T`, ou `null` se ocorrer um erro.
+   * @returns Um Observable com a resposta que inclui a role do usuário.
    */
-  private decodeToken<T extends object>(token: string): T | null {
-    try {
-      return jwtDecode<T>(token);
-    } catch (error) {
-      console.error('Erro ao decodificar token JWT:', error);
-      return null;
+  getUserRole(): Observable<string> {
+    const token = this.tokenService.getToken();
+
+    if (!token) {
+      throw new Error('Token de autenticação não encontrado');
     }
-  }
 
-  /**
-   * Verifica se o usuário tem a função de administrador.
-   *
-   * Esta função decodifica o token JWT do usuário e verifica se o papel (`role`) é igual a `'admin'`.
-   *
-   * @returns `true` se o usuário for administrador, caso contrário, `false`.
-   */
-  isAdmin(): boolean {
-    const decoded = this.decodeToken<JwtPayload>(this.tokenService.getToken() || '');
-    return decoded?.role === 'admin';
-  }
-
-  /**
-   * Verifica se o usuário tem a função de usuário comum.
-   *
-   * Esta função decodifica o token JWT do usuário e verifica se o papel (`role`) é igual a `'user'`.
-   *
-   * @returns `true` se o usuário for comum, caso contrário, `false`.
-   */
-  isUser(): boolean {
-    const decoded = this.decodeToken<JwtPayload>(this.tokenService.getToken() || '');
-    return decoded?.role === 'user';
+    // Faz a requisição à API para obter os dados do usuário com base no token
+    return this.http
+      .get<{ role: string }>(`${this.apiUrl}/user-role`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .pipe(
+        switchMap((response) => {
+          // Aqui, despachamos a action para atualizar o estado da role
+          this.store.dispatch(loadUserRoleSuccess({ role: response.role }));
+          return [response.role];
+        }),
+        catchError((error) => {
+          console.error('Erro ao carregar role do usuário:', error);
+          this.store.dispatch(loadUserRoleFailure({ error: error.message }));
+          throw error;
+        }),
+      );
   }
 }

@@ -10,9 +10,9 @@ import { refreshToken, refreshTokenSuccess, refreshTokenFailure } from '../actio
  * @property {string | null} error - Mensagem de erro caso haja falha na renovação do token.
  */
 export interface AuthState {
-  token: string | null;
-  refreshToken: string | null;
-  error: string | null;
+  token: string | null; // Token de autenticação do usuário
+  refreshToken: string | null; // Token de atualização
+  error: string | null; // Erro da renovação, se houver
 }
 
 /**
