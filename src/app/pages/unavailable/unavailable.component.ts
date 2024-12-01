@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationUtils } from 'app/core/utils/navigation-utils';
 
 @Component({
   selector: 'app-unavailable',
@@ -7,15 +7,8 @@ import { Router } from '@angular/router';
   styleUrl: './unavailable.component.scss',
 })
 export class UnavailableComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private navigationUtils: NavigationUtils) {}
 
-  /**
-   * Método de ciclo de vida do Angular chamado ao inicializar o componente.
-   *
-   * Atualmente, lança um erro porque o método ainda não foi implementado.
-   *
-   * @throws Error - Método não implementado.
-   */
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -25,7 +18,7 @@ export class UnavailableComponent implements OnInit {
    *
    * @returns void
    */
-  goToHome(): void {
-    this.router.navigate(['/']);
+  navigateHome(): void {
+    this.navigationUtils.goToHome();
   }
 }
