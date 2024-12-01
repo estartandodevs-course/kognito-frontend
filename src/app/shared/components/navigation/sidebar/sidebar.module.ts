@@ -5,9 +5,10 @@ import { SidebarStudentComponent } from './sidebar-student/sidebar-student.compo
 import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SidebarComponent } from './sidebar.component';
+import { LogoutButtonComponent } from './logout-button/logout-button.component';
 
 @NgModule({
-  declarations: [SidebarTeacherComponent, SidebarStudentComponent, SidebarItemComponent, SidebarComponent],
+  declarations: [SidebarTeacherComponent, SidebarStudentComponent, SidebarItemComponent, SidebarComponent, LogoutButtonComponent],
   imports: [CommonModule, RouterLink, RouterLinkActive],
   exports: [SidebarComponent],
 })

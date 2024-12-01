@@ -1,5 +1,5 @@
-<section class="sidebar">
-  <div class="container-icons">
+<section class="container-icons">
+  <div>
     <app-sidebar-item
       [routerLink]="'/home/class/students'"
       [selected]="path === '/home/class/students'"
@@ -19,4 +19,5 @@
       [dataIconInactive]="'majesticons:settings-cog-line'"
       [label]="'Ajustes'"></app-sidebar-item>
   </div>
+  <app-logout-button></app-logout-button>
 </section>
