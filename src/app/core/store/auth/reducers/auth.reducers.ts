@@ -11,7 +11,7 @@ import {
   loadUserRoleSuccess,
   loadUserRoleFailure,
 } from '../actions/auth.actions';
-import { AuthState } from './auth-state.model';
+import { AuthState } from '../../../model/auth-state.model';
 
 /**
  * Estado inicial para autenticação.
