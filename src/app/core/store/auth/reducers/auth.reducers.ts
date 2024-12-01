@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { createReducer, on } from '@ngrx/store';
-import { refreshToken, refreshTokenSuccess, refreshTokenFailure } from '../actions/auth.actions';
+import { AuthTokenService } from '../../../services/auth/services/auth-token';
+import { loginSuccess, loginFailure, logout, refreshTokenSuccess, refreshTokenFailure } from '../actions/auth.actions';
 
 /**
  * Define o estado da autenticação do usuário.
@@ -10,9 +12,9 @@ import { refreshToken, refreshTokenSuccess, refreshTokenFailure } from '../actio
  * @property {string | null} error - Mensagem de erro caso haja falha na renovação do token.
  */
 export interface AuthState {
-  token: string | null; // Token de autenticação do usuário
-  refreshToken: string | null; // Token de atualização
-  error: string | null; // Erro da renovação, se houver
+  token: string | null;
+  refreshToken: string | null;
+  error: string | null;
 }
 
 /**
@@ -25,38 +27,70 @@ export const initialState: AuthState = {
 };
 
 /**
- * Redutor para gerenciar as ações de autenticação.
+ * Redutor para gerenciar as ações de autenticação, com integração ao AuthTokenService.
  *
- * Este redutor gerencia o estado de autenticação, incluindo a renovação de token e o sucesso/falha
- * nas tentativas de renovação.
+ * Este redutor manipula o estado de autenticação, realizando operações como login,
+ * logout, renovação de token e tratamento de falhas de autenticação. Além disso,
+ * armazena e recupera os tokens de autenticação e renovação através do AuthTokenService.
  *
- * @param {AuthState} state - O estado atual da autenticação.
- * @param {Action} action - A ação disparada que pode modificar o estado.
- *
- * @returns {AuthState} O novo estado de autenticação.
+ * @param tokenService - Serviço utilizado para armazenar e recuperar tokens.
+ * @returns Um novo estado de autenticação baseado nas ações disparadas.
  */
-export const authReducer = createReducer(
-  initialState,
-  on(
-    refreshToken,
-    (state: AuthState): AuthState => ({
-      ...state,
-      error: null, // Limpa o erro ao tentar renovar o token
+@Injectable()
+export class AuthReducer {
+  constructor(private tokenService: AuthTokenService) {}
+
+  /**
+   * Redutor para as ações de autenticação.
+   *
+   * @param state - O estado atual da autenticação.
+   * @param action - Ação disparada que pode modificar o estado.
+   *
+   * @returns O novo estado de autenticação.
+   */
+  authReducer = createReducer(
+    initialState,
+    on(loginSuccess, (state: AuthState, { token, refreshToken }): AuthState => {
+      this.tokenService.storeToken(token);
+      this.tokenService.storeRefreshToken(refreshToken);
+
+      return {
+        ...state,
+        token,
+        refreshToken,
+        error: null,
+      };
     }),
-  ),
-  on(
-    refreshTokenSuccess,
-    (state: AuthState, { token }): AuthState => ({
-      ...state,
-      token, // Atualiza o token com o novo valor
-      error: null, // Limpa o erro após sucesso
+    on(
+      loginFailure,
+      (state: AuthState, { error }): AuthState => ({
+        ...state,
+        error,
+      }),
+    ),
+    on(logout, (state: AuthState): AuthState => {
+      this.tokenService.clearTokens();
+      return {
+        ...state,
+        token: null,
+        refreshToken: null,
+        error: null,
+      };
     }),
-  ),
-  on(
-    refreshTokenFailure,
-    (state: AuthState, { error }): AuthState => ({
-      ...state,
-      error, // Atualiza o erro com a mensagem fornecida pela falha
+    on(refreshTokenSuccess, (state: AuthState, { token }): AuthState => {
+      this.tokenService.storeToken(token);
+      return {
+        ...state,
+        token,
+        error: null,
+      };
     }),
-  ),
-);
+    on(
+      refreshTokenFailure,
+      (state: AuthState, { error }): AuthState => ({
+        ...state,
+        error,
+      }),
+    ),
+  );
+}
