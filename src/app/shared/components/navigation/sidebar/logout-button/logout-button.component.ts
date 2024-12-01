@@ -1,8 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-export interface Action {
-  id: string;
-}
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-logout-button',
@@ -10,17 +6,7 @@ export interface Action {
   styleUrl: './logout-button.component.scss',
 })
 export class LogoutButtonComponent {
-  @Input()
-  routerLink: string = '';
-  @Input()
-  dataIcon: string = '';
-  @Input()
-  label: string = '';
-  @Input() actions: Action[] = [];
-  @Output() actionEvent = new EventEmitter<string>();
-
-  clickAction(value: string) {
-    this.actionEvent.emit(value);
-    console.log('oi');
+  clickAction() {
+    //Quando for implementado o login, é necessário fazer a chamada de serviço de logout aqui
   }
 }
