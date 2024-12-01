@@ -1,11 +1,19 @@
 a {
   display: flex;
-  flex-direction: column;
   align-items: center;
-}
-
-a:link {
+  padding: 12px;
+  gap: 12px;
   text-decoration: none;
+  border-radius: 8px;
+  transition: 0.5s all ease-out;
+
+  &.selected {
+    background: var(--light);
+  }
+
+  &:hover {
+    background-color: var(--light-hover);
+  }
 }
 
 .icon-selected {
@@ -29,4 +37,5 @@ a:link {
 
 .label-unselected {
   color: var(--gray-1);
+  gap: 24px;
 }
