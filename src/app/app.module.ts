@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { FormsModule } from './shared/components/forms/forms.module';
 import { StructuralModule } from './shared/components/structural/structural.module';
 import { StoreModule } from '@ngrx/store';
 import { modalReducer } from './core/store/modal/modal.reducer';
@@ -18,11 +17,10 @@ import { authReducer } from './core/store/auth/reducers/auth.reducers';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     StructuralModule,
     StoreModule.forRoot({
       modal: modalReducer,
-      auth: authReducer,
+      auth: authReducer, // Usando a função diretamente
     }),
   ],
   providers: [
