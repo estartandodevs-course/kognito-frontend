@@ -1,13 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
-import { loginSuccess, logout } from '../actions/auth.actions';
+import { refreshToken, refreshTokenSuccess, refreshTokenFailure } from '../actions/auth.actions';
 
 /**
- * Define o estado inicial para a autenticação do usuário.
+ * Define o estado da autenticação do usuário.
  *
  * @interface AuthState
  * @property {string | null} token - O token de autenticação do usuário.
  * @property {string | null} refreshToken - O token de atualização do usuário.
- * @property {string | null} error - Mensagem de erro caso haja falha na autenticação.
+ * @property {string | null} error - Mensagem de erro caso haja falha na renovação do token.
  */
 export interface AuthState {
   token: string | null;
@@ -27,7 +27,8 @@ export const initialState: AuthState = {
 /**
  * Redutor para gerenciar as ações de autenticação.
  *
- * Este redutor gerencia o estado de autenticação, incluindo o sucesso do login e o logout.
+ * Este redutor gerencia o estado de autenticação, incluindo a renovação de token e o sucesso/falha
+ * nas tentativas de renovação.
  *
  * @param {AuthState} state - O estado atual da autenticação.
  * @param {Action} action - A ação disparada que pode modificar o estado.
@@ -37,23 +38,25 @@ export const initialState: AuthState = {
 export const authReducer = createReducer(
   initialState,
   on(
-    loginSuccess,
-    /**
-     * Atualiza o estado com os tokens após um login bem-sucedido.
-     *
-     * @param {AuthState} state - O estado atual da autenticação.
-     * @param {object} payload - O payload da ação, que inclui os tokens de autenticação.
-     * @param {string} payload.token - O token de autenticação.
-     * @param {string} payload.refreshToken - O token de atualização.
-     *
-     * @returns {AuthState} O novo estado com os tokens atualizados e sem erros.
-     */
-    (state, { token, refreshToken }): AuthState => ({
+    refreshToken,
+    (state: AuthState): AuthState => ({
       ...state,
-      token,
-      refreshToken,
-      error: null,
+      error: null, // Limpa o erro ao tentar renovar o token
     }),
   ),
-  on(logout, (): AuthState => initialState),
+  on(
+    refreshTokenSuccess,
+    (state: AuthState, { token }): AuthState => ({
+      ...state,
+      token, // Atualiza o token com o novo valor
+      error: null, // Limpa o erro após sucesso
+    }),
+  ),
+  on(
+    refreshTokenFailure,
+    (state: AuthState, { error }): AuthState => ({
+      ...state,
+      error, // Atualiza o erro com a mensagem fornecida pela falha
+    }),
+  ),
 );

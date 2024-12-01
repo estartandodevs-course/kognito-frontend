@@ -55,3 +55,33 @@ export const loginFailure = createAction('[Auth] Login Failure', props<{ error: 
  * this.store.dispatch(logout());
  */
 export const logout = createAction('[Auth] Logout');
+
+/**
+ * Ação para iniciar a renovação do token de autenticação.
+ *
+ * Esta ação é disparada quando o processo de renovação do token começa.
+ * Geralmente, inclui o refresh token como propriedade para ser enviado à API.
+ *
+ * @param refreshToken O token de renovação utilizado para obter um novo token de autenticação.
+ */
+export const refreshToken = createAction('[Auth] Refresh Token', props<{ refreshToken: string }>());
+
+/**
+ * Ação para indicar o sucesso na renovação do token de autenticação.
+ *
+ * Esta ação é disparada quando o processo de renovação é concluído com sucesso.
+ * Inclui o novo token de autenticação retornado pela API.
+ *
+ * @param token O novo token de autenticação gerado.
+ */
+export const refreshTokenSuccess = createAction('[Auth] Refresh Token Success', props<{ token: string }>());
+
+/**
+ * Ação para indicar falha na renovação do token de autenticação.
+ *
+ * Esta ação é disparada quando o processo de renovação falha, seja por erro de comunicação com a API
+ * ou por problemas no token de renovação.
+ *
+ * @param error Uma mensagem descritiva do erro ocorrido.
+ */
+export const refreshTokenFailure = createAction('[Auth] Refresh Token Failure', props<{ error: string }>());

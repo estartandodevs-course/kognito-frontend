@@ -3,7 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { tap, catchError } from 'rxjs/operators';
 import { AuthTokenService } from './auth-token';
-import { login, loginSuccess, loginFailure, logout } from '../../../store/auth/actions/auth.actions';
+import {
+  login,
+  loginSuccess,
+  loginFailure,
+  logout,
+  refreshToken,
+  refreshTokenSuccess,
+  refreshTokenFailure,
+} from '../../../store/auth/actions/auth.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -14,25 +22,17 @@ export class AuthLoginService {
   constructor(
     private http: HttpClient,
     private tokenService: AuthTokenService,
-    private store: Store, // Injeta o Store para despachar ações
+    private store: Store,
   ) {}
 
   /**
    * Realiza o login do usuário despachando a ação correspondente.
    *
-   * Essa função dispara a ação de login (`[Auth] Login`) e realiza a requisição HTTP ao backend.
-   * Em caso de sucesso, despacha a ação `[Auth] Login Success` com os tokens retornados pela API.
-   * Em caso de erro, despacha a ação `[Auth] Login Failure` com a mensagem de erro.
-   *
-   * @param {string} email Email do usuário.
-   * @param {string} password Senha do usuário.
-   *
-   * @example
-   * // Uso do método de login
-   * authLoginService.login('usuario@example.com', 'senha123');
+   * @param email Email do usuário.
+   * @param password Senha do usuário.
    */
   login(email: string, password: string): void {
-    this.store.dispatch(login({ email, password })); // Despacha a ação de login
+    this.store.dispatch(login({ email, password }));
 
     this.http
       .post<{ token: string; refreshToken: string }>(`${this.apiUrl}/login`, { email, password })
@@ -47,7 +47,6 @@ export class AuthLoginService {
         catchError((error) => {
           console.error('Login error:', error);
 
-          // Despacha a ação de falha
           this.store.dispatch(loginFailure({ error: error.message }));
           throw error;
         }),
@@ -56,17 +55,42 @@ export class AuthLoginService {
   }
 
   /**
-   * Realiza o logout do usuário, limpando os tokens e despachando a ação correspondente.
-   *
-   * Essa função chama o método `clearTokens` do `AuthTokenService` para remover os tokens
-   * armazenados localmente e despacha a ação `[Auth] Logout` para atualizar o estado global.
-   *
-   * @example
-   * // Uso do método de logout
-   * authLoginService.logout();
+   * Realiza o logout do usuário despachando a ação correspondente.
    */
   logout(): void {
     this.tokenService.clearTokens(); // Limpa os tokens locais
     this.store.dispatch(logout()); // Despacha a ação de logout
+  }
+
+  /**
+   * Renova o token de autenticação despachando a ação correspondente.
+   */
+  refreshAuthToken(): void {
+    const refreshTokenValue = this.tokenService.getRefreshToken();
+
+    if (!refreshTokenValue) {
+      console.error('Attempt to refresh without a refresh token.');
+      this.store.dispatch(refreshTokenFailure({ error: 'Refresh token not found' }));
+      return;
+    }
+
+    this.store.dispatch(refreshToken({ refreshToken: refreshTokenValue })); // Despacha a ação de renovação
+
+    this.http
+      .post<{ token: string }>(`${this.apiUrl}/refresh-token`, { refreshToken: refreshTokenValue })
+      .pipe(
+        tap((response) => {
+          this.tokenService.storeToken(response.token);
+
+          this.store.dispatch(refreshTokenSuccess({ token: response.token }));
+        }),
+        catchError((error) => {
+          console.error('Token refresh error:', error);
+
+          this.store.dispatch(refreshTokenFailure({ error: error.message }));
+          throw error;
+        }),
+      )
+      .subscribe();
   }
 }
