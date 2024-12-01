@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
 import { createReducer, on } from '@ngrx/store';
-import { AuthTokenService } from '../../../services/auth/services/auth-token';
-import { loginSuccess, loginFailure, logout, refreshTokenSuccess, refreshTokenFailure } from '../actions/auth.actions';
-
-/**
- * Define o estado da autenticação do usuário.
- *
- * @interface AuthState
- * @property {string | null} token - O token de autenticação do usuário.
- * @property {string | null} refreshToken - O token de atualização do usuário.
- * @property {string | null} error - Mensagem de erro caso haja falha na renovação do token.
- */
-export interface AuthState {
-  token: string | null;
-  refreshToken: string | null;
-  error: string | null;
-}
+import {
+  login,
+  loginSuccess,
+  loginFailure,
+  logout,
+  refreshToken,
+  refreshTokenSuccess,
+  refreshTokenFailure,
+  loadUserRoleSuccess,
+  loadUserRoleFailure,
+} from '../actions/auth.actions';
+import { AuthState } from './auth-state.model';
 
 /**
  * Estado inicial para autenticação.
@@ -24,70 +20,161 @@ export const initialState: AuthState = {
   token: null,
   refreshToken: null,
   error: null,
+  user: null,
+  role: null, // Inicializando a role do usuário como null
 };
 
 /**
- * Redutor para gerenciar as ações de autenticação, com integração ao AuthTokenService.
- *
- * Este redutor manipula o estado de autenticação, realizando operações como login,
- * logout, renovação de token e tratamento de falhas de autenticação. Além disso,
- * armazena e recupera os tokens de autenticação e renovação através do AuthTokenService.
- *
- * @param tokenService - Serviço utilizado para armazenar e recuperar tokens.
- * @returns Um novo estado de autenticação baseado nas ações disparadas.
+ * Serviço de redução para gerenciar as ações de autenticação.
+ * Este serviço é responsável por tratar ações relacionadas à autenticação,
+ * incluindo login, logout, renovação de tokens e gerenciamento de roles de usuário.
  */
 @Injectable()
 export class AuthReducer {
-  constructor(private tokenService: AuthTokenService) {}
-
   /**
-   * Redutor para as ações de autenticação.
-   *
-   * @param state - O estado atual da autenticação.
-   * @param action - Ação disparada que pode modificar o estado.
-   *
-   * @returns O novo estado de autenticação.
+   * Redutor principal que gerencia o estado de autenticação com base nas ações disparadas.
    */
   authReducer = createReducer(
     initialState,
-    on(loginSuccess, (state: AuthState, { token, refreshToken }): AuthState => {
-      this.tokenService.storeToken(token);
-      this.tokenService.storeRefreshToken(refreshToken);
+    /**
+     * Ação de login.
+     * Reseta erros anteriores quando uma solicitação de login é iniciada.
+     *
+     * @param state - Estado atual.
+     * @returns Estado atualizado com erro definido como `null`.
+     */
+    on(
+      login,
+      (state): AuthState => ({
+        ...state,
+        error: null,
+      }),
+    ),
 
-      return {
+    /**
+     * Sucesso no login.
+     * Atualiza o estado com tokens recebidos e reseta erros.
+     *
+     * @param state - Estado atual.
+     * @param token - Token de autenticação.
+     * @param refreshToken - Token de renovação.
+     * @returns Estado atualizado com tokens e sem erros.
+     */
+    on(
+      loginSuccess,
+      (state, { token, refreshToken }): AuthState => ({
         ...state,
         token,
         refreshToken,
         error: null,
-      };
-    }),
+      }),
+    ),
+
+    /**
+     * Falha no login.
+     * Atualiza o estado com o erro recebido.
+     *
+     * @param state - Estado atual.
+     * @param error - Detalhes do erro.
+     * @returns Estado atualizado com o erro.
+     */
     on(
       loginFailure,
-      (state: AuthState, { error }): AuthState => ({
+      (state, { error }): AuthState => ({
         ...state,
         error,
       }),
     ),
-    on(logout, (state: AuthState): AuthState => {
-      this.tokenService.clearTokens();
-      return {
+
+    /**
+     * Logout.
+     * Reseta o estado para o inicial.
+     *
+     * @returns Estado inicial.
+     */
+    on(
+      logout,
+      (): AuthState => ({
+        ...initialState,
+      }),
+    ),
+
+    /**
+     * Início da renovação do token.
+     * Reseta erros ao iniciar uma solicitação de renovação de token.
+     *
+     * @param state - Estado atual.
+     * @returns Estado atualizado com erro definido como `null`.
+     */
+    on(
+      refreshToken,
+      (state): AuthState => ({
         ...state,
-        token: null,
-        refreshToken: null,
         error: null,
-      };
-    }),
-    on(refreshTokenSuccess, (state: AuthState, { token }): AuthState => {
-      this.tokenService.storeToken(token);
-      return {
+      }),
+    ),
+
+    /**
+     * Sucesso na renovação do token.
+     * Atualiza o estado com o novo token.
+     *
+     * @param state - Estado atual.
+     * @param token - Novo token de autenticação.
+     * @returns Estado atualizado com o novo token e sem erros.
+     */
+    on(
+      refreshTokenSuccess,
+      (state, { token }): AuthState => ({
         ...state,
         token,
         error: null,
-      };
-    }),
+      }),
+    ),
+
+    /**
+     * Falha na renovação do token.
+     * Atualiza o estado com o erro recebido.
+     *
+     * @param state - Estado atual.
+     * @param error - Detalhes do erro.
+     * @returns Estado atualizado com o erro.
+     */
     on(
       refreshTokenFailure,
-      (state: AuthState, { error }): AuthState => ({
+      (state, { error }): AuthState => ({
+        ...state,
+        error,
+      }),
+    ),
+
+    /**
+     * Sucesso ao carregar a role do usuário.
+     * Atualiza o estado com a role do usuário.
+     *
+     * @param state - Estado atual.
+     * @param role - Role do usuário.
+     * @returns Estado atualizado com a role do usuário.
+     */
+    on(
+      loadUserRoleSuccess,
+      (state, { role }): AuthState => ({
+        ...state,
+        role,
+        error: null,
+      }),
+    ),
+
+    /**
+     * Falha ao carregar a role do usuário.
+     * Atualiza o estado com o erro recebido.
+     *
+     * @param state - Estado atual.
+     * @param error - Detalhes do erro.
+     * @returns Estado atualizado com o erro.
+     */
+    on(
+      loadUserRoleFailure,
+      (state, { error }): AuthState => ({
         ...state,
         error,
       }),
