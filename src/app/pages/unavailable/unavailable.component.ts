@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationUtils } from 'app/core/utils/navigation-utils';
+import { NavigationUtils } from 'app/core/utils/navigation.utils';
 
 @Component({
   selector: 'app-unavailable',
