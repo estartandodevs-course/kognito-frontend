@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CreateTaskRoutingModule } from './create-task-routing.module';
-import { StepLineComponent } from './step-line/step-line.component';
 import { CreateTaskComponent } from './create-task.component';
-import { StructuralModule } from '../../../../shared/components/structural/structural.module';
-import { DisplayModule } from '../../../../shared/components/display/display.module';
-import { InterfaceModule } from '../../../../shared/components/interface/interface.module';
-import { AppFormsModule } from 'app/shared/components/app-forms/app-forms.module';
-import { NavbarModule } from '../../../../shared/components/navigation/navbar/navbar.module';
+import { AppFormsModule } from '@components/app-forms/app-forms.module';
+import { DisplayModule } from '@components/display/display.module';
+import { InterfaceModule } from '@components/interface/interface.module';
+import { NavbarModule } from '@components/navigation/navbar/navbar.module';
+import { StructuralModule } from '@components/structural/structural.module';
 
 @NgModule({
-  declarations: [CreateTaskComponent, StepLineComponent],
+  declarations: [CreateTaskComponent],
   imports: [
     CommonModule,
     CreateTaskRoutingModule,
@@ -21,6 +20,6 @@ import { NavbarModule } from '../../../../shared/components/navigation/navbar/na
     AppFormsModule,
     NavbarModule,
   ],
-  exports: [CreateTaskComponent, StepLineComponent],
+  exports: [CreateTaskComponent],
 })
 export class CreateTaskModule {}

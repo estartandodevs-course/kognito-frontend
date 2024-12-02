@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormControl, ValidatorFn } from '@angular/forms';
 import { Subscription, debounceTime } from 'rxjs';
 
-import { DontWriteProps, CapitalizeWordProps, SetFormatProps } from 'app/shared/directives/writing/writing.types';
-import { TimeCaptureService } from 'app/core/services/time-capture.service';
+import { DontWriteProps, CapitalizeWordProps, SetFormatProps } from '@directives/writing/writing.types';
+import { TimeCaptureService } from '@services/time-capture.service';
 import { createCustomValidator } from './input-field.utils';
 import { validationSchemes } from './input-field.variables';
 import { CustomValidationsProps } from './input-field.types';

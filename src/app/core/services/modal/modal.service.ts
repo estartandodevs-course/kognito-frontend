@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { openModal, closeModal } from 'app/core/store/modal/modal.actions';
+
+import { openModal, closeModal } from '@store/modal/modal.actions';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { TimeCaptureService } from 'app/core/services/time-capture.service';
+import { TimeCaptureService } from '@services/time-capture.service';
 import { IconHeaderProps } from './header.types';
 
 /**
