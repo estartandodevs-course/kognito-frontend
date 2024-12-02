@@ -5,10 +5,9 @@ import { StructuralModule } from 'app/shared/components/structural/structural.mo
 import { HomeViewsModule } from 'app/shared/components/dynamicView/home-views/home-views.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { CreateTaskModule } from './class/create-task/create-task.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, HomeViewsModule, StructuralModule, CreateTaskModule],
+  imports: [CommonModule, HomeRoutingModule, HomeViewsModule, StructuralModule],
 })
 export class HomeModule {}

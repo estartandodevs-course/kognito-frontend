@@ -23,25 +23,6 @@ export class HeaderComponent {
   @Input() iconsLeft: IconHeaderProps[] = [{ code: 'majesticons:arrow-left', onClick: () => this._location.back() }];
   @Input() iconsRight?: IconHeaderProps[];
 
-  nameUser = 'Victor Gabriel';
-  saudation = this._time.getsaudation();
-
-  /**
-   * Método que define a saudação do usuário com base no horário atual.
-   * Utiliza o serviço TimeCaptureService para gerar a saudação personalizada.
-   *
-   * @returns {string} Saudação personalizada, por exemplo, "Bom dia", "Boa tarde" ou "Boa noite".
-   */
-  getSaudation(): string {
-    return this._time.getsaudation();
-  }
-
-  /**
-   * Método que retorna a navegação de volta para a página anterior.
-   *
-   * @returns {void}
-   */
-  goBack(): void {
-    this._location.back();
-  }
+  nameUser = 'Victor Gabriel'; // Obter valor pelo serviço de autenticação.
+  saudation = this._time.getSaudation();
 }
