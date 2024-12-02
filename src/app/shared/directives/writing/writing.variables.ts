@@ -4,4 +4,4 @@ export const regexRestrictMap = {
   text: /[^0-9]/g,
 };
 
-export const notCapitalize = ['da', 'do', 'de'];
+export const notCapitalize = ['da', 'das', 'do', 'dos', 'de'];
