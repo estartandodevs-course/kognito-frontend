@@ -1,0 +1,31 @@
+<header class="container-main">
+  <div *ngIf="!title" class="container-saudation">
+    <span>{{ saudation }}</span>
+    <h1>{{ nameUser }}</h1>
+  </div>
+
+  <div class="container-logo">
+    <img src="assets/img/Logo-Kognito.webp" alt="Logo do Kognito." [width]="154" [height]="55" />
+  </div>
+
+  <div id="iconsLeft" *ngIf="iconsLeft && title">
+    <div *ngFor="let icon of iconsLeft" (click)="icon.onClick()" (keydown)="icon.onClick()" tabindex="0" role="button">
+      <span class="iconify icon" [attr.data-icon]="icon.code"></span>
+    </div>
+  </div>
+
+  <h2 *ngIf="title">{{ title }}</h2>
+
+  <div id="iconsRight">
+    <ng-container *ngIf="iconsRight">
+      <div *ngFor="let icon of iconsRight" (click)="icon.onClick()" (keydown)="icon.onClick()" tabindex="0" role="button">
+        <span class="iconify icon" [attr.data-icon]="icon.code"></span>
+      </div>
+    </ng-container>
+  </div>
+
+  <span
+    id="iconProfile"
+    [ngClass]="{ iconify: true, profile: true, inactive: title || iconsRight }"
+    data-icon="majesticons:user-circle-line"></span>
+</header>
