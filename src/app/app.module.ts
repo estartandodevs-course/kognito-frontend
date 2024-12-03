@@ -1,28 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { StructuralModule } from './shared/components/structural/structural.module';
+
 import { StoreModule } from '@ngrx/store';
+
+import { AppComponent } from './app.component';
 import { modalReducer } from './core/store/modal/modal.reducer';
-import { OpenModalComponent } from './pages/open-modal/open-modal.component';
-import { AuthInterceptor } from './core/services/auth/interceptors';
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { authReducer } from './core/store/auth/reducers/auth.reducers';
-// import { NavbarModule } from './shared/components/navbar/navbar.module';
+import { AuthInterceptor } from '@services/auth/interceptors';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, OpenModalComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StructuralModule,
-    StoreModule.forRoot({
-      modal: modalReducer,
-      auth: authReducer, // Usando a função diretamente
-    }),
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({ modal: modalReducer })],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

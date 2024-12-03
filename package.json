@@ -11,7 +11,8 @@
     "format": "prettier --write src",
     "check": "prettier --check src",
     "typecheck": "tsc --noEmit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint:spell": "cspell '**/*.ts' '**/*.html' '**/*.scss'"
   },
   "private": true,
   "dependencies": {
@@ -46,7 +47,8 @@
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "7.11.0",
     "@typescript-eslint/parser": "7.11.0",
-    "eslint": "^8.57.0",
+    "cspell": "^8.16.1",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "husky": "^8.0.3",

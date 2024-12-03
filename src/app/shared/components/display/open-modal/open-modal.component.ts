@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalService } from 'app/core/services/modal/modal.service';
+import { ModalService } from '@services/modal/modal.service';
 
 @Component({
   selector: 'app-open-modal',

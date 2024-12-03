@@ -1,17 +1,14 @@
 <app-section class="container">
-  <!-- <app-header title="Criar tarefa"></app-header> -->
-  <!-- <app-classcard-title></app-classcard-title> -->
   <app-steps [currentStep]="currentStep"></app-steps>
   <div class="button-container">
-    <ng-container *ngIf="currentStep == 2">
+    <ng-container *ngIf="currentStep === 2">
       <app-button label="Voltar" (click)="previousStep()"></app-button>
     </ng-container>
-    <ng-container *ngIf="currentStep != 3; else lastStep">
+    <ng-container *ngIf="currentStep !== 3; else lastStep">
       <app-button label="Próximo" (click)="nextStep()"></app-button>
     </ng-container>
     <ng-template #lastStep>
       <app-button label="Enviar tarefa" (click)="submit()"></app-button>
     </ng-template>
   </div>
-  <!-- <app-navbar role="teacher"></app-navbar> -->
 </app-section>
