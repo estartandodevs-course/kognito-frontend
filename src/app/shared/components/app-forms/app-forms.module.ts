@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { WritingDirective } from 'app/shared/directives/writing/writing.directive';
+import { WritingDirective } from '@directives/writing/writing.directive';
 import { FormComponent } from './form/form.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { ButtonComponent } from './button/button.component';

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { StudentComponent } from './student/student.component';
 import { TeacherComponent } from './teacher/teacher.component';
-import { StructuralModule } from '../../structural/structural.module';
-import { AppFormsModule } from '../../app-forms/app-forms.module';
+import { StructuralModule } from '@components/structural/structural.module';
+import { AppFormsModule } from '@components/app-forms/app-forms.module';
 
 @NgModule({
   declarations: [StudentComponent, TeacherComponent],
