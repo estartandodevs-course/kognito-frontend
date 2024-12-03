@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './logout-button.component.scss',
 })
 export class LogoutButtonComponent {
-  clickAction() {
+  /**
+   * Ao clicar no botão "SAIR" desloga o usuário
+   */
+  logout() {
     //Quando for implementado o login, é necessário fazer a chamada de serviço de logout aqui
   }
 }

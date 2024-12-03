@@ -12,9 +12,7 @@ export class SidebarComponent {
   role!: 'student' | 'teacher';
   path: string = '';
 
-  constructor(location: Location, router: Router) {
-    router.events.subscribe(() => {
-      this.path = location.path();
-    });
+  constructor(router: Router) {
+    this.path = router.url;
   }
 }
