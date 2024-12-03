@@ -1,27 +1,25 @@
 img {
   width: 234px;
-  height: auto;
-  margin: 0 auto;
+  align-self: center;
 }
 
 .container {
   height: 100vh;
-  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   app-button {
     display: grid;
-    position: absolute;
     width: 338px;
     height: 48px;
     padding: 10px 24px;
-    top: 550px;
     margin-bottom: 50px;
   }
 
   .container-register {
     width: 300px;
-    display: flex;
-    position: absolute;
     top: calc(550px + 48px + 50px);
     text-align: center;
 
@@ -38,6 +36,14 @@ img {
       font-weight: 600;
       line-height: 25.2px;
       text-decoration: none;
+    }
+  }
+
+  //Desktop
+  @media (min-width: 1000px) {
+    img {
+      width: 350px;
+      align-self: center;
     }
   }
 }
