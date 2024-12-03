@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { modalReducer } from './core/store/modal/modal.reducer';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './core/services/auth/auth.interceptor';
+import { AuthInterceptor } from '@services/auth/interceptors';
 
 @NgModule({
   declarations: [AppComponent],

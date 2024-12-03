@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { openModal, closeModal } from './core/store/modal/modal.actions';
 import { selectIsVisible, selectModalData } from './core/store/modal/modal.selectors';
-import { ModalData } from './core/store/modal/modal.model';
+import { ModalData } from './core/model/modal.model';
 
 @Component({
   selector: 'app-root',
