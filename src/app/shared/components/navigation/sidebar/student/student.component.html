@@ -1,0 +1,23 @@
+<section class="container-icons">
+  <div>
+    <app-item
+      [routerLink]="'/home/class/tasks'"
+      [selected]="path === '/home/class/tasks'"
+      [dataIconActive]="'majesticons:book-open'"
+      [dataIconInactive]="'majesticons:book-open-line'"
+      [label]="'Tarefas'"></app-item>
+    <app-item
+      [routerLink]="'/home/goals'"
+      [selected]="path === '/home/goals'"
+      [dataIconActive]="'majesticons:list-box'"
+      [dataIconInactive]="'majesticons:list-box-line'"
+      [label]="'Metas'"></app-item>
+    <app-item
+      [routerLink]="'/home/profile'"
+      [selected]="path === '/home/profile'"
+      [dataIconActive]="'majesticons:user-circle'"
+      [dataIconInactive]="'majesticons:user-circle-line'"
+      [label]="'Perfil'"></app-item>
+  </div>
+  <app-logout-button></app-logout-button>
+</section>

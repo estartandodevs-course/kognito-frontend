@@ -17,13 +17,13 @@
     <app-neuro-tags [tags]="tags"></app-neuro-tags>
     <ng-container *ngIf="subhead; else iconDot">{{ subhead }}</ng-container>
     <ng-template #iconDot>
-      <div (click)="clickVerticalDot()">
+      <div tabindex="0" (click)="clickVerticalDot()" (keydown.enter)="clickVerticalDot()">
         <span class="iconify vertical-dots" [attr.data-icon]="iconDots" data-inline="false"></span>
       </div>
     </ng-template>
   </div>
   <div *ngFor="let action of actions" [ngClass]="{ options: true, open: isOptionsOpen }">
-    <div class="actionContainer" (click)="clickAction(action.id)">
+    <div class="actionContainer" tabindex="0" (click)="clickAction(action.id)" (keydown)="clickAction(action.id)">
       <span class="iconify" [attr.data-icon]="action.icon" data-inline="false"></span>
       <span>{{ action.label }}</span>
     </div>

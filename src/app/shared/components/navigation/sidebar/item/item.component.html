@@ -1,0 +1,6 @@
+<a [ngClass]="{ selected: selected }" [routerLink]="routerLink">
+  <span
+    [ngClass]="{ iconify: true, 'icon-selected': selected, 'icon-unselected': !selected }"
+    [attr.data-icon]="selected ? dataIconActive : dataIconInactive"></span>
+  <p [ngClass]="{ 'label-selected': selected, 'label-unselected': !selected }">{{ label }}</p>
+</a>
