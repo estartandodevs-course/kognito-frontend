@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ModalState } from './modal.model';
+import { ModalState } from '../../model/modal.model';
 
 /**
  * Seleciona o estado do modal a partir do estado global.

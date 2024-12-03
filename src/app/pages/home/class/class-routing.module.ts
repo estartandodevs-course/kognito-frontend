@@ -5,6 +5,7 @@ import { ClassComponent } from './class.component';
 const routes: Routes = [
   { path: '', component: ClassComponent },
   { path: 'create_task', loadChildren: () => import('./create-task/create-task.module').then((m) => m.CreateTaskModule) },
+  { path: 'invite', loadChildren: () => import('./invite/invite.module').then((m) => m.InviteModule) },
   { path: ':task', loadChildren: () => import('./task/task.module').then((m) => m.TaskModule) },
 ];
 

@@ -1,18 +1,8 @@
 <app-section class="container">
-  <!-- Progress Bar -->
   <app-steps [currentStep]="currentStep"></app-steps>
-
-  <!-- Renderização dinâmica das etapas -->
-  <ng-container [ngSwitch]="currentStep">
-    <app-step1 *ngSwitchCase="1"></app-step1>
-    <app-setp2 *ngSwitchCase="2"></app-setp2>
-    <app-step3 *ngSwitchCase="3"></app-step3>
-  </ng-container>
-
-  <!-- Botões de navegação -->
   <div class="button-container">
     <ng-container *ngIf="currentStep === 2">
-      <app-button type="outlined" label="Voltar" (click)="previousStep()"></app-button>
+      <app-button label="Voltar" (click)="previousStep()"></app-button>
     </ng-container>
     <ng-container *ngIf="currentStep !== 3; else lastStep">
       <app-button label="Próximo" (click)="nextStep()"></app-button>
