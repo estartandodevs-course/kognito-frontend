@@ -1,4 +1,4 @@
-<section class="container-icons">
+<nav class="container-icons">
   <div>
     <app-item
       [routerLink]="'/home/class/tasks'"
@@ -19,5 +19,10 @@
       [dataIconInactive]="'majesticons:user-circle-line'"
       [label]="'Perfil'"></app-item>
   </div>
-  <app-logout-button></app-logout-button>
-</section>
+  <app-item
+    class="logout-button"
+    [routerLink]="'/welcome'"
+    [dataIconActive]="'majesticons:logout-line'"
+    [label]="'SAIR'"
+    [onclick]="logout"></app-item>
+</nav>

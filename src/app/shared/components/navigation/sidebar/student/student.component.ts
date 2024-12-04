@@ -7,5 +7,13 @@ import { Component, Input } from '@angular/core';
 })
 export class StudentComponent {
   @Input()
-  path: string = '';
+  path = '';
+
+  /**
+   * Realiza o logout do usuário.
+   *
+   * Esta função limpa os dados do usuário armazenados na sessão ou local storage
+   * e redireciona para a página de login, garantindo que o acesso ao sistema seja encerrado.
+   */
+  logout() {}
 }

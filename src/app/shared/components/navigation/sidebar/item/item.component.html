@@ -1,4 +1,4 @@
-<a [ngClass]="{ selected: selected }" [routerLink]="routerLink">
+<a [ngClass]="{ selected: selected }" [routerLink]="routerLink" (click)="logoutClicked()">
   <span
     [ngClass]="{ iconify: true, 'icon-selected': selected, 'icon-unselected': !selected }"
     [attr.data-icon]="selected ? dataIconActive : dataIconInactive"></span>

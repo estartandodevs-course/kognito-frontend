@@ -7,13 +7,21 @@ import { Component, Input } from '@angular/core';
 })
 export class ItemComponent {
   @Input()
-  routerLink: string = '';
+  routerLink = '';
   @Input()
-  selected: boolean = true;
+  selected = true;
   @Input()
-  dataIconActive: string = '';
+  dataIconActive = '';
   @Input()
-  dataIconInactive: string = '';
+  dataIconInactive = '';
   @Input()
-  label: string = '';
+  label = '';
+  @Input()
+  onclick!: () => void;
+
+  logoutClicked() {
+    if (this.onclick) {
+      this.onclick();
+    }
+  }
 }
