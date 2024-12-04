@@ -38,7 +38,7 @@ export class TimeCaptureService {
    *
    * @returns A saudação correspondente ao horário atual.
    */
-  getsaudation(): string {
+  getSaudation(): string {
     const hour = this.getCurrentHour();
     if (hour >= 6 && hour < 12) {
       return 'Bom dia!';

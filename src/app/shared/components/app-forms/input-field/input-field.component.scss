@@ -1,0 +1,103 @@
+.container-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .label {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0 0.3rem;
+    color: var(--gray-1);
+
+    &.error {
+      color: var(--error);
+    }
+  }
+
+  .input-local {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gray-2);
+    border-radius: 5px;
+
+    .input {
+      outline: none;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      width: 100%;
+      font-size: 16px;
+      padding: 1rem 0.5rem;
+      border: 0;
+
+      color: var(--gray-1);
+
+      &:focus-within {
+        border-color: var(--normal);
+      }
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      user-select: none;
+      cursor: pointer;
+
+      padding: 0.3rem;
+      margin: 0 0.3rem;
+      font-size: 1.6rem;
+      color: var(--gray-1);
+
+      .password {
+        display: flex;
+        align-items: center;
+
+        &.inactive {
+          display: none;
+        }
+      }
+
+      &.error {
+        color: var(--error);
+      }
+    }
+
+    &:focus-within {
+      border-color: var(--normal);
+    }
+
+    &.error {
+      border-color: var(--error);
+    }
+
+    &.success {
+      border-color: var(--success);
+    }
+  }
+
+  .span-error {
+    display: flex;
+    flex-direction: column;
+
+    color: var(--error);
+    padding: 0 0.5rem;
+    font-size: 12px;
+    gap: 0.2rem;
+  }
+
+  &.disabled {
+    user-select: none;
+    cursor: not-allowed;
+
+    * {
+      pointer-events: none;
+      color: var(--gray-3);
+      border-color: var(--gray-3);
+
+      &::placeholder {
+        color: var(--gray-3);
+      }
+    }
+  }
+}
