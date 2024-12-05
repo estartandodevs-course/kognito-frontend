@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { openModal, closeModal } from './modal.actions';
-import { ModalState, initialState } from './modal.model';
+import { ModalState, initialState } from '../../model/modal.model';
 
 /**
  * O reducer responsável por gerenciar o estado do modal.

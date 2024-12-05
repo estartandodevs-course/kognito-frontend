@@ -1,0 +1,31 @@
+<article>
+  <div class="container">
+    <ng-container *ngIf="initial || iconCode">
+      <div class="circle">
+        <ng-container *ngIf="initial; else icon">{{ initial }}</ng-container>
+        <ng-template #icon>
+          <span class="iconify" [attr.data-icon]="iconCode" data-inline="false"></span>
+        </ng-template>
+      </div>
+    </ng-container>
+    <div>
+      <h2>{{ header }}</h2>
+      <h3>{{ subheader }}</h3>
+    </div>
+  </div>
+  <div class="container">
+    <app-neuro-tags [tags]="tags"></app-neuro-tags>
+    <ng-container *ngIf="subhead; else iconDot">{{ subhead }}</ng-container>
+    <ng-template #iconDot>
+      <div tabindex="0" (click)="clickVerticalDot()" (keydown.enter)="clickVerticalDot()">
+        <span class="iconify vertical-dots" [attr.data-icon]="iconDots" data-inline="false"></span>
+      </div>
+    </ng-template>
+  </div>
+  <div *ngFor="let action of actions" [ngClass]="{ options: true, open: isOptionsOpen }">
+    <div class="actionContainer" tabindex="0" (click)="clickAction(action.id)" (keydown)="clickAction(action.id)">
+      <span class="iconify" [attr.data-icon]="action.icon" data-inline="false"></span>
+      <span>{{ action.label }}</span>
+    </div>
+  </div>
+</article>

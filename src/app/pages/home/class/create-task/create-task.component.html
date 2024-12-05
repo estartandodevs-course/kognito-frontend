@@ -1,11 +1,9 @@
 <!-- <app-header [title]="isStepLineEnabled ? 'Criar Tarefa' : 'Tarefas'"></app-header>
 
 <app-section class="container">
-  <img *ngIf="!isStepLineEnabled" src="../../../../../assets/img/empty-task-page.webp" alt="task empty page" />
-
-  <app-button *ngIf="!isStepLineEnabled" codeIcon="majesticons:plus" (click)="toggleStepLine()"></app-button>
-
-  <p *ngIf="!isStepLineEnabled">Lista de tarefas vazia, adicione uma nova tarefa</p>
+  <img src="assets/img/empty-task-page.webp" alt="task empty page" />
+  <app-button codeIcon="majesticons:plus"></app-button>
+  <p>Lista de tarefas vazia, adicione uma nova tarefa</p>
   <app-navbar></app-navbar>
 </app-section>
 

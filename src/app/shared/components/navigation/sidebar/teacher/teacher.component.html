@@ -1,0 +1,28 @@
+<nav class="container-icons">
+  <div>
+    <app-item
+      [routerLink]="'/home/class/students'"
+      [selected]="path === '/home/class/students'"
+      [dataIconActive]="'majesticons:user-group'"
+      [dataIconInactive]="'majesticons:user-group-line'"
+      [label]="'Turma'"></app-item>
+    <app-item
+      [routerLink]="'/home/class/tasks'"
+      [selected]="path === '/home/class/tasks'"
+      [dataIconActive]="'majesticons:book-open'"
+      [dataIconInactive]="'majesticons:book-open-line'"
+      [label]="'Tarefas'"></app-item>
+    <app-item
+      [routerLink]="'/home/class/config'"
+      [selected]="path === '/home/class/config'"
+      [dataIconActive]="'majesticons:settings-cog'"
+      [dataIconInactive]="'majesticons:settings-cog-line'"
+      [label]="'Ajustes'"></app-item>
+  </div>
+  <app-item
+    class="logout-button"
+    [routerLink]="'/welcome'"
+    [dataIconActive]="'majesticons:logout-line'"
+    [label]="'SAIR'"
+    [onclick]="logout"></app-item>
+</nav>
