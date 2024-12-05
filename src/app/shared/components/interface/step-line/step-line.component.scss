@@ -6,22 +6,10 @@
   flex-direction: column;
   position: relative;
 
-  app-header {
-    display: grid;
-    position: relative;
-    top: -32px;
-  }
-
-  app-classcard-title {
-    display: flex;
-    position: relative;
-    top: -120px;
-  }
-
   app-steps {
     display: grid;
     position: relative;
-    top: -77px;
+    top: 47px;
   }
 
   .button-container {
@@ -29,6 +17,6 @@
     position: relative;
     gap: 2rem;
     justify-content: center;
-    top: 380px;
+    top: 280px;
   }
 }

@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-step-line',
   templateUrl: './step-line.component.html',
-  styleUrl: './step-line.component.scss',
+  styleUrls: ['./step-line.component.scss'],
 })
 export class StepLineComponent {
   /**
@@ -15,32 +15,43 @@ export class StepLineComponent {
   @Input() disabled: boolean = false;
 
   /** Armazena o passo atual da linha de etapas. */
-  currentStep = 1;
+  currentStep: number = 1;
+
+  /** Número total de passos na linha de etapas. */
+  totalSteps: number = 3;
 
   /**
    * Avança para o próximo passo na linha de etapas.
    *
    * A função aumenta o valor de `currentStep` em 1, permitindo que o usuário avance na sequência de etapas.
+   * A navegação só ocorre se `disabled` for `false` e `currentStep` for menor que `totalSteps`.
    */
-  nextStep() {
-    this.currentStep = this.currentStep + 1;
+  nextStep(): void {
+    if (!this.disabled && this.currentStep < this.totalSteps) {
+      this.currentStep++;
+    }
   }
 
   /**
    * Retrocede para o passo anterior na linha de etapas.
    *
    * A função diminui o valor de `currentStep` em 1, permitindo que o usuário retroceda na sequência de etapas.
+   * A navegação só ocorre se `disabled` for `false` e `currentStep` for maior que 1.
    */
-  previousStep() {
-    this.currentStep = this.currentStep - 1;
+  previousStep(): void {
+    if (!this.disabled && this.currentStep > 1) {
+      this.currentStep--;
+    }
   }
 
   /**
-   * Função que exibe um alerta informando que a funcionalidade ainda não foi implementada.
+   * Finaliza o processo ou exibe uma mensagem de confirmação.
    *
-   * Este método é um placeholder que simula a ação de envio, mas ainda não realiza nenhuma operação.
+   * Simula a conclusão da linha de etapas com uma mensagem de sucesso.
    */
-  submit() {
-    alert('AINDA NÃO TA FEITO KKKKKK');
+  submit(): void {
+    if (!this.disabled && this.currentStep === this.totalSteps) {
+      alert('Tarefa enviada com sucesso!');
+    }
   }
 }
