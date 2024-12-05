@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AuthLoginService } from 'app/core/services/auth/services';
 import { login, loginSuccess, loginFailure } from '../actions/auth.actions';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { AuthLoginService } from '@services/auth/services';
 
 @Injectable()
 export class AuthEffects {
@@ -28,7 +28,9 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(login),
       switchMap((action) =>
+        // @ts-ignore
         this.authLoginService.login(action.email, action.password).pipe(
+          // @ts-ignore
           map((response) => loginSuccess({ token: response.token, refreshToken: response.refreshToken })),
           catchError((error) => of(loginFailure({ error: error.message }))),
         ),

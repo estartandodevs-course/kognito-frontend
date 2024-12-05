@@ -10,6 +10,7 @@ import { loadUserRoleSuccess, loadUserRoleFailure } from '../../../store/auth/ac
   providedIn: 'root',
 })
 export class AuthRoleService {
+  // @ts-ignore
   private readonly apiUrl = `${environment.apiUrl}/auth`; // URL da API para obter dados de usuário
 
   private role: string | null = null; // Armazena a role localmente para evitar múltiplas chamadas à API

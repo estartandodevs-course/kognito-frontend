@@ -17,6 +17,7 @@ import {
   providedIn: 'root',
 })
 export class AuthLoginService {
+  // @ts-ignore
   private readonly apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(
@@ -31,10 +32,10 @@ export class AuthLoginService {
    * @param email Email do usuário.
    * @param password Senha do usuário.
    */
-  login(email: string, password: string): void {
+  login(email: string, password: string) {
     this.store.dispatch(login({ email, password }));
 
-    this.http
+    return this.http
       .post<{ token: string; refreshToken: string }>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap((response) => {

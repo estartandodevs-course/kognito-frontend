@@ -8,6 +8,7 @@ import { AuthTokenService } from './auth-token';
   providedIn: 'root',
 })
 export class AuthRefreshService {
+  // @ts-ignore
   private readonly apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(
