@@ -1,0 +1,106 @@
+@import 'styles/mixins';
+
+.container {
+  @include applyGrid(column, 1, 0, 1fr, 16px, center, center);
+  margin-top: -2px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 100%;
+}
+
+img {
+  width: 234px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.title {
+  color: var(--normal);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 35.2px;
+  text-align: center;
+  margin-top: 220px;
+}
+
+.subtitle {
+  position: absolute;
+  top: 325px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  text-align: left;
+
+  h3 {
+    text-align: left;
+    color: var(--normal);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 22px;
+    margin: 0;
+  }
+
+  p {
+    color: var(--black);
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 19.6px;
+    margin: 0;
+  }
+}
+
+.button-container {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: 1fr;
+  margin-top: 135px;
+  justify-items: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+button {
+  position: relative;
+  padding: 32px;
+  width: 325px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  background-color: #f3f7f9;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    display: flex;
+    width: 109px;
+    height: 81px;
+    padding: 7.47px 6.21px 7.335px 6.226px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
+
+  p {
+    position: absolute;
+    color: var(--normal);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19.6px;
+    margin-top: 80px;
+  }
+}

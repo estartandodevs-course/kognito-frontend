@@ -4,5 +4,6 @@
   "bracketSpacing": true,
   "singleQuote": true,
   "trailingComma": "all",
-  "printWidth": 130
+  "printWidth": 130,
+  "endOfLine": "auto"
 }

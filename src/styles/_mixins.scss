@@ -1,0 +1,11 @@
+@mixin applyGrid($direction: column, $count, $minSize, $maxSize, $gap: 0, $alignItems: stretch, $justifyItems: stretch) {
+  display: grid;
+  @if $direction == column {
+    grid-template-columns: repeat($count, minmax($minSize, $maxSize));
+  } @else if $direction == row {
+    grid-template-rows: repeat($count, minmax($minSize, $maxSize));
+  }
+  gap: $gap;
+  align-items: $alignItems;
+  justify-items: $justifyItems;
+}

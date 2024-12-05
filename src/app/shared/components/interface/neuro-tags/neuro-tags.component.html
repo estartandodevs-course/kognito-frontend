@@ -1,0 +1,13 @@
+<div class="neurodivergence-options">
+  <span
+    *ngFor="let tag of tags"
+    [ngClass]="{
+      selected: selectedTag === tag,
+      outlined: tagType === 'outlined',
+      filled: tagType === 'filled',
+    }"
+    tabindex="0"
+    class="badge">
+    {{ tag }}
+  </span>
+</div>

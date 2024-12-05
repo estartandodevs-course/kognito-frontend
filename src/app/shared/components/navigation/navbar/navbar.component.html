@@ -1,0 +1,7 @@
+<ng-container *ngIf="role === 'teacher'; else student">
+  <app-navbar-teacher [path]="path"></app-navbar-teacher>
+</ng-container>
+
+<ng-template #student>
+  <app-navbar-student [path]="path"></app-navbar-student>
+</ng-template>

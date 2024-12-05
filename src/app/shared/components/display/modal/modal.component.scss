@@ -1,0 +1,53 @@
+@import 'styles/mixins';
+
+.invite-card {
+  width: 312px;
+  height: 217px;
+  padding: 24px;
+  background-color: var(--light);
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 22px;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.4px;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .invite-actions {
+    @include applyGrid(row, 2, auto, 1fr, 10px, flex-start, space-between);
+
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    top: 60%;
+
+    & > app-button:only-child {
+      justify-self: flex-end;
+    }
+
+    &:hover {
+      background-color: var(--button-hover);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--focus-outline);
+    }
+  }
+}
