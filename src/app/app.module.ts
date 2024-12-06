@@ -4,10 +4,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
+
+import { CardModule } from './shared/components/card/card.module';
+// import { NavbarModule } from './shared/components/navbar/navbar.module';
+
 import { modalReducer } from './core/store/modal/modal.reducer';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '@services/auth/interceptors';
+
 
 @NgModule({
   declarations: [AppComponent],
