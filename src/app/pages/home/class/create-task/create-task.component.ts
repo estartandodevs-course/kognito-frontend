@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataProps } from '@components/app-forms/form/form.types';
 
 @Component({
   selector: 'app-create-task',
@@ -16,5 +17,11 @@ export class CreateTaskComponent {
    */
   toggleStepLine() {
     this.isStepLineEnabled = !this.isStepLineEnabled;
+  }
+  /**
+   * Obtém o valor escrito no input do formulário
+   */
+  inputData(value: DataProps) {
+    console.log(value);
   }
 }
