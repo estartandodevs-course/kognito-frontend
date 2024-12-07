@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { localStorageSync } from 'ngrx-store-localstorage';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
+import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './app.component';
-import { modalReducer } from './core/store/modal/modal.reducer';
-import { authReducer } from '@store/auth/auth.reducer';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthEffects } from '@store/auth/auth.effects';
+import { authReducer } from '@store/auth/auth.reducer';
+import { modalReducer } from '@store/modal/modal.reducer';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(
       { auth: authReducer, modal: modalReducer },
       {

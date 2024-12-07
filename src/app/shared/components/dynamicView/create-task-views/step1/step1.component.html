@@ -1,0 +1,20 @@
+<app-section>
+  <app-form (onsubmit)="inputData($event)">
+    <app-input-field
+      [required]="true"
+      formControlName="title"
+      label="Título da tarefa"
+      placeholder="Escreva aqui o título da tarefa">
+    </app-input-field>
+    <app-input-field
+      [required]="true"
+      formControlName="description"
+      label="Descrição da tarefa"
+      type="textarea"
+      placeholder="Escreva aqui a desrição da tarefa">
+    </app-input-field>
+    <div class="next-button">
+      <app-button label="Próximo" (buttonClick)="nextStep()"></app-button>
+    </div>
+  </app-form>
+</app-section>
