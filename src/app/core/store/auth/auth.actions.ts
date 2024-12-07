@@ -9,4 +9,6 @@ const loginFailure = createAction('[Auth] Login Failure');
 
 const logout = createAction('[Auth] Logout');
 
-export const authActions = { login, loginSuccess, loginFailure, logout };
+const resetState = createAction('[Auth] Reset State');
+
+export const authActions = { login, loginSuccess, loginFailure, logout, resetState };

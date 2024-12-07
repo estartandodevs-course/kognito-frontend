@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { RequestProps } from './kognito-rest.types';
 import { AuthStateProps } from '@store/auth/auth.types';
+import { authActions } from '@store/auth/auth.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +14,11 @@ import { AuthStateProps } from '@store/auth/auth.types';
 export class KognitoRestService {
   private readonly _baseURL = ''; // Definir url base da API do Kognito.
 
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private _router: Router,
+    private store: Store,
+  ) {}
 
   request<T>({ method, relativeURL, body, params }: RequestProps): Observable<T> {
     const stateAuthLS = localStorage.getItem('auth');
@@ -30,17 +37,32 @@ export class KognitoRestService {
       params,
     };
 
+    let request$: Observable<T>;
     switch (method) {
       case 'GET':
-        return this._http.get<T>(url, options);
+        request$ = this._http.get<T>(url, options);
+        break;
       case 'POST':
-        return this._http.post<T>(url, body, options);
+        request$ = this._http.post<T>(url, body, options);
+        break;
       case 'PUT':
-        return this._http.put<T>(url, body, options);
+        request$ = this._http.put<T>(url, body, options);
+        break;
       case 'PATCH':
-        return this._http.patch<T>(url, body, options);
+        request$ = this._http.patch<T>(url, body, options);
+        break;
       case 'DELETE':
-        return this._http.delete<T>(url, options);
+        request$ = this._http.delete<T>(url, options);
     }
+
+    return request$.pipe(
+      catchError((err) => {
+        if (err.status === 401) {
+          this.store.dispatch(authActions.resetState());
+          this._router.navigate(['/welcome']);
+        }
+        return throwError(() => err);
+      }),
+    );
   }
 }
