@@ -6,6 +6,5 @@ export interface UserProps {
 export interface AuthStateProps {
   user: UserProps | null;
   token: string | null;
-  isAuthenticated: boolean;
   loading: boolean;
 }

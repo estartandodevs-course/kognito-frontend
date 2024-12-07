@@ -4,5 +4,4 @@ export const initialAuthState: AuthStateProps = {
   user: null,
   token: null,
   loading: false,
-  isAuthenticated: false,
 };
