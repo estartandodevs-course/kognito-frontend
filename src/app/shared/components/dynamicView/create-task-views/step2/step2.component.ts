@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataProps } from '@components/app-forms/form/form.types';
 
 @Component({
@@ -7,6 +7,9 @@ import { DataProps } from '@components/app-forms/form/form.types';
   styleUrl: './step2.component.scss',
 })
 export class Step2Component implements OnInit {
+  @Output() nextClick = new EventEmitter<void>();
+  @Output() returnClick = new EventEmitter<void>();
+
   ngOnInit(): void {
     console.log('<app-step2> renderizado.');
   }
@@ -14,19 +17,11 @@ export class Step2Component implements OnInit {
     console.log(value);
   }
 
-  @Input() disabled: boolean = false;
-  currentStep: number = 1;
-  totalSteps: number = 3;
-
   nextStep(): void {
-    if (!this.disabled && this.currentStep < this.totalSteps) {
-      this.currentStep++;
-    }
+    this.nextClick.emit();
   }
 
   previousStep(): void {
-    if (!this.disabled && this.currentStep > 1) {
-      this.currentStep--;
-    }
+    this.returnClick.emit();
   }
 }

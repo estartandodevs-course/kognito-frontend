@@ -9,7 +9,7 @@
       <app-step1 (nextClick)="nextStep()"></app-step1>
     }
     @case (2) {
-      <app-step2></app-step2>
+      <app-step2 (nextClick)="nextStep()" (returnClick)="previousStep()"></app-step2>
     }
     @case (3) {
       <app-step3></app-step3>

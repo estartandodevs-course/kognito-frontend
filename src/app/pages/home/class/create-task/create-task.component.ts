@@ -74,6 +74,11 @@ export class CreateTaskComponent {
       alert('Tarefa enviada com sucesso!');
     }
   }
+  /**
+   * Ao clicar no botão "+" para criar uma tarefa
+   *
+   * Renderiza a stepline a partir da primeira página do formulário
+   */
   startCreate(): void {
     this.currentStep = 1;
     this.showSteps = true;
