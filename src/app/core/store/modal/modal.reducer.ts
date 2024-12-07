@@ -1,50 +1,26 @@
 import { createReducer, on } from '@ngrx/store';
-import { openModal, closeModal } from './modal.actions';
-import { ModalState, initialState } from '../../model/modal.model';
 
-/**
- * O reducer responsável por gerenciar o estado do modal.
- *
- * @param {ModalState} state - O estado atual do modal.
- * @param {Action} action - A ação disparada.
- * @returns {ModalState} O novo estado do modal.
- */
+import { initialModalState } from './modal.variables';
+import { ModalStateProps } from './modal.types';
+import { modalActions } from './modal.actions';
+
 export const modalReducer = createReducer(
-  initialState,
-
-  /**
-   * Função que manipula a ação de abrir o modal.
-   *
-   * @param {ModalState} state - O estado atual do modal.
-   * @param {object} action - A ação de abrir o modal.
-   * @param {string} action.title - O título do modal.
-   * @param {string} action.paragraph - O parágrafo do modal.
-   * @param {object} action.buttonPrincipal - O botão principal do modal.
-   * @param {object|null} action.buttonSecondary - O botão secundário do modal (opcional).
-   * @param {string} action.modalId - O ID único do modal.
-   * @returns {ModalState} O novo estado do modal com a visibilidade ativada e os dados passados.
-   */
+  initialModalState,
   on(
-    openModal,
-    (state, { title, paragraph, buttonPrincipal, buttonSecondary, modalId }): ModalState => ({
-      isVisible: true,
-      title,
-      paragraph,
-      buttonPrincipal,
-      buttonSecondary,
-      modalId,
+    modalActions.addModal,
+    (state, { id, component, props, children }): ModalStateProps => ({
+      ...state,
+      modals: [...state.modals, { id, component, props, children }],
     }),
   ),
+  on(modalActions.removeModal, (state, { id }): ModalStateProps => {
+    if (id) {
+      // Retira o modal com o id.
+      return { ...state, modals: state.modals.filter((modal) => modal.id !== id) };
+    }
 
-  /**
-   * Função que manipula a ação de fechar o modal.
-   *
-   * @returns {ModalState} O estado inicial do modal, com todos os dados resetados.
-   */
-  on(
-    closeModal,
-    (): ModalState => ({
-      ...initialState,
-    }),
-  ),
+    // Se id for undefined, remove o último modal da lista.
+    const updatedModals = state.modals.slice(0, -1);
+    return { ...state, modals: updatedModals };
+  }),
 );
