@@ -25,7 +25,8 @@ export class CreateTaskComponent {
    * A propriedade `disabled` é usada para controlar se a linha de etapas deve ser visualmente desabilitada.
    * O valor padrão é `false`, o que significa que a linha de etapas está habilitada.
    */
-  @Input() showSteps: boolean = false;
+  // @Input() showSteps: boolean = false;
+  showSteps: boolean = false;
 
   /** Armazena o passo atual da linha de etapas. */
   currentStep: number = 0;
