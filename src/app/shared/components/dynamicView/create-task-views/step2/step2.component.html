@@ -5,7 +5,9 @@
     <app-input-field [required]="true" formControlName="file" label="Adicionar anexo">
       <!-- type="" Precisa ter o type para anexo -->
     </app-input-field>
-    <app-button label="Voltar" (click)="previousStep()"></app-button>
-    <app-button label="Próximo" (click)="nextStep()"></app-button>
+    <div class="buttons">
+      <app-button [type]="'outlined'" label="Voltar" (click)="previousStep()"></app-button>
+      <app-button label="Próximo" (click)="nextStep()"></app-button>
+    </div>
   </app-form>
 </app-section>
