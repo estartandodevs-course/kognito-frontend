@@ -13,6 +13,8 @@
       type="textarea"
       placeholder="Escreva aqui a desrição da tarefa">
     </app-input-field>
-    <app-button label="Próximo" (click)="nextStep()"></app-button>
+    <div class="next-button">
+      <app-button label="Próximo" (buttonClick)="nextStep()"></app-button>
+    </div>
   </app-form>
 </app-section>

@@ -1,1 +1,11 @@
-<app-section> colocar form/input 2</app-section>
+<app-section>
+  <app-form (onsubmit)="inputData($event)">
+    <app-input-field [required]="true" formControlName="datetime" label="Escolher data de entrega" type="datetime-local">
+    </app-input-field>
+    <app-input-field [required]="true" formControlName="file" label="Adicionar anexo">
+      <!-- type="" Precisa ter o type para anexo -->
+    </app-input-field>
+    <app-button label="Voltar" (click)="previousStep()"></app-button>
+    <app-button label="Próximo" (click)="nextStep()"></app-button>
+  </app-form>
+</app-section>
