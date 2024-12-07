@@ -20,6 +20,19 @@ export class KognitoRestService {
     private store: Store,
   ) {}
 
+  /**
+   * Faz uma requisição HTTP para a API do Kognito.
+   *
+   * @template T - Tipo genérico que define o tipo de resposta da requisição.
+   * @param {RequestProps} param - Parâmetro que contém os detalhes da requisição.
+   * @param {string} param.method - Método HTTP (GET, POST, PUT, PATCH, DELETE).
+   * @param {string} param.relativeURL - URL relativa para a requisição.
+   * @param {DataProps | undefined} [param.body] - Corpo da requisição, usado apenas para métodos POST, PUT e PATCH.
+   * @param {HttpParams | undefined} [param.params] - Parâmetros da URL para métodos GET e DELETE.
+   * @returns {Observable<T>} - Observable com a resposta da requisição.
+   *
+   * @throws {Observable} - Lança um erro se a requisição falhar. Em caso de erro 401 (não autorizado), reseta o estado de autenticação e redireciona para a página welcome.
+   */
   request<T>({ method, relativeURL, body, params }: RequestProps): Observable<T> {
     const stateAuthLS = localStorage.getItem('auth');
     const url = this._baseURL + relativeURL;
