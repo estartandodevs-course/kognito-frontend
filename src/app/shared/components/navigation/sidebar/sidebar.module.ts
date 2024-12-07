@@ -5,10 +5,9 @@ import { StudentComponent } from './student/student.component';
 import { ItemComponent } from './item/item.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SidebarComponent } from './sidebar.component';
-import { LogoutButtonComponent } from './logout-button/logout-button.component';
 
 @NgModule({
-  declarations: [TeacherComponent, StudentComponent, ItemComponent, SidebarComponent, LogoutButtonComponent],
+  declarations: [TeacherComponent, StudentComponent, ItemComponent, SidebarComponent],
   imports: [CommonModule, RouterLink, RouterLinkActive],
   exports: [SidebarComponent],
 })
