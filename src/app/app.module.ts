@@ -9,11 +9,12 @@ import { AppComponent } from './app.component';
 import { modalReducer } from './core/store/modal/modal.reducer';
 import { authReducer } from '@store/auth/auth.reducer';
 import { AuthEffects } from '@store/auth/auth.effects';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(
       { auth: authReducer, modal: modalReducer },
