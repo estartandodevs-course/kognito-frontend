@@ -1,1 +1,4 @@
 <router-outlet></router-outlet>
+<div *ngIf="modal">
+  <ng-container *ngComponentOutlet="modal.component; inputs: modal.props"></ng-container>
+</div>

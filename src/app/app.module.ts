@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
-import { modalReducer } from './core/store/modal/modal.reducer';
 import { authReducer } from '@store/auth/auth.reducer';
 import { AuthEffects } from '@store/auth/auth.effects';
 
@@ -15,8 +15,9 @@ import { AuthEffects } from '@store/auth/auth.effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(
-      { auth: authReducer, modal: modalReducer },
+      { auth: authReducer },
       {
         metaReducers: [
           localStorageSync({ keys: [{ auth: ['user', 'token', 'isAuthenticated'] }], rehydrate: true, removeOnUndefined: true }),
