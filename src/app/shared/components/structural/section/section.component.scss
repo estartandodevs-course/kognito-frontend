@@ -1,7 +1,6 @@
 .container-section {
   display: flex;
   flex-direction: column;
-  padding: 5rem 2rem;
 
   div[inSection] {
     margin: auto;
@@ -9,6 +8,5 @@
   }
 
   @media (min-width: 1200px) {
-    margin-left: 232px;
   }
 }

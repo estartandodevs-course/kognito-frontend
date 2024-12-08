@@ -6,11 +6,13 @@ img {
 
 .container {
   height: 100vh;
-  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .forgotPassword {
     display: flex;
-    position: absolute;
     top: calc(550px - 40px);
     right: 20px;
     text-decoration: none;
@@ -26,18 +28,15 @@ img {
 
   app-button {
     display: grid;
-    position: absolute;
     width: 338px;
     height: 48px;
     padding: 10px 24px;
-    top: 550px;
     margin-bottom: 50px;
   }
 
   .container-register {
     width: 300px;
     display: flex;
-    position: absolute;
     top: calc(550px + 48px + 50px);
     text-align: center;
 
