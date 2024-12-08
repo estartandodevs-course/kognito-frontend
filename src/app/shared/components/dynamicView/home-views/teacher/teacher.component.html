@@ -6,7 +6,13 @@
     { src: 'majesticons:filter-line', isIconOnly: true },
   ]">
 </app-subheader> -->
-
+<app-subheader
+  [title]="'Lista de alunos'"
+  [actions]="[
+    { icon: 'majesticons:user-add', id: 'add-user' },
+    { icon: 'majesticons:file-plus', id: 'add-file' },
+    { icon: 'majesticons:filter', id: 'filter' },
+  ]"></app-subheader>
 <div class="content-container" inSection>
   <img src="assets/img/home-page/empty.webp" alt="Imagem ilustrativa da home vazia." />
   <app-button type="filled" codeIcon="majesticons:plus-line" label="Criar Turma" (click)="redirectToCreateClass()"> </app-button>
