@@ -1,44 +1,79 @@
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 
-import { openModal, closeModal } from '@store/modal/modal.actions';
+import { ModalProps } from './modal.types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
-  constructor(private store: Store) {}
+  private _modals = new BehaviorSubject<ModalProps[]>([]);
 
   /**
-   * Abre um modal com o ID fornecido e configura o título, parágrafo e botões padrão.
+   * Observable que retorna o modal ativo mais recente na lista.
    *
-   * Esta função despacha a ação `openModal` para atualizar o estado da aplicação e exibir o modal.
+   * O getter observa o estado interno `_modals` (BehaviorSubject) e mapeia os modais para retornar
+   * o último modal da lista. Se a lista estiver vazia, retorna `null`.
    *
-   * @param {string} modalId - O ID único do modal que será aberto.
-   * @returns {void} - Não retorna nada, apenas executa a ação de abrir o modal.
+   * @returns {Observable<ModalProps | null>} Um Observable que emite o modal ativo mais recente ou `null`
+   * quando não há modais na lista.
    */
-  open(modalId: string): void {
-    this.store.dispatch(
-      openModal({
-        modalId,
-        title: '',
-        paragraph: '',
-        buttonPrincipal: {
-          text: '',
-        },
+  get modal$(): Observable<ModalProps | null> {
+    return this._modals.asObservable().pipe(
+      map((modals) => {
+        const modalListLength = modals.length;
+        if (modalListLength) {
+          return modals[modalListLength - 1];
+        }
+        return null;
       }),
     );
   }
 
   /**
-   * Fecha o modal com o ID fornecido.
+   * Adiciona um novo modal à lista de modais, garantindo que não haja duplicatas com base no `id`.
    *
-   * Esta função despacha a ação `closeModal` para atualizar o estado da aplicação e fechar o modal.
+   * Este método verifica se já existe um modal com o mesmo `id` na lista atual.
+   * Caso contrário, o novo modal é adicionado à lista, e o estado do BehaviorSubject `_modals` é atualizado.
    *
-   * @param {string} modalId - O ID único do modal que será fechado.
-   * @returns {void} - Não retorna nada, apenas executa a ação de fechar o modal.
+   * @param {ModalProps} newModal - O modal a ser adicionado. Deve conter uma propriedade única `id`.
+   *
+   * @returns {void}
    */
-  close(modalId: string): void {
-    this.store.dispatch(closeModal({ modalId }));
+  addModal(newModal: ModalProps): void {
+    const modalsList = this._modals.getValue();
+
+    if (!modalsList.filter((modal) => modal.id === newModal.id).length) {
+      document.body.classList.add('not-overflow');
+      this._modals.next([...modalsList, newModal]);
+    }
+  }
+
+  /**
+   * Remove um modal da lista de modais.
+   *
+   * Este método permite duas operações:
+   * - Se um `id` for fornecido, ele remove o modal correspondente ao `id`.
+   * - Se nenhum `id` for fornecido, remove o último modal da lista.
+   *
+   * @param {string} [id] - O identificador do modal a ser removido. Se não for especificado, remove o último modal da lista.
+   *
+   * @returns {void}
+   */
+  removeModal(id?: string): void {
+    const modalsList = this._modals.getValue();
+    let newList: ModalProps[];
+
+    if (id) {
+      newList = modalsList.filter((modal) => modal.id !== id);
+    } else {
+      newList = modalsList.slice(0, -1);
+    }
+
+    if (!newList.length) {
+      document.body.classList.remove('not-overflow');
+    }
+
+    this._modals.next(newList);
   }
 }
