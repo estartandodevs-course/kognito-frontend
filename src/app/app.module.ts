@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { localStorageSync } from 'ngrx-store-localstorage';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { authReducer } from '@store/auth/auth.reducer';
 import { AuthEffects } from '@store/auth/auth.effects';
 import { DisplayModule } from '@components/display/display.module';
+import { ErrorInterceptor } from '@interceptors/error/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,13 @@ import { DisplayModule } from '@components/display/display.module';
     ),
     EffectsModule.forRoot([AuthEffects]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

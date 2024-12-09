@@ -28,6 +28,7 @@
       "@store/*": ["src/app/core/store/*"],
       "@layouts/*": ["src/app/core/layouts/*"],
       "@mapping/*": ["src/app/core/mapping/*"],
+      "@interceptors/*": ["src/app/core/interceptors/*"],
       "@pages/*": ["src/app/pages/*"]
     }
   },
