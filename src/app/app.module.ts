@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { authReducer } from '@store/auth/auth.reducer';
 import { AuthEffects } from '@store/auth/auth.effects';
+import { DisplayModule } from '@components/display/display.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { AuthEffects } from '@store/auth/auth.effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    DisplayModule,
     StoreModule.forRoot(
       { auth: authReducer },
       {

@@ -1,12 +1,12 @@
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { ModalProps } from './modal-manager.types';
+import { ModalProps } from './modal.types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ModalManagerService {
+export class ModalService {
   private _modals = new BehaviorSubject<ModalProps[]>([]);
 
   /**
@@ -44,6 +44,7 @@ export class ModalManagerService {
     const modalsList = this._modals.getValue();
 
     if (!modalsList.filter((modal) => modal.id === newModal.id).length) {
+      document.body.classList.add('not-overflow');
       this._modals.next([...modalsList, newModal]);
     }
   }
@@ -67,6 +68,10 @@ export class ModalManagerService {
       newList = modalsList.filter((modal) => modal.id !== id);
     } else {
       newList = modalsList.slice(0, -1);
+    }
+
+    if (!newList.length) {
+      document.body.classList.remove('not-overflow');
     }
 
     this._modals.next(newList);

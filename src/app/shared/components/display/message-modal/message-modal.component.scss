@@ -1,0 +1,33 @@
+.container-main {
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 28px;
+  min-width: 280px;
+  max-width: 560px;
+  padding: 1.5rem 2rem;
+  gap: 1rem;
+
+  background-color: #f3f7f9;
+
+  .header {
+    color: var(--black);
+  }
+
+  .body {
+    color: var(--gray-1);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      border: none;
+      margin-left: auto;
+      background-color: transparent;
+      color: var(--normal);
+      font-weight: bold;
+    }
+  }
+}
