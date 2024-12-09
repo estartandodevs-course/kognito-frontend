@@ -15,7 +15,10 @@
   }
 
   .body {
+    display: flex;
+    flex-direction: column;
     color: var(--gray-1);
+    gap: 0.5rem;
   }
 
   .footer {
@@ -26,8 +29,9 @@
       border: none;
       margin-left: auto;
       background-color: transparent;
-      color: var(--normal);
       font-weight: bold;
+      cursor: pointer;
+      color: var(--normal);
     }
   }
 }

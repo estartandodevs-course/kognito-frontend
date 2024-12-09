@@ -4,7 +4,7 @@
   </div>
 
   <div class="body">
-    <p>{{ message }}</p>
+    <p *ngFor="let msg of getMessage()">{{ msg }}</p>
   </div>
 
   <div class="footer">
