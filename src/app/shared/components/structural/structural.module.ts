@@ -4,10 +4,11 @@ import { HeaderComponent } from './header/header.component';
 import { SectionComponent } from './section/section.component';
 
 import { FooterComponent } from './footer/footer.component';
+import { SubheaderComponent } from './subheader/subheader.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SectionComponent, FooterComponent],
-  exports: [HeaderComponent, SectionComponent, FooterComponent],
+  declarations: [HeaderComponent, SectionComponent, FooterComponent, SubheaderComponent],
+  exports: [HeaderComponent, SectionComponent, FooterComponent, SubheaderComponent],
   imports: [CommonModule],
 })
 export class StructuralModule {}

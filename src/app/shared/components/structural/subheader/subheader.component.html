@@ -4,11 +4,13 @@
     <div *ngFor="let action of actions" class="action">
       <span
         tabindex="0"
-        (click)="action.onClick?.()"
-        (keydown.enter)="action.onClick?.()"
+        role="button"
+        (click)="onIconClick(action)"
+        (keydown)="onKeyDown($event, action)"
         class="iconify"
         [attr.data-icon]="action.icon"
-        data-inline="false"></span>
+        data-inline="false">
+      </span>
     </div>
   </div>
 </section>
