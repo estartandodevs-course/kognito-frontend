@@ -5,11 +5,11 @@ import { LoginComponent } from './login.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
-    path: 'login_teacher',
+    path: 'teacher',
     loadChildren: () => import('../login/teacher/teacher.module').then((m) => m.TeacherModule),
   },
   {
-    path: 'login_student',
+    path: 'student',
     loadChildren: () => import('../login/student/student.module').then((m) => m.StudentModule),
   },
 ];

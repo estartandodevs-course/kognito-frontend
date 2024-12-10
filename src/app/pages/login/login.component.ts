@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { authSelectors } from '@store/auth/auth.selectors';
+import { UserProps } from '@store/auth/auth.types';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -6,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  role: 'student' | 'teacher' = 'teacher';
+  user$!: Observable<UserProps | null>;
+
+  constructor(private store: Store) {
+    this.user$ = this.store.select(authSelectors.selectUser);
+  }
 }
