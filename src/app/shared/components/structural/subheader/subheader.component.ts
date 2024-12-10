@@ -1,9 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-
-export interface Action {
-  icon: string;
-  id: string;
-}
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-subheader',
@@ -12,10 +7,5 @@ export interface Action {
 })
 export class SubheaderComponent {
   @Input() title = '';
-  @Input() actions: Action[] = [];
-  @Output() actionEvent = new EventEmitter<string>();
-
-  clickAction(value: string) {
-    this.actionEvent.emit(value);
-  }
+  @Input() actions: { id: string; icon: string; onClick?: () => void }[] = [];
 }
