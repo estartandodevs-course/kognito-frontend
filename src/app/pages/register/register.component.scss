@@ -10,7 +10,7 @@ app-header {
   p {
     display: grid;
     position: absolute;
-    margin-top: 28px;
+    margin-top: 10px;
     width: 340px;
     color: var(--black);
     font-size: 16px;
@@ -26,4 +26,10 @@ app-header {
     position: absolute;
     bottom: 46px;
   }
+}
+
+.forms {
+  display: grid;
+  position: relative;
+  margin-top: 80px;
 }
