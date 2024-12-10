@@ -6,29 +6,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./subheader.component.scss'],
 })
 export class SubheaderComponent {
-  @Input() title = '';
-  @Input() actions: { id: string; icon: string; onClick?: () => void }[] = [];
+  @Input() title: string = ''; // Título do subheader
+  @Input() codeIcon: string[] = []; // Lista de ícones do iconify
 
-  @Output() iconClick = new EventEmitter<void>();
-
-  /**
-   * Emite o evento quando o ícone é clicado.
-   * Se um onClick for passado, ele será executado, senão, apenas o evento é emitido.
-   */
-  onIconClick(action: { icon: string; id: string; onClick?: () => void }): void {
-    console.log('Icon clicked:', action); // Log para verificar se o clique foi detectado
-    if (action.onClick) {
-      action.onClick();
-    }
-    this.iconClick.emit(); // Emite o evento de clique
-  }
+  @Output() iconClick = new EventEmitter<string>(); // Emite o ícone clicado
 
   /**
-   * Evento de teclado para garantir acessibilidade
+   * Emite o evento de clique e redireciona para a URL fornecida.
    */
-  onKeyDown(event: KeyboardEvent, action: { icon: string; id: string; onClick?: () => void }): void {
-    if (event.key === 'Enter' || event.key === ' ') {
-      this.onIconClick(action); // Executa o mesmo método de clique
-    }
+  onClick(icon: string): void {
+    this.iconClick.emit(icon); // Emite o ícone clicado
   }
 }

@@ -1,10 +1,13 @@
-<app-subheader
-  [title]="'Turmas'"
-  [actions]="[{ icon: 'material-symbols:splitscreen-add-rounded', id: 'add-user' }]"
-  (iconClick)="iconRedirect()">
-</app-subheader>
+<app-section class="container">
+  <app-subheader
+    [title]="'Lista de alunos'"
+    [codeIcon]="['material-symbols:splitscreen-add-rounded']"
+    (iconClick)="onIconClick()">
+  </app-subheader>
 
-<div class="content-container" inSection>
-  <img src="assets/img/home-page/empty.webp" alt="Imagem ilustrativa da home vazia." />
-  <app-button type="filled" codeIcon="majesticons:plus-line" label="Criar Turma" (click)="redirectToCreateClass()"> </app-button>
-</div>
+  <div class="content-container" inSection>
+    <img src="assets/img/home-page/empty.webp" alt="Imagem ilustrativa da home vazia." />
+    <app-button type="filled" codeIcon="majesticons:plus-line" label="Criar Turma" (click)="redirectToCreateClass()">
+    </app-button>
+  </div>
+</app-section>

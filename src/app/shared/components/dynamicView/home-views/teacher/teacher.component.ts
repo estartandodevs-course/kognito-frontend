@@ -19,8 +19,7 @@ export class TeacherComponent {
     this.router.navigate(['/home/create_class']);
   }
 
-  iconRedirect(): void {
-    this.redirectToCreateClass(); // Executa a função
-    console.log('PELO AMOR DE DEUS');
+  onIconClick(): void {
+    this.router.navigate(['/home/create_class']);
   }
 }

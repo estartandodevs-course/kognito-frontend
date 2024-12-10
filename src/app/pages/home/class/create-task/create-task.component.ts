@@ -5,8 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.scss',
 })
-export class CreateTaskComponent {
-  addTask() {
-    console.log('Adicionar nova tarefa');
-  }
-}
+export class CreateTaskComponent {}
