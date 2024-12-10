@@ -29,6 +29,7 @@
       "@layouts/*": ["src/app/core/layouts/*"],
       "@mapping/*": ["src/app/core/mapping/*"],
       "@interceptors/*": ["src/app/core/interceptors/*"],
+      "@guards/*": ["src/app/core/guards/*"],
       "@pages/*": ["src/app/pages/*"]
     }
   },
