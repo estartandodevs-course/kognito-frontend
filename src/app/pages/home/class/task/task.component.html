@@ -1,1 +1,10 @@
-<p>task works!</p>
+<app-header title="Tarefas"></app-header>
+<app-section class="container">
+  <app-subheader [title]="'Lista de alunos'" [codeIcon]="['majesticons:textbox-plus']" (iconClick)="onIconClick()">
+  </app-subheader>
+
+  <img src="assets/img/empty-task-page.webp" alt="task empty page" />
+  <app-button codeIcon="majesticons:plus"></app-button>
+  <p>Lista de tarefas vazia, adicione uma nova tarefa</p>
+  <app-navbar></app-navbar>
+</app-section>
