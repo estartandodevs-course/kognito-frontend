@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { localStorageSync } from 'ngrx-store-localstorage';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { localStorageSync } from 'ngrx-store-localstorage';
-import { AppRoutingModule } from './app-routing.module';
 
-import { HttpClientModule } from '@angular/common/http';
-import { AuthEffects } from '@store/auth/auth.effects';
-import { authReducer } from '@store/auth/auth.reducer';
-import { modalReducer } from '@store/modal/modal.reducer';
 import { AppComponent } from './app.component';
+import { authReducer } from '@store/auth/auth.reducer';
+import { AuthEffects } from '@store/auth/auth.effects';
+import { DisplayModule } from '@components/display/display.module';
+import { ErrorInterceptor } from '@interceptors/error/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +19,10 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+
+    DisplayModule,
     StoreModule.forRoot(
-      { auth: authReducer, modal: modalReducer },
+      { auth: authReducer },
       {
         metaReducers: [
           localStorageSync({ keys: [{ auth: ['user', 'token', 'isAuthenticated'] }], rehydrate: true, removeOnUndefined: true }),
@@ -27,7 +31,13 @@ import { AppComponent } from './app.component';
     ),
     EffectsModule.forRoot([AuthEffects]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
