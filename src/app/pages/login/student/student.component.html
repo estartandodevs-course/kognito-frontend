@@ -1,0 +1,19 @@
+<section class="container">
+  <img src="assets/img/kognito.webp" alt="kognito" />
+
+  <div>
+    <app-form>
+      <app-input-field label="E-mail:" placeholder="Digite aqui seu email"></app-input-field>
+      <app-input-field label="Senha" placeholder="Digite aqui sua senha" type="password"></app-input-field>
+    </app-form>
+  </div>
+  <a class="forgotPassword" href="/forgot-password">Esqueci minha senha</a>
+
+  <app-button label="Entrar como USUÁRIO" (click)="goToHome()"></app-button>
+  <div class="container-register" inSection>
+    <p>
+      Não possui uma conta?
+      <a href="/register_student"> Cadastre-se aqui </a>
+    </p>
+  </div>
+</section>
