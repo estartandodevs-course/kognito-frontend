@@ -15,7 +15,11 @@ export class WelcomeComponent {
    * Este método utiliza o Angular Router para navegar até a rota '/login',
    * permitindo que o usuário seja redirecionado para a página de login.
    */
-  goToLogin(): void {
-    this.router.navigate(['/login']);
+  goToLoginStudent(): void {
+    this.router.navigate(['/login/student']);
+  }
+
+  goToLoginTeacher(): void {
+    this.router.navigate(['/login/teacher']);
   }
 }

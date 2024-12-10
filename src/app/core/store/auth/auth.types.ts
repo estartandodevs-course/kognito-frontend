@@ -1,6 +1,6 @@
 export interface UserProps {
   name: string;
-  role: string;
+  role: 'teacher' | 'student';
 }
 
 export interface AuthStateProps {

@@ -16,6 +16,12 @@ app-header {
     line-height: 25.2px;
   }
 
+  .forms {
+    display: grid;
+    position: relative;
+    margin-top: 100px;
+  }
+
   app-button {
     display: grid;
     position: absolute;
