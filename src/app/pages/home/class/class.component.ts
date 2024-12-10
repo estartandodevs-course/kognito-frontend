@@ -13,4 +13,12 @@ export class ClassComponent {
   goToCreatTask(): void {
     this.router.navigate(['/home/class/create_task']);
   }
+
+  /**
+   * Lida com o evento de clique no ícone.
+   * Redireciona o usuário para a página desejada.
+   */
+  onIconClick(): void {
+    this.router.navigate(['/home/class/create_task']);
+  }
 }
