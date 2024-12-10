@@ -8,12 +8,14 @@
     font-style: normal;
     font-weight: 400;
     line-height: 25.2px;
+    padding: 24px;
   }
 
   .forms {
     display: grid;
     position: relative;
     margin-top: 100px;
+    padding: 24px;
   }
 
   app-button {
@@ -25,5 +27,13 @@
     transform: translateX(-50%);
     justify-content: center;
     align-items: center;
+  }
+}
+@media (min-width: 700px) {
+  .container {
+    app-button {
+      width: 500px;
+      height: 148px;
+    }
   }
 }
