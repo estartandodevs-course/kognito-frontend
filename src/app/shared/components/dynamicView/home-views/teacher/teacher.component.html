@@ -1,11 +1,8 @@
-<!-- <app-subheader
-  [subtitle]="'Turmas'"
-  [codeIcon]="[
-    { src: 'majesticons:user-add-line', isIconOnly: true },
-    { src: 'majesticons:file-plus-line', isIconOnly: true },
-    { src: 'majesticons:filter-line', isIconOnly: true },
-  ]">
-</app-subheader> -->
+<app-subheader
+  [title]="'Turmas'"
+  [actions]="[{ icon: 'material-symbols:splitscreen-add-rounded', id: 'add-user' }]"
+  (iconClick)="iconRedirect()">
+</app-subheader>
 
 <div class="content-container" inSection>
   <img src="assets/img/home-page/empty.webp" alt="Imagem ilustrativa da home vazia." />

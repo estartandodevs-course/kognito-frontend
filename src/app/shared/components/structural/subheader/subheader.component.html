@@ -1,0 +1,16 @@
+<section class="subheader-container">
+  <h2>{{ title }}</h2>
+  <div class="icon-container">
+    <div *ngFor="let action of actions" class="action">
+      <span
+        tabindex="0"
+        role="button"
+        (click)="onIconClick(action)"
+        (keydown)="onKeyDown($event, action)"
+        class="iconify"
+        [attr.data-icon]="action.icon"
+        data-inline="false">
+      </span>
+    </div>
+  </div>
+</section>
