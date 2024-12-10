@@ -8,10 +8,9 @@ import { NeuroTagsComponent } from './neuro-tags/neuro-tags.component';
 import { StepsComponent } from './steps/steps.component';
 import { StructuralModule } from '@components/structural/structural.module';
 import { AppFormsModule } from '@components/app-forms/app-forms.module';
-import { StepLineComponent } from './step-line/step-line.component';
 
 @NgModule({
-  declarations: [CheckBoxTaskComponent, NeuroTagsComponent, StepsComponent, CardStudentComponent, StepLineComponent],
+  declarations: [CheckBoxTaskComponent, NeuroTagsComponent, StepsComponent, CardStudentComponent],
   imports: [CommonModule, FormsModule, StructuralModule, AppFormsModule],
   exports: [StepsComponent, NeuroTagsComponent, CardStudentComponent],
 })

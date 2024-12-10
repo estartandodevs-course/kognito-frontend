@@ -1,0 +1,24 @@
+<app-header title="Tarefas"></app-header>
+
+<app-section class="container">
+  <ng-container *ngIf="showSteps">
+    <app-steps [currentStep]="currentStep"></app-steps>
+  </ng-container>
+  @switch (currentStep) {
+    @case (1) {
+      <app-step1 (nextClick)="nextStep()"></app-step1>
+    }
+    @case (2) {
+      <app-step2 (nextClick)="nextStep()" (returnClick)="previousStep()"></app-step2>
+    }
+    @case (3) {
+      <app-step3></app-step3>
+    }
+    @default {
+      <img src="assets/img/empty-task-page.webp" alt="task empty page" />
+      <app-button codeIcon="majesticons:plus" (buttonClick)="startCreate()"></app-button>
+      <p>Lista de tarefas vazia, adicione uma nova tarefa</p>
+    }
+  }
+  <app-navbar></app-navbar>
+</app-section>

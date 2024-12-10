@@ -17,7 +17,7 @@ export class StepsComponent {
    * O número total de passos que o componente controla.
    */
   totalSteps = 3;
-
+  labels = ['Tarefa', 'Entrega', 'Alunos'];
   /**
    * Retorna a largura da barra de progresso como uma string de porcentagem.
    */
