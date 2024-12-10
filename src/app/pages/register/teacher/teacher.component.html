@@ -1,0 +1,22 @@
+<app-header title="Cadastro"> </app-header>
+
+<app-section class="container">
+  <p>Preencha os dados para prosseguir com o cadastro.</p>
+  <div class="forms">
+    <app-form>
+      <app-input-field
+        label="Nome completo"
+        placeholder="Digite aqui seu nome completo"
+        type="text"
+        capitalize="allWords"></app-input-field>
+
+      <app-input-field label="CPF" placeholder="Digite aqui seu CPF" type="cpf"></app-input-field>
+
+      <app-input-field label="E-mail" placeholder="Digite aqui seu e-mail" type="email"></app-input-field>
+
+      <app-input-field label="Senha" placeholder="Digite aqui sua senha" type="password"></app-input-field>
+    </app-form>
+  </div>
+
+  <app-button label="Criar conta" (click)="goToHome()"></app-button>
+</app-section>
