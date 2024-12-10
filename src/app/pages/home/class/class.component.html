@@ -1,11 +1,21 @@
-<app-header></app-header>
-<app-subheader
-  [title]="'Lista de alunos'"
-  [codeIcon]="['majesticons:user-add-line', 'majesticons:file-plus-line', 'majesticons:filter-line']"
-  (iconClick)="onIconClick()">
-</app-subheader>
+<app-header title="Turma"></app-header>
 
-<p>class works!</p>
-<app-button label="Convide o aluno através do link" codeIcon="majesticons:link"></app-button>
+<app-classcard-title subject="TESTE" schoolClass="teste"></app-classcard-title>
 
-<app-button codeIcon="majesticons:plus-line" (click)="goToCreatTask()"></app-button>
+<app-section>
+  <app-subheader
+    [title]="'Lista de alunos'"
+    [codeIcon]="['majesticons:user-add-line', 'majesticons:file-plus-line', 'majesticons:filter-line']"
+    (iconClick)="onIconClick()">
+  </app-subheader>
+
+  <p>Lista de alunos vazia, envie o convide através o link abaixo</p>
+
+  <app-button label="Convide o aluno através do link" codeIcon="majesticons:link"></app-button>
+
+  <img src="assets/img/empty-class.svg" alt="Empty class" />
+
+  <!-- <app-button codeIcon="majesticons:plus-line" (click)="goToCreatTask()"></app-button> -->
+</app-section>
+
+<app-navbar></app-navbar>
