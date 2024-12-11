@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { KognitoRestService } from '@services/kognito-rest/kognito-rest.service';
 import { LoginSuccessProps } from '@mapping/login.types';
 import { authActions } from './auth.actions';
+import { Router } from '@angular/router'; // Importando Router
 
 @Injectable()
 export class AuthEffects {
   constructor(
     private _actions$: Actions,
     private _rest: KognitoRestService,
+    private router: Router, // Injetando Router
   ) {}
 
   login$ = createEffect(() => {
@@ -49,6 +51,20 @@ export class AuthEffects {
       return this._actions$.pipe(
         ofType(authActions.logout),
         mergeMap(() => this._rest.request<void>({ relativeURL: 'logout/', method: 'POST' })),
+      );
+    },
+    { dispatch: false },
+  );
+
+  loginSuccess$ = createEffect(
+    () => {
+      return this._actions$.pipe(
+        ofType(authActions.loginSuccess),
+        tap(({ user }) => {
+          const role = user.role; // Supondo que o objeto 'user' tenha o campo 'role'
+          const redirectUrl = role === 'teacher' ? '/home/teacher' : '/home/student'; // Caminhos de redirecionamento com base no papel
+          this.router.navigate([redirectUrl]); // Redirecionando para a página correspondente
+        }),
       );
     },
     { dispatch: false },
