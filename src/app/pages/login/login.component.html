@@ -2,7 +2,7 @@
   <img src="assets/img/kognito.webp" alt="kognito" />
 
   <div>
-    <app-form>
+    <app-form (onsubmit)="loginUser($event)">
       <app-input-field
         formControlName="email"
         label="E-mail:"
