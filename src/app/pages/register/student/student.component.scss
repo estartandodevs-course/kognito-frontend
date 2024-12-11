@@ -1,17 +1,13 @@
-app-header {
-  display: grid;
-  position: relative;
-  top: 48px;
-}
+.container-main {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 2rem;
+  gap: 3rem;
 
-.container {
-  height: 100vh;
+  max-width: 60rem;
+  margin: auto;
 
   p {
-    display: grid;
-    position: absolute;
-    margin-top: 10px;
-    width: 340px;
     color: var(--black);
     font-size: 16px;
     font-style: normal;
@@ -21,15 +17,15 @@ app-header {
 
   app-button {
     display: grid;
-    width: 338px;
-    height: 48px;
-    position: absolute;
-    bottom: 46px;
+    width: 100%;
   }
-}
 
-.forms {
-  display: grid;
-  position: relative;
-  margin-top: 80px;
+  .container-inputs {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 0 1rem;
+    max-height: 40rem;
+    gap: 1.5rem;
+  }
 }

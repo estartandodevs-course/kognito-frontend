@@ -24,14 +24,20 @@ export class MessageModalComponent implements OnInit {
   }
 
   /**
-   * Obtém a mensagem como um array de strings.
+   * Obtém a mensagem como um array de strings válidas.
    *
-   * Se a mensagem for um array, ela será retornada como está.
-   * Caso contrário, a mensagem será encapsulada em um array.
+   * Se a mensagem for um array, filtra os valores para garantir que todos os elementos sejam strings.
+   * Caso contrário, encapsula a mensagem em um array (se ela for uma string) e filtra.
+   * Se nenhuma mensagem válida for encontrada, retorna uma mensagem de erro padrão.
    *
-   * @returns {string[]} A mensagem como um array de strings.
+   * @returns {string[]} Um array contendo apenas as mensagens válidas como strings, ou uma mensagem de erro padrão.
    */
   getMessage(): string[] {
-    return Array.isArray(this.message) ? this.message : [this.message];
+    const allMessages = Array.isArray(this.message) ? this.message : [this.message];
+    const validMessages = allMessages.filter((value) => value !== 'false' && value !== 'true');
+    if (!validMessages.length) {
+      return ['Ocorreu um erro interno na API'];
+    }
+    return validMessages;
   }
 }

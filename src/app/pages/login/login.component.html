@@ -1,11 +1,29 @@
-<main>
-  <app-section *ngIf="user$ | async as user">
-    <ng-container *ngIf="user.role === 'teacher'; else student">
-      <app-teacher></app-teacher>
-    </ng-container>
+<section class="container">
+  <img src="assets/img/kognito.webp" alt="kognito" />
 
-    <ng-template #student>
-      <app-student></app-student>
-    </ng-template>
-  </app-section>
-</main>
+  <div>
+    <app-form>
+      <app-input-field
+        formControlName="email"
+        label="E-mail:"
+        placeholder="Digite aqui seu email"
+        [required]="true"></app-input-field>
+
+      <app-input-field
+        formControlName="password"
+        label="Senha:"
+        placeholder="Digite aqui sua senha"
+        type="password"
+        [required]="true"></app-input-field>
+
+      <a class="forgotPassword" href="/forgot-password">Esqueci minha senha</a>
+      <app-button label="Entrar como {{ rolePTBR }}"></app-button>
+    </app-form>
+  </div>
+  <div class="container-register" inSection>
+    <p>
+      Não possui uma conta?
+      <a [href]="'register/' + currentRole"> Cadastre-se aqui </a>
+    </p>
+  </div>
+</section>

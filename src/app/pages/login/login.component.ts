@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { authSelectors } from '@store/auth/auth.selectors';
-import { UserProps } from '@store/auth/auth.types';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +7,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  user$!: Observable<UserProps | null>;
+  currentRole!: string;
 
-  constructor(private store: Store) {
-    this.user$ = this.store.select(authSelectors.selectUser);
+  constructor(private _router: Router) {
+    const url = this._router.url.split('/');
+    this.currentRole = url[url.length - 1];
+  }
+
+  createUser(value: object) {
+    console.log(value);
+  }
+
+  get rolePTBR() {
+    return this.currentRole === 'teacher' ? 'professor' : 'aluno';
   }
 }
