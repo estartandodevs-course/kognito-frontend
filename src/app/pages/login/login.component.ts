@@ -10,8 +10,8 @@ import { KognitoRestService } from '@services/kognito-rest/kognito-rest.service'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  currentRole: string; // Papel atual do usuário (professor ou aluno)
-  isLoading = false; // Indica o estado de carregamento
+  currentRole: string;
+  isLoading = false;
 
   constructor(
     private router: Router,
