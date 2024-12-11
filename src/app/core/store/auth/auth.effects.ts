@@ -62,7 +62,7 @@ export class AuthEffects {
         ofType(authActions.loginSuccess),
         tap(({ user }) => {
           const role = user.role;
-          const redirectUrl = role === 'teacher' ? '/home/teacher' : '/home/student';
+          const redirectUrl = role === 'teacher' ? '/home' : '/home';
           this.router.navigate([redirectUrl]);
         }),
       );
