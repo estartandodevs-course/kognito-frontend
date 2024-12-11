@@ -12,7 +12,7 @@ export class AuthEffects {
   constructor(
     private _actions$: Actions,
     private _rest: KognitoRestService,
-    private router: Router, // Injetando Router
+    private router: Router,
   ) {}
 
   login$ = createEffect(() => {
@@ -61,9 +61,9 @@ export class AuthEffects {
       return this._actions$.pipe(
         ofType(authActions.loginSuccess),
         tap(({ user }) => {
-          const role = user.role; // Supondo que o objeto 'user' tenha o campo 'role'
-          const redirectUrl = role === 'teacher' ? '/home/teacher' : '/home/student'; // Caminhos de redirecionamento com base no papel
-          this.router.navigate([redirectUrl]); // Redirecionando para a página correspondente
+          const role = user.role;
+          const redirectUrl = role === 'teacher' ? '/home/teacher' : '/home/student';
+          this.router.navigate([redirectUrl]);
         }),
       );
     },
