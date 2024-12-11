@@ -1,8 +1,8 @@
 <app-header></app-header>
 
 <main>
-  <app-section>
-    <ng-container *ngIf="role === 'teacher'; else student">
+  <app-section *ngIf="user$ | async as user">
+    <ng-container *ngIf="user.role === 'teacher'; else student">
       <app-teacher></app-teacher>
     </ng-container>
 

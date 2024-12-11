@@ -16,4 +16,9 @@
 html {
   font-size: 14px;
   -webkit-tap-highlight-color: transparent;
+  transition: 0.3s ease-in-out;
+}
+
+.not-overflow {
+  overflow: hidden;
 }

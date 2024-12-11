@@ -7,12 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private router: Router) {}
+  currentRole!: string;
 
-  /**
-   * Redireciona o usuário para a página inicial.
-   */
-  goToHome(): void {
-    this.router.navigate(['/']);
+  constructor(private _router: Router) {
+    const url = this._router.url.split('/');
+    this.currentRole = url[url.length - 1];
+  }
+
+  createUser(value: object) {
+    console.log(value);
+  }
+
+  get rolePTBR() {
+    return this.currentRole === 'teacher' ? 'professor' : 'aluno';
   }
 }
