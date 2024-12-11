@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-
 import { KognitoRestService } from '@services/kognito-rest/kognito-rest.service';
 import { LoginSuccessProps } from '@mapping/login.types';
 import { authActions } from './auth.actions';
@@ -19,9 +18,26 @@ export class AuthEffects {
       ofType(authActions.login),
       mergeMap(({ email, password }) =>
         this._rest
-          .request<LoginSuccessProps>({ relativeURL: 'api/identidade/autenticar', method: 'POST', body: { email, password } })
+          .request<LoginSuccessProps>({
+            relativeURL: 'api/identidade/autenticar',
+            method: 'POST',
+            body: { email, password },
+          })
           .pipe(
-            map(({ user, token }) => authActions.loginSuccess({ user, token })),
+            map((response) => {
+              console.log('Full response from API:', response);
+              const { accessToken, usuarioToken } = response.data;
+              console.log('Destructured response:', { accessToken, usuarioToken });
+
+              if (accessToken && usuarioToken) {
+                const authData = { user: usuarioToken, token: accessToken };
+                localStorage.setItem('auth', JSON.stringify(authData));
+                return authActions.loginSuccess({ user: usuarioToken, token: accessToken });
+              } else {
+                console.log('Login failed: user or token missing');
+                return authActions.loginFailure();
+              }
+            }),
             catchError(() => of(authActions.loginFailure())),
           ),
       ),

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { DataProps } from '@components/app-forms/form/form.types';
-import { KognitoRestService } from '@services/kognito-rest/kognito-rest.service';
+import { authActions } from '@store/auth/auth.actions'; // Importação da ação de autenticação
 
 @Component({
   selector: 'app-login',
@@ -11,11 +11,10 @@ import { KognitoRestService } from '@services/kognito-rest/kognito-rest.service'
 })
 export class LoginComponent {
   currentRole: string;
-  isLoading = false;
 
   constructor(
     private router: Router,
-    private _rest: KognitoRestService,
+    private store: Store,
   ) {
     this.currentRole = this.extractCurrentRoleFromUrl();
   }
@@ -31,37 +30,16 @@ export class LoginComponent {
   }
 
   /**
-   * Realiza o login do usuário.
+   * Realiza o login do usuário, disparando uma ação para o store.
    *
    * @param {DataProps} data - Os dados de login (e-mail e senha).
    */
   loginUser(data: DataProps): void {
-    this.isLoading = true;
+    const { email, password } = data;
 
-    this._rest
-      .request({
-        relativeURL: 'api/identidade/autenticar',
-        method: 'POST',
-        body: data,
-      })
-      .pipe(finalize(() => (this.isLoading = false)))
-      .subscribe({
-        next: (response) => {
-          console.log('Login bem-sucedido:', response);
-          this.redirectToHome();
-        },
-        error: (error) => {
-          console.error('Erro ao autenticar:', error);
-        },
-      });
-  }
-
-  /**
-   * Redireciona o usuário para a página inicial.
-   */
-  private redirectToHome(): void {
-    const redirectTo = `/home/${this.currentRole}`;
-    this.router.navigate([redirectTo]);
+    if (typeof email === 'string' && typeof password === 'string') {
+      this.store.dispatch(authActions.login({ email, password }));
+    }
   }
 
   /**
