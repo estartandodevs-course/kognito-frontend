@@ -34,18 +34,30 @@ export class TimeCaptureService {
   }
 
   /**
-   * Retorna uma saudação com base na hora atual.
+   * Retorna uma saudação com base na hora atual e o nome do usuário logado.
    *
-   * @returns A saudação correspondente ao horário atual.
+   * @returns A saudação correspondente ao horário atual e nome do usuário.
    */
   getSaudation(): string {
     const hour = this.getCurrentHour();
-    if (hour >= 6 && hour < 12) {
-      return 'Bom dia!';
-    } else if (hour >= 12 && hour < 18) {
-      return 'Boa tarde!';
-    } else {
-      return 'Boa noite!';
+    let greeting: string;
+
+    const storedAuth = localStorage.getItem('auth');
+    let userName = 'User';
+
+    if (storedAuth) {
+      const authData = JSON.parse(storedAuth);
+      userName = authData.name;
     }
+
+    if (hour >= 6 && hour < 12) {
+      greeting = 'Bom dia';
+    } else if (hour >= 12 && hour < 18) {
+      greeting = 'Boa tarde';
+    } else {
+      greeting = 'Boa noite';
+    }
+
+    return `${greeting}, ${userName}!`;
   }
 }
