@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -20,6 +21,7 @@ import { ErrorInterceptor } from '@interceptors/error/error.interceptor';
     HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
+
     DisplayModule,
     StoreModule.forRoot(
       { auth: authReducer },

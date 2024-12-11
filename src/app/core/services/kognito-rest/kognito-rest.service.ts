@@ -12,7 +12,7 @@ import { authActions } from '@store/auth/auth.actions';
   providedIn: 'root',
 })
 export class KognitoRestService {
-  private readonly _baseURL = ''; // Definir url base da API do Kognito.
+  private readonly _baseURL = 'http://kognitoapi.estartandodevs.com.br/';
 
   constructor(
     private _http: HttpClient,
