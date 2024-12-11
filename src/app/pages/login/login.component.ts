@@ -1,28 +1,22 @@
-import { authSelectors } from '@store/auth/auth.selectors';
-import { AuthStateProps } from '@store/auth/auth.types'; // Usando o tipo correto
-
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DataProps } from '@components/app-forms/form/form.types';
-import { authActions } from '@store/auth/auth.actions';
-import { Observable } from 'rxjs';
+import { authActions } from '@store/auth/auth.actions'; // Importação da ação de autenticação
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   currentRole: string;
-  authState$: Observable<AuthStateProps>;
 
   constructor(
     private router: Router,
     private store: Store,
   ) {
     this.currentRole = this.extractCurrentRoleFromUrl();
-    this.authState$ = this.store.select(authSelectors.selectAuthState);
   }
 
   /**
@@ -55,27 +49,5 @@ export class LoginComponent implements OnInit {
    */
   get rolePTBR(): string {
     return this.currentRole === 'teacher' ? 'professor' : 'aluno';
-  }
-
-  /**
-   * Realiza o redirecionamento após o login com base no papel do usuário.
-   */
-  private redirectBasedOnRole(userRole: string): void {
-    if (userRole === 'teacher') {
-      this.router.navigate(['/home/teacher']);
-    } else {
-      this.router.navigate(['/home/student']);
-    }
-  }
-
-  /**
-   * Monitorando mudanças no estado de autenticação para redirecionar após login.
-   */
-  ngOnInit(): void {
-    this.authState$.subscribe((authState: AuthStateProps) => {
-      if (authState.user && authState.token) {
-        this.redirectBasedOnRole(authState.user.role);
-      }
-    });
   }
 }
