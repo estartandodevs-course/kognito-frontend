@@ -6,6 +6,8 @@ export interface LoginProps {
 }
 
 export interface LoginSuccessProps {
+  user: UserProps;
+  token: string;
   success: boolean;
   data: {
     accessToken: string;

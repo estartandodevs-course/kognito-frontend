@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
+
 import { KognitoRestService } from '@services/kognito-rest/kognito-rest.service';
 import { LoginSuccessProps } from '@mapping/login.types';
 import { authActions } from './auth.actions';
@@ -11,6 +13,7 @@ export class AuthEffects {
   constructor(
     private _actions$: Actions,
     private _rest: KognitoRestService,
+    private router: Router, // Injete o Router aqui
   ) {}
 
   login$ = createEffect(() => {
@@ -24,17 +27,19 @@ export class AuthEffects {
             body: { email, password },
           })
           .pipe(
-            map((response) => {
-              console.log('Full response from API:', response);
-              const { accessToken, usuarioToken } = response.data;
-              console.log('Destructured response:', { accessToken, usuarioToken });
-
-              if (accessToken && usuarioToken) {
-                const authData = { user: usuarioToken, token: accessToken };
+            map(({ user, token }) => {
+              console.log('Response from API:', { user, token });
+              if (user && token) {
+                const authData = { user, token };
                 localStorage.setItem('auth', JSON.stringify(authData));
-                return authActions.loginSuccess({ user: usuarioToken, token: accessToken });
+                // Redirecionar de acordo com o papel do usuário
+                if (user.role === 'teacher') {
+                  this.router.navigate(['/home/teacher']);
+                } else {
+                  this.router.navigate(['/home/student']);
+                }
+                return authActions.loginSuccess({ user, token });
               } else {
-                console.log('Login failed: user or token missing');
                 return authActions.loginFailure();
               }
             }),
