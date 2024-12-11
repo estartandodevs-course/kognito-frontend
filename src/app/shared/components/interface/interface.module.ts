@@ -13,6 +13,6 @@ import { StepLineComponent } from './step-line/step-line.component';
 @NgModule({
   declarations: [CheckBoxTaskComponent, NeuroTagsComponent, StepsComponent, CardStudentComponent, StepLineComponent],
   imports: [CommonModule, FormsModule, StructuralModule, AppFormsModule],
-  exports: [StepsComponent, NeuroTagsComponent, CardStudentComponent],
+  exports: [StepsComponent, NeuroTagsComponent, CardStudentComponent, CheckBoxTaskComponent],
 })
 export class InterfaceModule {}
