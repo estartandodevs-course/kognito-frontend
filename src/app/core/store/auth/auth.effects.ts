@@ -18,10 +18,12 @@ export class AuthEffects {
     return this._actions$.pipe(
       ofType(authActions.login),
       mergeMap(({ email, password }) =>
-        this._rest.request<LoginSuccessProps>({ relativeURL: 'login/', method: 'POST', body: { email, password } }).pipe(
-          map(({ user, token }) => authActions.loginSuccess({ user, token })),
-          catchError(() => of(authActions.loginFailure())),
-        ),
+        this._rest
+          .request<LoginSuccessProps>({ relativeURL: 'api/identidade/autenticar', method: 'POST', body: { email, password } })
+          .pipe(
+            map(({ user, token }) => authActions.loginSuccess({ user, token })),
+            catchError(() => of(authActions.loginFailure())),
+          ),
       ),
     );
   });
