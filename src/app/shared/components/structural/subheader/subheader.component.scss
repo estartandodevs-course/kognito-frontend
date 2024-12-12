@@ -1,6 +1,7 @@
 .subheader-container {
+  width: 1000px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -20,4 +21,13 @@ button {
   height: 1.5rem;
   color: var(--black);
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .subheader-container {
+    width: 380px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
