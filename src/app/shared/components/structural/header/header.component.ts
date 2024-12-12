@@ -19,7 +19,7 @@ export class HeaderComponent {
   @Input() iconsRight?: IconHeaderProps[];
 
   user$!: Observable<UserProps | null>;
-  saudation = this._time.getSaudation();
+  saudation: string = '';
 
   constructor(
     private _time: TimeCaptureService,
@@ -27,5 +27,11 @@ export class HeaderComponent {
     private store: Store,
   ) {
     this.user$ = this.store.select(authSelectors.selectUser);
+
+    this.user$.subscribe((user) => {
+      if (user) {
+        this.saudation = this._time.getSaudation();
+      }
+    });
   }
 }

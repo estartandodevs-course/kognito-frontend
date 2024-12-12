@@ -8,4 +8,11 @@ export interface LoginProps {
 export interface LoginSuccessProps {
   user: UserProps;
   token: string;
+  success: boolean;
+  data: {
+    accessToken: string;
+    expiresIn: number;
+    senhaPadrao: boolean;
+    usuarioToken: UserProps;
+  };
 }
