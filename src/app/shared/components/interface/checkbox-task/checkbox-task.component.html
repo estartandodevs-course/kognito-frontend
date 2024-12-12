@@ -1,4 +1,4 @@
 <div class="task" [ngClass]="{ 'task-checked': isChecked }" id="task">
-  <input type="checkbox" id="study-task" [(ngModel)]="isChecked" />
+  <input type="checkbox" id="study-task" [(ngModel)]="isChecked" (change)="onCheckboxChange()" />
   <label for="study-task">{{ taskLabel }}</label>
 </div>
