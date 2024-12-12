@@ -40,24 +40,13 @@ export class TimeCaptureService {
    */
   getSaudation(): string {
     const hour = this.getCurrentHour();
-    let greeting: string;
-
-    const storedAuth = localStorage.getItem('auth');
-    let userName = 'User';
-
-    if (storedAuth) {
-      const authData = JSON.parse(storedAuth);
-      userName = authData.name;
-    }
 
     if (hour >= 6 && hour < 12) {
-      greeting = 'Bom dia';
+      return 'Bom dia!';
     } else if (hour >= 12 && hour < 18) {
-      greeting = 'Boa tarde';
+      return 'Boa tarde!';
     } else {
-      greeting = 'Boa noite';
+      return 'Boa noite!';
     }
-
-    return `${greeting}, ${userName}!`;
   }
 }
