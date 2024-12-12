@@ -6,9 +6,10 @@ import { ProfileComponent } from './profile.component';
 import { StructuralModule } from '../../../shared/components/structural/structural.module';
 import { NavbarModule } from '../../../shared/components/navigation/navbar/navbar.module';
 import { AppFormsModule } from '../../../shared/components/app-forms/app-forms.module';
+import { ProfileModuleComponent } from '../../../shared/containers/profile/profile.module';
 
 @NgModule({
   declarations: [ProfileComponent],
-  imports: [CommonModule, ProfileRoutingModule, StructuralModule, NavbarModule, AppFormsModule],
+  imports: [CommonModule, ProfileRoutingModule, StructuralModule, NavbarModule, AppFormsModule, ProfileModuleComponent],
 })
 export class ProfileModule {}

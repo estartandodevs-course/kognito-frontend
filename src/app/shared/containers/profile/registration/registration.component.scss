@@ -1,0 +1,21 @@
+.registration-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: auto;
+  top: 11rem;
+
+  p {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+  }
+}
+
+.inSection {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3rem;
+}
