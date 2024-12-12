@@ -1,14 +1,18 @@
 .container {
-  height: 100vh;
+  height: 100%;
   padding: 5rem 2rem;
+
+  display: flex;
+  justify-content: center;
 
   img {
     display: grid;
     width: 297px;
     height: 221px;
-    padding: 34.13px 21.14px 24.67px 49.91px;
+    padding: 20px;
     gap: 0px;
     opacity: 0px;
+    margin: 0 auto;
   }
 
   p {
@@ -19,6 +23,8 @@
     color: var(--black);
     font-size: 16px;
     font-weight: 400;
+
+    margin-top: 125px;
   }
 
   app-button {
@@ -31,8 +37,23 @@
 @media (min-width: 1000px) {
   .container {
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: center;
+
+    img {
+      display: grid;
+      width: 297px;
+      height: 221px;
+      padding: 0px;
+
+      margin-top: 60px;
+    }
+
+    p {
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 50px;
+      width: 100%;
+    }
   }
 }

@@ -4,7 +4,7 @@
 }
 
 app-input-field {
-  width: 685px;
+  width: 385px;
 }
 
 app-section {
@@ -12,4 +12,9 @@ app-section {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+@media (min-width: 1000px) {
+  app-input-field {
+    width: 685px;
+  }
 }
