@@ -1,0 +1,14 @@
+<app-header title="Perfil"></app-header>
+
+<section class="button-container">
+  <app-button label="Gráfico" [type]="selectedButton === 'Gráfico' ? 'filled' : 'outlined'" (click)="onButtonClick('Gráfico')">
+  </app-button>
+
+  <app-button label="Registro" [type]="selectedButton === 'Registro' ? 'filled' : 'outlined'" (click)="onButtonClick('Registro')">
+  </app-button>
+
+  <app-button label="Emblemas" [type]="selectedButton === 'Emblemas' ? 'filled' : 'outlined'" (click)="onButtonClick('Emblemas')">
+  </app-button>
+</section>
+
+<app-navbar></app-navbar>
