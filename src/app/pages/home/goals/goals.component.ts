@@ -20,16 +20,12 @@ export class GoalsComponent implements OnInit {
 
   constructor(private kognitoRest: KognitoRestService) {}
 
-  ngOnInit(): void {
-    this.loadAllTasks();
-  }
-
-  private loadAllTasks(): void {
-    this.loadPendingTasks();
+  ngOnInit() {
+    this.loadTasks();
     this.loadCompletedTasks();
   }
 
-  private loadPendingTasks(): void {
+  loadTasks() {
     this.kognitoRest
       .request<{ success: boolean; data: Task[] }>({
         method: 'GET',
@@ -37,18 +33,26 @@ export class GoalsComponent implements OnInit {
       })
       .subscribe({
         next: (response) => {
-          if (!response?.data) return;
+          if (response?.data && Array.isArray(response.data)) {
+            const pendingTasks = response.data
+              .filter((task) => task.isChecked === false)
+              .map((task) => ({
+                ...task,
+                label: task.title || '',
+                isChecked: false,
+              }));
 
-          this.tasks = response.data.filter((task) => task.isChecked !== true).map(this.mapTaskResponse);
+            this.tasks = pendingTasks;
+          }
         },
         error: (error: Error) => {
-          console.error('Erro ao carregar metas pendentes:', error);
+          console.error('Erro ao carregar metas:', error);
           this.tasks = [];
         },
       });
   }
 
-  private loadCompletedTasks(): void {
+  loadCompletedTasks() {
     this.kognitoRest
       .request<{ success: boolean; data: Task[] }>({
         method: 'GET',
@@ -56,9 +60,13 @@ export class GoalsComponent implements OnInit {
       })
       .subscribe({
         next: (response) => {
-          if (!response?.data) return;
-
-          this.completedTasks = response.data.map(this.mapTaskResponse);
+          if (response?.data && Array.isArray(response.data)) {
+            this.completedTasks = response.data.map((task) => ({
+              ...task,
+              label: task.title || '',
+              isChecked: true,
+            }));
+          }
         },
         error: (error: Error) => {
           console.error('Erro ao carregar metas concluídas:', error);
@@ -67,95 +75,81 @@ export class GoalsComponent implements OnInit {
       });
   }
 
-  private mapTaskResponse(task: Task): Task {
-    return {
-      ...task,
-      label: task.title || '',
-      isChecked: Boolean(task.isChecked),
-    };
-  }
-
   addCheckBox(): void {
     const title = prompt('Digite o nome da nova tarefa:');
-    if (!title) return;
+    if (title) {
+      const description = prompt('Digite uma descrição para a tarefa (opcional):') || title;
 
-    const description = prompt('Digite uma descrição para a tarefa (opcional):') || title;
-    const newTask = this.createTask(title, description);
+      const newTask: Task = {
+        title,
+        description,
+        isChecked: false,
+        label: title,
+      };
 
-    this.addTaskToList(newTask);
-    this.saveTaskToAPI(newTask);
-  }
+      this.tasks.push(newTask);
 
-  private createTask(title: string, description: string): Task {
-    return {
-      title,
-      description,
-      isChecked: false,
-      label: title,
-    };
-  }
-
-  private addTaskToList(task: Task): void {
-    this.tasks = [...this.tasks, task];
-  }
-
-  private saveTaskToAPI(task: Task): void {
-    this.kognitoRest
-      .request<Task>({
-        method: 'POST',
-        relativeURL: 'api/metas',
-        body: {
-          title: task.title,
-          description: task.description,
-          isChecked: 'false',
-          userId: '1',
-        },
-      })
-      .subscribe({
-        next: (response: Task) => {
-          const index = this.tasks.findIndex((t) => t.title === task.title);
-          if (index !== -1) {
-            this.tasks[index] = { ...task, id: response.id };
-          }
-        },
-        error: (error: Error) => {
-          console.error('Erro ao criar meta:', error);
-          this.tasks = this.tasks.filter((t) => t !== task);
-        },
-      });
+      this.kognitoRest
+        .request<Task>({
+          method: 'POST',
+          relativeURL: 'api/metas',
+          body: {
+            title,
+            description,
+            isChecked: 'false',
+            userId: '1',
+          },
+        })
+        .subscribe({
+          next: (response: Task) => {
+            const index = this.tasks.indexOf(newTask);
+            if (index !== -1) {
+              this.tasks[index] = {
+                ...newTask,
+                id: response.id,
+              };
+            }
+          },
+          error: (error: Error) => {
+            console.error('Erro ao criar meta:', error);
+            this.tasks = this.tasks.filter((t) => t !== newTask);
+          },
+        });
+    }
   }
 
   onTaskChecked(index: number, checked: boolean): void {
     const task = this.tasks[index];
-    if (!task?.id) return;
+    if (checked) {
+      const completedTask = this.tasks[index];
+      this.moveTaskToCompleted(index);
 
-    this.updateTaskStatus(task, checked, index);
-  }
-
-  private updateTaskStatus(task: Task, checked: boolean, index: number): void {
-    this.kognitoRest
-      .request({
-        method: 'PUT',
-        relativeURL: `api/metas/${task.id}/concluir`,
-        body: {
-          isChecked: checked.toString(),
-        },
-      })
-      .subscribe({
-        next: () => {
-          if (checked) {
-            this.moveTaskToCompleted(index);
-            this.loadAllTasks(); // Recarrega para garantir sincronização
-          }
-        },
-        error: (error: Error) => {
-          console.error('Erro ao atualizar meta:', error);
-        },
-      });
+      if (task.id) {
+        this.kognitoRest
+          .request({
+            method: 'PUT',
+            relativeURL: `api/metas/${task.id}/concluir`,
+            body: {
+              isChecked: 'true',
+            },
+          })
+          .subscribe({
+            error: (error: Error) => {
+              console.error('Erro ao concluir meta:', error);
+              this.completedTasks = this.completedTasks.filter((t) => t !== completedTask);
+              this.tasks.splice(index, 0, completedTask);
+            },
+          });
+      }
+    }
   }
 
   private moveTaskToCompleted(index: number): void {
-    const [completedTask] = this.tasks.splice(index, 1);
-    this.completedTasks = [...this.completedTasks, { ...completedTask, isChecked: true }];
+    const completedTask = this.tasks.splice(index, 1)[0];
+    this.completedTasks.push({
+      ...completedTask,
+      isChecked: true,
+      label: completedTask.title,
+    });
   }
 }

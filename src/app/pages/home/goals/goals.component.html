@@ -8,7 +8,7 @@
   <!-- Lista de tarefas pendentes -->
   <div class="checkbox-list">
     <ng-container *ngFor="let task of tasks; let i = index">
-      <app-checkbox-task [taskLabel]="task.label" [isChecked]="task.isChecked" (checkChanged)="onTaskChecked(i, $event)">
+      <app-checkbox-task [taskLabel]="task.label" [isChecked]="false" (checkChanged)="onTaskChecked(i, $event)">
       </app-checkbox-task>
     </ng-container>
   </div>
