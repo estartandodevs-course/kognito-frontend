@@ -1,1 +1,11 @@
-<p>registration works!</p>
+<app-section class="registration-container">
+  <p>Seus Registros</p>
+
+  <div class="cards-container">
+    <app-card-student *ngFor="let student of students" [header]="student.header"> </app-card-student>
+  </div>
+
+  <div class="inSection">
+    <app-button label="Importar Novo Registro" codeIcon="majesticons:plus-line" (click)="onAddStudent()"> </app-button>
+  </div>
+</app-section>
