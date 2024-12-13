@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+
 import { KognitoRestService } from '@services/kognito-rest/kognito-rest.service';
 import { LoginSuccessProps } from '@mapping/login.types';
 import { authActions } from './auth.actions';
-import { Router } from '@angular/router'; // Importando Router
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
@@ -27,46 +28,23 @@ export class AuthEffects {
           })
           .pipe(
             map((response) => {
-              console.log('Full response from API:', response);
-              const { accessToken, usuarioToken } = response.data;
-              console.log('Destructured response:', { accessToken, usuarioToken });
+              const data = response.data;
+              const nameUser = data.usuarioToken.claims.filter((claim) => claim.type === 'name')[0];
+              const roleUser = data.usuarioToken.claims.filter((claim) => claim.type === 'role')[0];
 
-              if (accessToken && usuarioToken) {
-                const authData = { user: usuarioToken, token: accessToken };
-                localStorage.setItem('auth', JSON.stringify(authData));
-                return authActions.loginSuccess({ user: usuarioToken, token: accessToken });
-              } else {
-                console.log('Login failed: user or token missing');
-                return authActions.loginFailure();
-              }
+              const success = authActions.loginSuccess({
+                user: { name: nameUser.value, role: roleUser.value.toLowerCase() as 'teacher' | 'student' },
+                token: data.accessToken,
+              });
+
+              // Redireciona o usuário para a home.
+              this.router.navigate(['/home']);
+
+              return success;
             }),
             catchError(() => of(authActions.loginFailure())),
           ),
       ),
     );
   });
-
-  logout$ = createEffect(
-    () => {
-      return this._actions$.pipe(
-        ofType(authActions.logout),
-        mergeMap(() => this._rest.request<void>({ relativeURL: 'logout/', method: 'POST' })),
-      );
-    },
-    { dispatch: false },
-  );
-
-  loginSuccess$ = createEffect(
-    () => {
-      return this._actions$.pipe(
-        ofType(authActions.loginSuccess),
-        tap(({ user }) => {
-          const role = user.role;
-          const redirectUrl = role === 'teacher' ? '/home' : '/home';
-          this.router.navigate([redirectUrl]);
-        }),
-      );
-    },
-    { dispatch: false },
-  );
 }

@@ -104,3 +104,9 @@ button {
     margin-top: 80px;
   }
 }
+
+@media (min-width: 700px) {
+  button {
+    width: 685px;
+  }
+}

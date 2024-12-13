@@ -1,34 +1,81 @@
-app-header {
-  display: grid;
-  position: relative;
-  top: 24px;
-}
-
 app-classcard-title {
   display: grid;
+  margin-top: 32px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 32px;
 }
 
 app-subheader {
   display: grid;
-  position: relative;
-  top: 6rem;
 }
 
 img {
-  display: grid;
-  position: relative;
-  top: 4rem;
+  margin: 0 auto;
+  width: 250px;
+  margin-top: 90px;
 }
 
 app-button {
   display: grid;
-  position: relative;
-  top: 35rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 14px;
 }
 
 p {
-  display: grid;
-  position: relative;
-  top: 34rem;
   text-align: center;
+  margin-top: 76px;
+}
+
+@media (min-width: 1000px) {
+  app-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 44px;
+  }
+
+  app-classcard-title {
+    display: grid;
+    margin: 22px 0px 16px 0px;
+  }
+
+  app-subheader {
+    display: grid;
+    top: 0px;
+  }
+
+  img {
+    width: 440px;
+    margin: 0 auto;
+  }
+
+  app-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 36px;
+  }
+
+  p {
+    top: 0px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 120px;
+  }
 }

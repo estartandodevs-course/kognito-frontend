@@ -1,9 +1,3 @@
-app-header {
-  display: grid;
-  position: relative;
-  top: 48px;
-}
-
 .container {
   height: 100vh;
   left: 50%;
@@ -43,4 +37,6 @@ app-header {
     bottom: 85px;
     right: 5px;
   }
+}
+@media (min-width: 1000px) {
 }
