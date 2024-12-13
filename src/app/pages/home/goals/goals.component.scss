@@ -1,5 +1,6 @@
-.checkbox-list {
+.container-main {
   display: flex;
+
   flex-direction: column; /* Alinha os checkboxes verticalmente */
   gap: 10px; /* Define o espaço de 10px entre os checkboxes */
   justify-content: center;
@@ -9,11 +10,36 @@
 
 app-calendar {
   padding: 30px;
+
+  flex-direction: column;
+  margin: auto;
+
+  min-width: 70%;
+  gap: 1.5rem;
+
+  .checkbox-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+
+    .text {
+      font-size: 1.1rem;
+      color: var(--gray-1);
+    }
+  }
+}
+
+span {
+  display: flex;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--black);
+
 }
 
 app-button {
-  display: grid;
-  position: absolute;
+  position: fixed;
   bottom: 6rem;
   right: 2rem;
 }

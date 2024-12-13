@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
-import { AppFormsModule } from '../../../shared/components/app-forms/app-forms.module';
-import { StructuralModule } from '../../../shared/components/structural/structural.module';
+import { AppFormsModule } from '@components/app-forms/app-forms.module';
+import { StructuralModule } from '@components/structural/structural.module';
 
 @NgModule({
   declarations: [StudentComponent],

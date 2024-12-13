@@ -14,4 +14,8 @@ export class Step3Component implements OnInit {
   endSteps(): void {
     this.submitClick.emit();
   }
+
+  onValueChange(id: string, checked: boolean): void {
+    console.log(`Checkbox ${id} changed to ${checked}`);
+  }
 }
