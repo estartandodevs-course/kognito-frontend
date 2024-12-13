@@ -5,7 +5,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { AppFormsModule } from '@components/app-forms/app-forms.module';
 import { StructuralModule } from '@components/structural/structural.module';
-import { HomeViewsModule } from '../../shared/components/dynamicView/home-views/home-views.module';
+import { HomeViewsModule } from '@components/dynamicView/home-views/home-views.module';
 
 @NgModule({
   declarations: [LoginComponent],

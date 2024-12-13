@@ -1,29 +1,52 @@
 <app-header title=" "></app-header>
 
-<app-section class="conntainer">
-  <app-calendar></app-calendar>
+<app-section>
+  <div class="container-main" inSection>
+    <app-calendar></app-calendar>
 
-  <app-subheader title="Suas Metas"></app-subheader>
+    <ng-container *ngIf="!isLoading; else loading">
+      <app-subheader title="Suas Metas"></app-subheader>
 
-  <!-- Lista de tarefas pendentes -->
-  <div class="checkbox-list">
-    <ng-container *ngFor="let task of tasks; let i = index">
-      <app-checkbox-task [taskLabel]="task.label" [isChecked]="task.isChecked" (checkChanged)="onTaskChecked(i, $event)">
-      </app-checkbox-task>
+      <!-- Lista de tarefas pendentes -->
+      <div class="checkbox-list">
+        <ng-container *ngIf="pendingTasks.length; else notPending">
+          <app-checkbox-task
+            *ngFor="let task of pendingTasks"
+            [taskLabel]="task.title"
+            [isChecked]="task.completed"
+            (checkChanged)="completeTaskById(task.id)">
+          </app-checkbox-task>
+        </ng-container>
+
+        <ng-template #notPending>
+          <p class="text">Parece que você ainda não possui nenhuma meta.</p>
+        </ng-template>
+      </div>
+
+      <app-subheader title="Concluídas Hoje"></app-subheader>
+
+      <div class="checkbox-list">
+        <ng-container *ngIf="completedTasks.length; else notCompleted">
+          <app-checkbox-task
+            *ngFor="let task of completedTasks"
+            [taskLabel]="task.title"
+            [isChecked]="task.completed"
+            [disable]="true"
+            (checkChanged)="completeTaskById(task.id)">
+          </app-checkbox-task>
+        </ng-container>
+
+        <ng-template #notCompleted>
+          <p class="text">Você ainda não completou nenhuma meta hoje.</p>
+        </ng-template>
+      </div>
     </ng-container>
+
+    <ng-template #loading>
+      <span>Estamos conferindo suas metas...</span>
+    </ng-template>
   </div>
-
-  <app-subheader title="Concluídas Hoje"></app-subheader>
-
-  <!-- Lista de tarefas concluídas -->
-  <div class="checkbox-list">
-    <ng-container *ngFor="let completedTask of completedTasks">
-      <app-checkbox-task [taskLabel]="completedTask.label" [isChecked]="true" disabled="true"> </app-checkbox-task>
-    </ng-container>
-  </div>
-
-  <!-- Botão para adicionar novas tarefas -->
-  <app-button codeIcon="majesticons:plus-line" (click)="addCheckBox()"> </app-button>
 </app-section>
 
+<app-button codeIcon="majesticons:plus-line" (buttonClick)="createTask()"> </app-button>
 <app-navbar></app-navbar>

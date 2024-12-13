@@ -4,9 +4,9 @@ import { ProfileComponent } from './profile.component';
 import { GraphicComponent } from './graphic/graphic.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { EmblemsComponent } from './emblems/emblems.component';
-import { AppFormsModule } from '../../components/app-forms/app-forms.module';
-import { StructuralModule } from '../../components/structural/structural.module';
-import { InterfaceModule } from '../../components/interface/interface.module';
+import { AppFormsModule } from '@components/app-forms/app-forms.module';
+import { InterfaceModule } from '@components/interface/interface.module';
+import { StructuralModule } from '@components/structural/structural.module';
 
 @NgModule({
   declarations: [ProfileComponent, GraphicComponent, RegistrationComponent, EmblemsComponent],
