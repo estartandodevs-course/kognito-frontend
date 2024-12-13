@@ -8,9 +8,19 @@ import { ClassViewsModule } from '@components/dynamicView/class-views/class-view
 import { StructuralModule } from '@components/structural/structural.module';
 import { DisplayModule } from '../../../shared/components/display/display.module';
 import { NavbarModule } from '../../../shared/components/navigation/navbar/navbar.module';
+import { SidebarModule } from '../../../shared/components/navigation/sidebar/sidebar.module';
 
 @NgModule({
   declarations: [ClassComponent],
-  imports: [CommonModule, ClassRoutingModule, ClassViewsModule, AppFormsModule, StructuralModule, DisplayModule, NavbarModule],
+  imports: [
+    CommonModule,
+    ClassRoutingModule,
+    ClassViewsModule,
+    AppFormsModule,
+    StructuralModule,
+    DisplayModule,
+    NavbarModule,
+    SidebarModule,
+  ],
 })
 export class ClassModule {}

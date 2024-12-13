@@ -7,9 +7,10 @@ import { StructuralModule } from '../../../shared/components/structural/structur
 import { InterfaceModule } from '../../../shared/components/interface/interface.module';
 import { NavbarModule } from '../../../shared/components/navigation/navbar/navbar.module';
 import { AppFormsModule } from '../../../shared/components/app-forms/app-forms.module';
+import { SidebarModule } from '../../../shared/components/navigation/sidebar/sidebar.module';
 
 @NgModule({
   declarations: [GoalsComponent],
-  imports: [CommonModule, GoalsRoutingModule, StructuralModule, InterfaceModule, NavbarModule, AppFormsModule],
+  imports: [CommonModule, GoalsRoutingModule, StructuralModule, InterfaceModule, NavbarModule, AppFormsModule, SidebarModule],
 })
 export class GoalsModule {}

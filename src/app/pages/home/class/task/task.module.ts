@@ -7,9 +7,10 @@ import { TaskComponent } from './task.component';
 import { AppFormsModule } from '../../../../shared/components/app-forms/app-forms.module';
 import { NavbarModule } from '../../../../shared/components/navigation/navbar/navbar.module';
 import { StructuralModule } from '../../../../shared/components/structural/structural.module';
+import { SidebarModule } from '../../../../shared/components/navigation/sidebar/sidebar.module';
 
 @NgModule({
   declarations: [TaskComponent],
-  imports: [CommonModule, TaskRoutingModule, TaskViewsModule, AppFormsModule, NavbarModule, StructuralModule],
+  imports: [CommonModule, TaskRoutingModule, TaskViewsModule, AppFormsModule, NavbarModule, StructuralModule, SidebarModule],
 })
 export class TaskModule {}
