@@ -33,11 +33,6 @@ export class MessageModalComponent implements OnInit {
    * @returns {string[]} Um array contendo apenas as mensagens válidas como strings, ou uma mensagem de erro padrão.
    */
   getMessage(): string[] {
-    const allMessages = Array.isArray(this.message) ? this.message : [this.message];
-    const validMessages = allMessages.filter((value) => value !== 'false' && value !== 'true');
-    if (!validMessages.length) {
-      return ['Ocorreu um erro interno na API'];
-    }
-    return validMessages;
+    return Array.isArray(this.message) ? this.message : [this.message];
   }
 }
