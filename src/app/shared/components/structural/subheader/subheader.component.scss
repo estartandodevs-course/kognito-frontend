@@ -1,0 +1,33 @@
+.subheader-container {
+  width: 1000px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.iconify {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .subheader-container {
+    width: 380px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

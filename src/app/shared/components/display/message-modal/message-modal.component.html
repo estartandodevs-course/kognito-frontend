@@ -1,0 +1,13 @@
+<article class="container-main">
+  <div class="header">
+    <h3>{{ title }}</h3>
+  </div>
+
+  <div class="body">
+    <p *ngFor="let msg of getMessage()">{{ msg }}</p>
+  </div>
+
+  <div class="footer">
+    <button *ngFor="let button of buttons" (click)="button.onClick()">{{ button.text }}</button>
+  </div>
+</article>

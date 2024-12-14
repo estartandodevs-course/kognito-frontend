@@ -1,0 +1,10 @@
+<div class="calendar">
+  <h2>{{ currentMonth }}</h2>
+
+  <div class="days-of-week">
+    <span *ngFor="let day of daysOfWeek; let i = index" [ngClass]="{ 'current-day': isCurrentDay(i) }">
+      <span class="day-label">{{ day }}</span>
+      <span class="day-number">{{ getDayNumber(i) }}</span>
+    </span>
+  </div>
+</div>

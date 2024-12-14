@@ -1,1 +1,53 @@
-<p>goals works!</p>
+<app-header title=" "></app-header>
+
+<app-section>
+  <div class="container-main" inSection>
+    <app-calendar></app-calendar>
+
+    <ng-container *ngIf="!isLoading; else loading">
+      <h2>Suas metas</h2>
+
+      <!-- Lista de tarefas pendentes -->
+      <div class="checkbox-list">
+        <ng-container *ngIf="pendingTasks.length; else notPending">
+          <app-checkbox-task
+            *ngFor="let task of pendingTasks"
+            [taskLabel]="task.title"
+            [isChecked]="task.completed"
+            (checkChanged)="completeTaskById(task.id)">
+          </app-checkbox-task>
+        </ng-container>
+
+        <ng-template #notPending>
+          <p class="text">Parece que você ainda não possui nenhuma meta.</p>
+        </ng-template>
+      </div>
+
+      <h2>Concluídas Hoje</h2>
+
+      <div class="checkbox-list">
+        <ng-container *ngIf="completedTasks.length; else notCompleted">
+          <app-checkbox-task
+            *ngFor="let task of completedTasks"
+            [taskLabel]="task.title"
+            [isChecked]="task.completed"
+            [disable]="true"
+            (checkChanged)="completeTaskById(task.id)">
+          </app-checkbox-task>
+        </ng-container>
+
+        <ng-template #notCompleted>
+          <p class="text">Você ainda não completou nenhuma meta hoje.</p>
+        </ng-template>
+      </div>
+    </ng-container>
+
+    <ng-template #loading>
+      <span>Estamos conferindo suas metas...</span>
+    </ng-template>
+  </div>
+</app-section>
+
+<app-button codeIcon="majesticons:plus-line" (buttonClick)="createTask()"> </app-button>
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>

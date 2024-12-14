@@ -1,0 +1,120 @@
+section {
+  width: 40%;
+  height: 100vh;
+  background-color: #dbe9f2;
+  position: relative;
+
+  .img1 {
+    position: absolute;
+    width: 400px;
+    left: -5rem;
+    bottom: 0;
+  }
+
+  .img2 {
+    position: absolute;
+    width: 400px;
+    top: 14rem;
+    left: 0;
+  }
+
+  .img3 {
+    position: absolute;
+    width: 380px;
+    left: 17.5rem;
+    bottom: -2rem;
+  }
+
+  .img4 {
+    position: absolute;
+    width: 400px;
+    top: 0;
+    left: -2.5rem;
+  }
+
+  .img5 {
+    position: absolute;
+    width: 380px;
+    right: 0;
+    top: 13.5rem;
+  }
+
+  .img6 {
+    position: absolute;
+    width: 400px;
+    top: -1.5rem;
+    right: 0;
+  }
+
+  /* Media Queries para ajustar em diferentes tamanhos de tela */
+  @media (max-width: 1440px) {
+    .img1,
+    .img2,
+    .img3,
+    .img4,
+    .img5,
+    .img6 {
+      width: 320px; /* Reduz o tamanho das imagens proporcionalmente */
+    }
+
+    .img1 {
+      left: -2rem;
+    }
+
+    .img3 {
+      left: 17rem;
+    }
+
+    .img5 {
+      right: 0;
+    }
+
+    .img6 {
+      right: 0;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .img1,
+    .img2,
+    .img3,
+    .img4,
+    .img5,
+    .img6 {
+      width: 250px; /* Reduz ainda mais para telas menores */
+    }
+
+    .img1 {
+      left: 0;
+    }
+
+    .img3 {
+      left: 0;
+    }
+
+    .img5 {
+      right: 0;
+    }
+
+    .img6 {
+      right: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+
+    .img1,
+    .img2,
+    .img3,
+    .img4,
+    .img5,
+    .img6 {
+      position: static; /* Remove posicionamento absoluto */
+      width: 200px; /* Ajusta largura */
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  app-button {
+    display: grid;
+    position: relative;
+    top: 10rem;
+  }
+}
+
+.container-profile {
+  display: flex;
+}
+
+app-sidebar {
+  display: none;
+}
+
+@media (min-width: 1035px) {
+  app-navbar {
+    display: none;
+  }
+
+  app-sidebar {
+    display: grid;
+    position: absolute;
+    top: 0px;
+  }
+
+  app-graphic {
+    margin: auto;
+  }
+}

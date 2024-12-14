@@ -1,4 +1,9 @@
+import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { authSelectors } from '@store/auth/auth.selectors';
+import { UserProps } from '@store/auth/auth.types';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +11,9 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  role: 'student' | 'teacher' = 'teacher';
+  user$!: Observable<UserProps | null>;
+
+  constructor(private store: Store) {
+    this.user$ = this.store.select(authSelectors.selectUser);
+  }
 }

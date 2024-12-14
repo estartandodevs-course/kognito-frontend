@@ -1,0 +1,29 @@
+<app-section>
+  <app-form>
+    <p>Escolha para qual grupo de alunos deseja postar a tarefa</p>
+
+    <app-checkbox
+      id="todos-alunos"
+      label="Todos os alunos"
+      [checked]="false"
+      (valueChange)="onValueChange('todos-alunos', $event)"></app-checkbox>
+
+    <app-checkbox id="tdah" label="TDAH" [checked]="true" (valueChange)="onValueChange('tdah', $event)"></app-checkbox>
+
+    <app-checkbox id="tea-1" label="TEA 1" [checked]="false" (valueChange)="onValueChange('tea-1', $event)"></app-checkbox>
+
+    <app-checkbox id="tea-2" label="TEA 2" [checked]="false" (valueChange)="onValueChange('tea-2', $event)"></app-checkbox>
+
+    <app-checkbox id="tea-3" label="TEA 3" [checked]="false" (valueChange)="onValueChange('tea-3', $event)"></app-checkbox>
+
+    <app-checkbox
+      id="dislexos"
+      label="Dislexia"
+      [checked]="false"
+      (valueChange)="onValueChange('dislexos', $event)"></app-checkbox>
+
+    <div class="submit">
+      <app-button label="Enviar tarefa" (buttonClick)="endSteps()"></app-button>
+    </div>
+  </app-form>
+</app-section>

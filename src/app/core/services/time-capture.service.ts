@@ -34,12 +34,13 @@ export class TimeCaptureService {
   }
 
   /**
-   * Retorna uma saudação com base na hora atual.
+   * Retorna uma saudação com base na hora atual e o nome do usuário logado.
    *
-   * @returns A saudação correspondente ao horário atual.
+   * @returns A saudação correspondente ao horário atual e nome do usuário.
    */
   getSaudation(): string {
     const hour = this.getCurrentHour();
+
     if (hour >= 6 && hour < 12) {
       return 'Bom dia!';
     } else if (hour >= 12 && hour < 18) {

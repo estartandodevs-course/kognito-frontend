@@ -1,0 +1,52 @@
+<app-header title="Cadastro" [iconsRight]="null"> </app-header>
+
+<section class="container-main">
+  <p>Preencha os dados para prosseguir com o cadastro.</p>
+  <app-form (onsubmit)="addStudent($event)" omitKeys="conf">
+    <div class="container-inputs">
+      <app-input-field
+        formControlName="name"
+        label="Nome completo"
+        placeholder="Digite aqui seu nome completo"
+        capitalize="allWords"
+        [minLenght]="10"
+        [required]="true"></app-input-field>
+
+      <app-input-field
+        formControlName="cpf"
+        label="CPF do Aluno"
+        placeholder="Digite o CPF do Aluno"
+        type="cpf"
+        [required]="true"></app-input-field>
+
+      <app-input-field
+        formControlName="email"
+        label="E-mail do aluno"
+        placeholder="Digite aqui o e-mail do aluno"
+        type="email"
+        [required]="true"></app-input-field>
+
+      <app-input-field
+        formControlName="parentEmail"
+        label="E-mail do responsável"
+        type="email"
+        placeholder="Digite aqui o e-mail do responsável"
+        [required]="true"></app-input-field>
+
+      <app-input-field
+        formControlName="password"
+        label="Senha"
+        placeholder="Digite aqui sua senha"
+        type="password"
+        [required]="true"></app-input-field>
+
+      <app-input-field
+        formControlName="conf-password"
+        label="Confirmar Senha"
+        placeholder="Digite aqui sua senha novamente"
+        type="password"
+        equalTo="password"></app-input-field>
+    </div>
+    <app-button [label]="isLoading ? 'Aguarde...' : 'Criar conta'" [disabled]="isLoading"></app-button>
+  </app-form>
+</section>

@@ -20,6 +20,7 @@ export class ItemComponent {
   onclick!: () => void;
 
   logoutClicked() {
+    console.log('ok');
     if (this.onclick) {
       this.onclick();
     }

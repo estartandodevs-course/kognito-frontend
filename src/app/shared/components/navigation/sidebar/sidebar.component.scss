@@ -1,12 +1,29 @@
 .container-icons {
-  display: flex;
+  display: none;
+  position: fixed;
+  top: 0;
+
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.5rem;
-  height: 100%;
-  min-height: 50vh;
-  max-width: 14.5rem;
+
+  width: 200px;
   padding: 24px 16px 32px 16px;
+
+  border-right: 1px solid #e8eaf6;
+
+  height: 100vh;
+  z-index: 1;
+
+  .icons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 1200px) {
+    display: flex;
+  }
 }
 
 .logout-button {

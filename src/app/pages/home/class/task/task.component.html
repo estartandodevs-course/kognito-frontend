@@ -1,1 +1,13 @@
-<p>task works!</p>
+<app-header title="Tarefas"></app-header>
+<app-section *ngIf="user$ | async as user">
+  <ng-container *ngIf="user.role === 'teacher'; else student">
+    <app-teacher></app-teacher>
+  </ng-container>
+
+  <ng-template #student>
+    <app-student></app-student>
+  </ng-template>
+</app-section>
+
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>

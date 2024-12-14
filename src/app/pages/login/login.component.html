@@ -1,11 +1,29 @@
-<app-section class="container">
+<section class="container">
   <img src="assets/img/kognito.webp" alt="kognito" />
 
-  <app-button label="Entrar como USUÁRIO" (click)="goToHome()"></app-button>
+  <div>
+    <app-form (onsubmit)="loginUser($event)">
+      <app-input-field
+        formControlName="email"
+        label="E-mail:"
+        placeholder="Digite aqui seu email"
+        [required]="true"></app-input-field>
+
+      <app-input-field
+        formControlName="password"
+        label="Senha:"
+        placeholder="Digite aqui sua senha"
+        type="password"
+        [required]="true"></app-input-field>
+
+      <a class="forgotPassword" href="/forgot-password">Esqueci minha senha</a>
+      <app-button label="Entrar como {{ rolePTBR }}"></app-button>
+    </app-form>
+  </div>
   <div class="container-register" inSection>
     <p>
       Não possui uma conta?
-      <a href="/register"> Cadastre-se aqui </a>
+      <a [href]="'register/' + currentRole"> Cadastre-se aqui </a>
     </p>
   </div>
-</app-section>
+</section>

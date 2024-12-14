@@ -1,0 +1,20 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+app-input-field {
+  width: 385px;
+}
+
+app-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+@media (min-width: 1000px) {
+  app-input-field {
+    width: 685px;
+  }
+}

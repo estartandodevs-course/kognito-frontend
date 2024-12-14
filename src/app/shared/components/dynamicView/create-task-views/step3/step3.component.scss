@@ -1,0 +1,16 @@
+.submit {
+  display: flex;
+  justify-content: center;
+}
+
+app-input-field {
+  width: 685px;
+}
+
+app-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+}

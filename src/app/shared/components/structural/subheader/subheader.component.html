@@ -1,0 +1,8 @@
+<section class="subheader-container">
+  <h2>{{ title }}</h2>
+  <div class="icon-container">
+    <button *ngFor="let icon of codeIcon" (click)="onClick(icon)">
+      <span class="iconify" [attr.data-icon]="icon"></span>
+    </button>
+  </div>
+</section>

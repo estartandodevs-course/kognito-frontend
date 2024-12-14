@@ -1,8 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './register.component';
 
-const routes: Routes = [{ path: '', component: RegisterComponent }];
+const routes: Routes = [
+  { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
+  {
+    path: 'student',
+    loadChildren: () => import('../register/student/student.module').then((m) => m.StudentModule),
+  },
+  {
+    path: 'teacher',
+    loadChildren: () => import('../register/teacher/teacher.module').then((m) => m.TeacherModule),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

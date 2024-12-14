@@ -18,4 +18,8 @@ export class TeacherComponent {
   redirectToCreateClass(): void {
     this.router.navigate(['/home/create_class']);
   }
+
+  onIconClick(): void {
+    this.router.navigate(['/home/create_class']);
+  }
 }

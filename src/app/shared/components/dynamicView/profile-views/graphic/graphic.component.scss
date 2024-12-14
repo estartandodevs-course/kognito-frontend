@@ -1,0 +1,120 @@
+.progress-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.completion-percentage {
+  font-size: 18px;
+  color: var(--normal);
+  margin: 10px 0;
+}
+
+.time {
+  font-size: 12px;
+  color: var(--gray-3);
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: var(--gray-3);
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--normal);
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.circle-chart {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(var(--gray-3) 0%, var(--gray-3) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-background {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background-color: var(--white);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.circle-text {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--gray-3);
+  z-index: 2;
+}
+
+.legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--brack);
+  margin: 5px 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.blue {
+  background-color: #007bff;
+}
+
+.red {
+  background-color: #ff0000;
+}
+
+.yellow {
+  background-color: #ffc107;
+}
+
+.bar-charts {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.bar-chart {
+  width: 30%;
+  height: 60px;
+  background-color: var(--white);
+  border-radius: 5px;
+}
+
+.gray {
+  background-color: var(--white);
+}

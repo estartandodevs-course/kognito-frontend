@@ -1,0 +1,26 @@
+<app-header title="Perfil"></app-header>
+
+<app-section>
+  <div inSection class="container-profile" style="margin-bottom: 5rem">
+    <app-button label="Gráfico" [type]="selectedButton === 'Gráfico' ? 'filled' : 'outlined'" (click)="onButtonClick('Gráfico')">
+    </app-button>
+
+    <app-button
+      label="Registro"
+      [type]="selectedButton === 'Registro' ? 'filled' : 'outlined'"
+      (click)="onButtonClick('Registro')">
+    </app-button>
+
+    <app-button
+      label="Emblemas"
+      [type]="selectedButton === 'Emblemas' ? 'filled' : 'outlined'"
+      (click)="onButtonClick('Emblemas')">
+    </app-button>
+  </div>
+  <app-graphic *ngIf="selectedButton === 'Gráfico'"></app-graphic>
+  <app-emblems *ngIf="selectedButton === 'Emblemas'"></app-emblems>
+  <app-registration *ngIf="selectedButton === 'Registro'"></app-registration>
+</app-section>
+
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
