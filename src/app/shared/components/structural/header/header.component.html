@@ -26,6 +26,7 @@
 
   <span
     id="iconProfile"
+    *ngIf="iconsRight !== null"
     [ngClass]="{ iconify: true, profile: true, inactive: title || iconsRight }"
     data-icon="majesticons:user-circle-line"></span>
 </header>

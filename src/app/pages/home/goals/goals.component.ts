@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { map, Subscription } from 'rxjs';
 
 import { KognitoRestService } from '@services/kognito-rest/kognito-rest.service';
-import { ModalService } from '@services/modal/modal.service';
 import { CreateTaskSuccessProps, GetTasksProps } from '@mapping/goals.types';
 import { TaskProps } from './goals.types';
 
@@ -17,10 +16,7 @@ export class GoalsComponent implements OnDestroy {
   pendingTasks: TaskProps[] = [];
   isLoading = true;
 
-  constructor(
-    private _kognitoRest: KognitoRestService,
-    private _modalService: ModalService,
-  ) {
+  constructor(private _kognitoRest: KognitoRestService) {
     this.loadPendingTasks();
     this.loadCompletedTasks();
   }

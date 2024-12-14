@@ -1,13 +1,11 @@
-<app-section class="container">
-  <app-subheader
-    [title]="'Lista de alunos'"
-    [codeIcon]="['material-symbols:splitscreen-add-rounded']"
-    (iconClick)="onIconClick()">
+<div inSection>
+  <app-subheader title="Lista de turmas" [codeIcon]="['material-symbols:splitscreen-add-rounded']" (iconClick)="onIconClick()">
   </app-subheader>
+  <p>No do Professor</p>
 
   <div class="content-container" inSection>
     <img src="assets/img/home-page/empty.webp" alt="Imagem ilustrativa da home vazia." />
     <app-button type="filled" codeIcon="majesticons:plus-line" label="Criar Turma" (click)="redirectToCreateClass()">
     </app-button>
   </div>
-</app-section>
+</div>

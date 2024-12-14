@@ -1,10 +1,13 @@
 <app-header title="Tarefas"></app-header>
-<app-section class="container">
-  <app-subheader [title]="'Lista de alunos'" [codeIcon]="['majesticons:textbox-plus']" (iconClick)="onIconClick()" />
+<app-section *ngIf="user$ | async as user">
+  <ng-container *ngIf="user.role === 'teacher'; else student">
+    <app-teacher></app-teacher>
+  </ng-container>
 
-  <img src="assets/img/empty-task-page.webp" alt="task empty page" />
-  <app-button codeIcon="majesticons:plus" (click)="onIconClick()"></app-button>
-  <p>Lista de tarefas vazia, adicione uma nova tarefa</p>
+  <ng-template #student>
+    <app-student></app-student>
+  </ng-template>
 </app-section>
+
 <app-navbar></app-navbar>
 <app-sidebar></app-sidebar>

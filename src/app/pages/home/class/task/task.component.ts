@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { authSelectors } from '@store/auth/auth.selectors';
+import { UserProps } from '@store/auth/auth.types';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-task',
@@ -7,13 +10,9 @@ import { Router } from '@angular/router';
   styleUrl: './task.component.scss',
 })
 export class TaskComponent {
-  constructor(private router: Router) {}
+  user$!: Observable<UserProps | null>;
 
-  /**
-   * Lida com o evento de clique no ícone.
-   * Redireciona o usuário para a página desejada.
-   */
-  onIconClick(): void {
-    this.router.navigate(['/home/class/create_task']);
+  constructor(private store: Store) {
+    this.user$ = this.store.select(authSelectors.selectUser);
   }
 }

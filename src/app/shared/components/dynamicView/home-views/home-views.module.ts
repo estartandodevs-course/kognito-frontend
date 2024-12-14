@@ -6,11 +6,11 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { StructuralModule } from '@components/structural/structural.module';
 import { AppFormsModule } from '@components/app-forms/app-forms.module';
 import { InterfaceModule } from '@components/interface/interface.module';
-import { NavbarModule } from '@components/navigation/navbar/navbar.module';
+import { NavigationModule } from '@components/navigation/navigation.module';
 
 @NgModule({
   declarations: [StudentComponent, TeacherComponent],
   exports: [StudentComponent, TeacherComponent],
-  imports: [CommonModule, StructuralModule, AppFormsModule, InterfaceModule, NavbarModule],
+  imports: [CommonModule, StructuralModule, AppFormsModule, InterfaceModule, NavigationModule],
 })
 export class HomeViewsModule {}

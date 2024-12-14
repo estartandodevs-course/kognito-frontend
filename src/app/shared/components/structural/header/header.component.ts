@@ -16,7 +16,7 @@ import { authSelectors } from '@store/auth/auth.selectors';
 export class HeaderComponent {
   @Input() title: string | null = null;
   @Input() iconsLeft: IconHeaderProps[] = [{ code: 'majesticons:arrow-left', onClick: () => this._location.back() }];
-  @Input() iconsRight?: IconHeaderProps[];
+  @Input() iconsRight?: IconHeaderProps[] | null;
 
   user$!: Observable<UserProps | null>;
   saudation: string = '';

@@ -1,43 +1,11 @@
 <app-header title=" "></app-header>
 
-
-<app-section class="container">
-  <div class="container-items">
-    <app-calendar></app-calendar>
-
-    <div class="title">
-      <app-subheader title="Suas Metas"></app-subheader>
-    </div>
-    <!-- Lista de tarefas pendentes -->
-    <div class="checkbox-list">
-      <ng-container *ngFor="let task of tasks; let i = index">
-        <app-checkbox-task [taskLabel]="task.label" [isChecked]="task.isChecked" (checkChanged)="onTaskChecked(i, $event)">
-        </app-checkbox-task>
-      </ng-container>
-    </div>
-    <div class="title">
-      <app-subheader title="Concluídas Hoje"></app-subheader>
-    </div>
-    <!-- Lista de tarefas concluídas -->
-    <div class="checkbox-list">
-      <ng-container *ngFor="let completedTask of completedTasks">
-        <app-checkbox-task [taskLabel]="completedTask.label" [isChecked]="true" disabled="true"> </app-checkbox-task>
-      </ng-container>
-    </div>
-
-    <!-- Botão para adicionar novas tarefas -->
-    <app-button codeIcon="majesticons:plus-line" (click)="addCheckBox()"> </app-button>
-  </div>
-</app-section>
-
-<app-sidebar></app-sidebar>
-
 <app-section>
   <div class="container-main" inSection>
     <app-calendar></app-calendar>
 
     <ng-container *ngIf="!isLoading; else loading">
-      <app-subheader title="Suas Metas"></app-subheader>
+      <h2>Suas metas</h2>
 
       <!-- Lista de tarefas pendentes -->
       <div class="checkbox-list">
@@ -55,7 +23,7 @@
         </ng-template>
       </div>
 
-      <app-subheader title="Concluídas Hoje"></app-subheader>
+      <h2>Concluídas Hoje</h2>
 
       <div class="checkbox-list">
         <ng-container *ngIf="completedTasks.length; else notCompleted">
@@ -81,5 +49,5 @@
 </app-section>
 
 <app-button codeIcon="majesticons:plus-line" (buttonClick)="createTask()"> </app-button>
-
+<app-sidebar></app-sidebar>
 <app-navbar></app-navbar>
