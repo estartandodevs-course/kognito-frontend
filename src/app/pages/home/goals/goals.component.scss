@@ -1,16 +1,5 @@
 .container-main {
   display: flex;
-
-  flex-direction: column; /* Alinha os checkboxes verticalmente */
-  gap: 10px; /* Define o espaço de 10px entre os checkboxes */
-  justify-content: center;
-  width: 420px;
-  padding: 10px;
-}
-
-app-calendar {
-  padding: 30px;
-
   flex-direction: column;
   margin: auto;
 
@@ -35,7 +24,6 @@ span {
   justify-content: center;
   font-size: 1.3rem;
   color: var(--black);
-
 }
 
 app-button {
@@ -44,51 +32,6 @@ app-button {
   right: 2rem;
 }
 
-app-sidebar {
-  display: none;
-}
-
-@media (min-width: 1035px) {
-  .container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .container-items {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .title {
-    position: relative;
-    right: 90px;
-  }
-
-  app-navbar {
-    display: none;
-  }
-
-  app-sidebar {
-    display: grid;
-    position: absolute;
-    top: 0px;
-  }
-
-  .checkbox-list {
-    display: flex;
-    flex-direction: column; /* Alinha os checkboxes verticalmente */
-    gap: 10px; /* Define o espaço de 10px entre os checkboxes */
-    width: 750px;
-  }
-
-  app-calendar {
-    width: 750px;
-  }
-
-  app-subheader {
-    text-align: left;
-  }
+app-subheader {
+  margin: 20px 0px 20px;
 }

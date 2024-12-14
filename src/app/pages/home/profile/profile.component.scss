@@ -10,22 +10,6 @@
   }
 }
 
-app-sidebar {
-  display: none;
-}
-
-@media (min-width: 1035px) {
-  app-navbar {
-    display: none;
-  }
-
-  app-sidebar {
-    display: grid;
-    position: absolute;
-    top: 0px;
-  }
-
-
 app-graphic {
   display: flex;
   justify-content: center;
@@ -37,5 +21,4 @@ app-graphic {
 app-emblems {
   position: relative;
   top: 12rem;
-
 }
